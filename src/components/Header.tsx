@@ -9,9 +9,9 @@ const Header = () => {
 
   const navLinks = [
     { name: "Home", path: "/" },
+    { name: "PDF Editor", path: "/pdf-editor" },
+    { name: "Resume Maker", path: "/resume-maker" },
     { name: "About", path: "/about" },
-    { name: "Privacy", path: "/privacy" },
-    { name: "Terms", path: "/terms" },
   ];
 
   return (
