@@ -11,6 +11,8 @@ interface ConversionFile {
   targetFormat: string;
   status: "pending" | "converting" | "done" | "error";
   progress: number;
+  downloadUrl?: string;
+  downloadName?: string;
 }
 
 interface ConversionPanelProps {
@@ -77,38 +79,66 @@ const ConversionPanel = ({ files, onRemoveFile, onClearAll }: ConversionPanelPro
     );
   };
 
-  const simulateConversion = () => {
+  const handleConversion = async () => {
     setIsConverting(true);
     
-    conversionFiles.forEach((_, index) => {
-      setTimeout(() => {
-        setConversionFiles((prev) =>
-          prev.map((cf, i) =>
-            i === index ? { ...cf, status: "converting" } : cf
-          )
+    for (let index = 0; index < conversionFiles.length; index++) {
+      const cf = conversionFiles[index];
+      if (!cf.targetFormat) continue;
+
+      setConversionFiles(prev =>
+        prev.map((f, i) => i === index ? { ...f, status: "converting", progress: 10 } : f)
+      );
+
+      try {
+        const formData = new FormData();
+        formData.append('file', cf.file);
+        formData.append('targetFormat', cf.targetFormat);
+
+        const response = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/convert-file`, {
+          method: 'POST',
+          body: formData,
+        });
+
+        setConversionFiles(prev =>
+          prev.map((f, i) => i === index ? { ...f, progress: 50 } : f)
         );
 
-        let progress = 0;
-        const interval = setInterval(() => {
-          progress += Math.random() * 15;
-          if (progress >= 100) {
-            progress = 100;
-            clearInterval(interval);
-            setConversionFiles((prev) =>
-              prev.map((cf, i) =>
-                i === index ? { ...cf, progress: 100, status: "done" } : cf
-              )
-            );
-          } else {
-            setConversionFiles((prev) =>
-              prev.map((cf, i) =>
-                i === index ? { ...cf, progress } : cf
-              )
-            );
+        const data = await response.json();
+
+        if (data.success && data.data) {
+          // Store the download data
+          const binaryString = atob(data.data);
+          const bytes = new Uint8Array(binaryString.length);
+          for (let i = 0; i < binaryString.length; i++) {
+            bytes[i] = binaryString.charCodeAt(i);
           }
-        }, 200);
-      }, index * 500);
-    });
+          const blob = new Blob([bytes], { type: data.mimeType });
+          const url = URL.createObjectURL(blob);
+          
+          setConversionFiles(prev =>
+            prev.map((f, i) => i === index ? { ...f, progress: 100, status: "done", downloadUrl: url, downloadName: data.fileName } : f)
+          );
+        } else {
+          throw new Error(data.error || 'Conversion failed');
+        }
+      } catch (error) {
+        console.error('Conversion error:', error);
+        setConversionFiles(prev =>
+          prev.map((f, i) => i === index ? { ...f, status: "error" } : f)
+        );
+      }
+    }
+    setIsConverting(false);
+  };
+
+  const handleDownload = (cf: ConversionFile & { downloadUrl?: string; downloadName?: string }) => {
+    if (cf.downloadUrl && cf.downloadName) {
+      const a = document.createElement('a');
+      a.href = cf.downloadUrl;
+      a.download = cf.downloadName;
+      a.click();
+    }
   };
 
   const getFileIcon = (fileName: string) => {
@@ -183,7 +213,7 @@ const ConversionPanel = ({ files, onRemoveFile, onClearAll }: ConversionPanelPro
                     </div>
                     <div className="flex items-center gap-2">
                       {cf.status === "done" && (
-                        <Button variant="hero" size="sm">
+                        <Button variant="hero" size="sm" onClick={() => handleDownload(cf)}>
                           <Download className="w-4 h-4 mr-1" />
                           Download
                         </Button>
@@ -300,7 +330,7 @@ const ConversionPanel = ({ files, onRemoveFile, onClearAll }: ConversionPanelPro
             variant="teal"
             size="xl"
             className="w-full"
-            onClick={simulateConversion}
+            onClick={handleConversion}
             disabled={!conversionFiles[0]?.targetFormat || isConverting}
           >
             {isConverting ? (

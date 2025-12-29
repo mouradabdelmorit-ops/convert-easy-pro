@@ -8,6 +8,8 @@ import Index from "./pages/Index";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
 import About from "./pages/About";
+import PDFEditor from "./pages/PDFEditor";
+import ResumeMaker from "./pages/ResumeMaker";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -24,6 +26,8 @@ const App = () => (
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/terms" element={<Terms />} />
             <Route path="/about" element={<About />} />
+            <Route path="/pdf-editor" element={<PDFEditor />} />
+            <Route path="/resume-maker" element={<ResumeMaker />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
