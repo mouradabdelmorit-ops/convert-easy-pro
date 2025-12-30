@@ -10,6 +10,7 @@ const Footer = () => {
       { name: "PDF Editor", path: "/pdf-editor" },
       { name: "Resume Maker", path: "/resume-maker" },
       { name: "File Compressor", path: "/compress" },
+      { name: "Video Downloader", path: "/downloader" },
     ],
     converters: [
       { name: "Video Converter", path: "/video-converter" },
