@@ -15,6 +15,7 @@ const Header = () => {
     { name: t.nav.pdfEditor, path: "/pdf-editor" },
     { name: t.nav.resumeMaker, path: "/resume-maker" },
     { name: "Compress", path: "/compress" },
+    { name: "Downloader", path: "/downloader" },
     { name: t.nav.blog, path: "/blog" },
     { name: t.nav.about, path: "/about" },
   ];
