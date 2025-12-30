@@ -14,6 +14,7 @@ import PDFEditor from "./pages/PDFEditor";
 import ResumeMaker from "./pages/ResumeMaker";
 import CookiePolicy from "./pages/CookiePolicy";
 import Blog from "./pages/Blog";
+import BlogPost from "./pages/BlogPost";
 import Compress from "./pages/Compress";
 import VideoConverter from "./pages/converters/VideoConverter";
 import ImageConverter from "./pages/converters/ImageConverter";
@@ -60,6 +61,7 @@ const App = () => (
               <Route path="/resume-maker" element={<ResumeMaker />} />
               <Route path="/cookies" element={<CookiePolicy />} />
               <Route path="/blog" element={<Blog />} />
+              <Route path="/blog/:slug" element={<BlogPost />} />
               <Route path="/compress" element={<Compress />} />
               <Route path="/video-converter" element={<VideoConverter />} />
               <Route path="/image-converter" element={<ImageConverter />} />
@@ -77,6 +79,7 @@ const App = () => (
                   <Route path="resume-maker" element={<ResumeMaker />} />
                   <Route path="cookies" element={<CookiePolicy />} />
                   <Route path="blog" element={<Blog />} />
+                  <Route path="blog/:slug" element={<BlogPost />} />
                   <Route path="compress" element={<Compress />} />
                   <Route path="video-converter" element={<VideoConverter />} />
                   <Route path="image-converter" element={<ImageConverter />} />
