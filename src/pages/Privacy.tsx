@@ -141,9 +141,9 @@ We aim to respond to all inquiries within 48 hours.`
   return (
     <>
       <Helmet>
-        <title>Privacy Policy | ConvertFlow</title>
-        <meta name="description" content="Learn how ConvertFlow protects your privacy and handles your data. GDPR and CCPA compliant." />
-        <link rel="canonical" href="https://convertflow.com/privacy" />
+        <title>Privacy Policy | TransformFiles</title>
+        <meta name="description" content="Learn how TransformFiles protects your privacy and handles your data. GDPR and CCPA compliant." />
+        <link rel="canonical" href="https://transformfiles.app/privacy" />
       </Helmet>
 
       <div className="min-h-screen bg-background">

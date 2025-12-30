@@ -43,9 +43,9 @@ const About = () => {
   return (
     <>
       <Helmet>
-        <title>About Us | ConvertFlow - Our Mission & Team</title>
-        <meta name="description" content="Learn about ConvertFlow's mission to make file conversion accessible to everyone. Meet our team and discover our values." />
-        <link rel="canonical" href="https://convertflow.com/about" />
+        <title>About Us | TransformFiles - Our Mission & Team</title>
+        <meta name="description" content="Learn about TransformFiles mission to make file conversion accessible to everyone. Meet our team and discover our values." />
+        <link rel="canonical" href="https://transformfiles.app/about" />
       </Helmet>
 
       <div className="min-h-screen bg-background">
