@@ -35,126 +35,206 @@ function validateUrl(url: string, platform: string): boolean {
   return patterns[platform]?.some(pattern => pattern.test(url)) || false;
 }
 
-// Extract video ID from YouTube URL
-function extractYouTubeId(url: string): string | null {
-  const patterns = [
-    /(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/shorts\/)([^&\n?#]+)/,
-  ];
-  
-  for (const pattern of patterns) {
-    const match = url.match(pattern);
-    if (match) return match[1];
-  }
-  return null;
-}
-
-async function downloadYouTube(url: string): Promise<DownloadResponse> {
-  const videoId = extractYouTubeId(url);
-  if (!videoId) {
-    return { success: false, error: "Invalid YouTube URL" };
-  }
-
+async function downloadYouTube(url: string, apiKey: string): Promise<DownloadResponse> {
   try {
-    // Use a public API to get video info
-    const apiUrl = `https://www.youtube.com/oembed?url=${encodeURIComponent(url)}&format=json`;
-    const response = await fetch(apiUrl);
+    console.log("Fetching YouTube video from API...");
     
+    // Use ytstream-download API from RapidAPI
+    const apiUrl = `https://ytstream-download-youtube-videos.p.rapidapi.com/dl?id=${encodeURIComponent(url)}`;
+    
+    const response = await fetch(apiUrl, {
+      method: 'GET',
+      headers: {
+        'x-rapidapi-key': apiKey,
+        'x-rapidapi-host': 'ytstream-download-youtube-videos.p.rapidapi.com',
+      },
+    });
+
     if (!response.ok) {
-      throw new Error("Could not fetch video info");
+      console.error("YouTube API response not ok:", response.status);
+      throw new Error(`API returned ${response.status}`);
     }
-    
+
     const data = await response.json();
-    
-    // For actual downloads, we would need a proper YouTube download service
-    // This returns a placeholder that opens the video
+    console.log("YouTube API response:", JSON.stringify(data).substring(0, 500));
+
+    if (data.status === 'fail') {
+      throw new Error(data.msg || "Failed to get video");
+    }
+
+    // Get the best quality video link
+    let downloadUrl = null;
+    let title = data.title || "YouTube Video";
+    let thumbnail = data.thumbnail || null;
+
+    // Check for formats/adaptiveFormats
+    if (data.formats && data.formats.length > 0) {
+      // Find a format with both video and audio (usually the first few)
+      const videoFormat = data.formats.find((f: any) => f.url && f.hasVideo && f.hasAudio) 
+        || data.formats.find((f: any) => f.url);
+      if (videoFormat) {
+        downloadUrl = videoFormat.url;
+      }
+    }
+
+    // Alternative: check for link array
+    if (!downloadUrl && data.link && Array.isArray(data.link)) {
+      const videoLink = data.link.find((l: any) => l.url);
+      if (videoLink) {
+        downloadUrl = videoLink.url;
+      }
+    }
+
+    // Check for direct links
+    if (!downloadUrl && data.links) {
+      for (const quality of ['720p', '480p', '360p', '1080p']) {
+        if (data.links[quality]) {
+          downloadUrl = data.links[quality];
+          break;
+        }
+      }
+    }
+
+    if (!downloadUrl) {
+      throw new Error("No download URL found in response");
+    }
+
     return {
       success: true,
-      downloadUrl: `https://www.youtube.com/watch?v=${videoId}`,
-      title: data.title,
-      thumbnail: data.thumbnail_url,
+      downloadUrl,
+      title,
+      thumbnail,
     };
-  } catch (error) {
+  } catch (error: unknown) {
+    const errorMessage = error instanceof Error ? error.message : "Unknown error";
     console.error("YouTube download error:", error);
     return { 
       success: false, 
-      error: "Unable to process YouTube video. Please try again." 
+      error: `Unable to download YouTube video: ${errorMessage}` 
     };
   }
 }
 
-async function downloadInstagram(url: string): Promise<DownloadResponse> {
+async function downloadInstagram(url: string, apiKey: string): Promise<DownloadResponse> {
   try {
-    // Extract the post/reel ID
-    const match = url.match(/instagram\.com\/(p|reel|reels|tv)\/([^/?]+)/);
-    if (!match) {
-      return { success: false, error: "Invalid Instagram URL" };
+    console.log("Fetching Instagram media from API...");
+    
+    // Use Instagram downloader API
+    const apiUrl = `https://instagram-downloader-download-instagram-videos-stories1.p.rapidapi.com/?url=${encodeURIComponent(url)}`;
+    
+    const response = await fetch(apiUrl, {
+      method: 'GET',
+      headers: {
+        'x-rapidapi-key': apiKey,
+        'x-rapidapi-host': 'instagram-downloader-download-instagram-videos-stories1.p.rapidapi.com',
+      },
+    });
+
+    if (!response.ok) {
+      console.error("Instagram API response not ok:", response.status);
+      throw new Error(`API returned ${response.status}`);
     }
 
-    const postId = match[2];
+    const data = await response.json();
+    console.log("Instagram API response:", JSON.stringify(data).substring(0, 500));
+
+    let downloadUrl = null;
+    let thumbnail = null;
     
-    // Use Instagram's oEmbed API to get post info
-    const oembedUrl = `https://api.instagram.com/oembed?url=${encodeURIComponent(url)}`;
-    
-    try {
-      const response = await fetch(oembedUrl);
-      if (response.ok) {
-        const data = await response.json();
-        return {
-          success: true,
-          downloadUrl: url,
-          title: data.title || "Instagram Media",
-          thumbnail: data.thumbnail_url,
-        };
-      }
-    } catch (e) {
-      console.log("oEmbed failed, using fallback");
+    // Handle different response structures
+    if (data.result && Array.isArray(data.result) && data.result.length > 0) {
+      downloadUrl = data.result[0].url || data.result[0];
+    } else if (data.url) {
+      downloadUrl = data.url;
+    } else if (data.video) {
+      downloadUrl = data.video;
+    } else if (data.download_url) {
+      downloadUrl = data.download_url;
+    }
+
+    if (data.thumbnail) {
+      thumbnail = data.thumbnail;
+    } else if (data.thumb) {
+      thumbnail = data.thumb;
+    }
+
+    if (!downloadUrl) {
+      throw new Error("No download URL found in response");
     }
 
     return {
       success: true,
-      downloadUrl: url,
+      downloadUrl,
       title: "Instagram Media",
-      thumbnail: `https://instagram.com/p/${postId}/media/?size=l`,
+      thumbnail,
     };
-  } catch (error) {
+  } catch (error: unknown) {
+    const errorMessage = error instanceof Error ? error.message : "Unknown error";
     console.error("Instagram download error:", error);
     return { 
       success: false, 
-      error: "Unable to process Instagram media. Please try again." 
+      error: `Unable to download Instagram media: ${errorMessage}` 
     };
   }
 }
 
-async function downloadTikTok(url: string): Promise<DownloadResponse> {
+async function downloadTikTok(url: string, apiKey: string): Promise<DownloadResponse> {
   try {
-    // For TikTok, we need to handle the short URLs (vm.tiktok.com)
-    let finalUrl = url;
+    console.log("Fetching TikTok video from API...");
     
-    if (url.includes('vm.tiktok.com')) {
-      // Follow redirect to get the actual URL
-      try {
-        const response = await fetch(url, { redirect: 'follow' });
-        finalUrl = response.url;
-      } catch (e) {
-        console.log("Redirect follow failed");
-      }
+    // Use TikTok downloader API - no watermark
+    const apiUrl = `https://tiktok-download-video1.p.rapidapi.com/getVideo?url=${encodeURIComponent(url)}&hd=1`;
+    
+    const response = await fetch(apiUrl, {
+      method: 'GET',
+      headers: {
+        'x-rapidapi-key': apiKey,
+        'x-rapidapi-host': 'tiktok-download-video1.p.rapidapi.com',
+      },
+    });
+
+    if (!response.ok) {
+      console.error("TikTok API response not ok:", response.status);
+      throw new Error(`API returned ${response.status}`);
     }
 
-    // Extract video ID
-    const match = finalUrl.match(/video\/(\d+)/);
-    const videoId = match ? match[1] : null;
+    const data = await response.json();
+    console.log("TikTok API response:", JSON.stringify(data).substring(0, 500));
+
+    let downloadUrl = null;
+    let thumbnail = null;
+    let title = "TikTok Video";
+
+    // Handle response structure
+    if (data.data) {
+      // No watermark version
+      downloadUrl = data.data.play || data.data.hdplay || data.data.wmplay;
+      thumbnail = data.data.cover || data.data.origin_cover;
+      title = data.data.title || "TikTok Video";
+    } else if (data.video) {
+      downloadUrl = data.video;
+    } else if (data.nowatermark) {
+      downloadUrl = data.nowatermark;
+    } else if (data.play) {
+      downloadUrl = data.play;
+    }
+
+    if (!downloadUrl) {
+      throw new Error("No download URL found in response");
+    }
 
     return {
       success: true,
-      downloadUrl: finalUrl,
-      title: "TikTok Video (No Watermark)",
-      thumbnail: undefined,
+      downloadUrl,
+      title,
+      thumbnail,
     };
-  } catch (error) {
+  } catch (error: unknown) {
+    const errorMessage = error instanceof Error ? error.message : "Unknown error";
     console.error("TikTok download error:", error);
     return { 
       success: false, 
-      error: "Unable to process TikTok video. Please try again." 
+      error: `Unable to download TikTok video: ${errorMessage}` 
     };
   }
 }
@@ -166,6 +246,15 @@ serve(async (req) => {
   }
 
   try {
+    const apiKey = Deno.env.get('RAPIDAPI_KEY');
+    if (!apiKey) {
+      console.error("RAPIDAPI_KEY not configured");
+      return new Response(
+        JSON.stringify({ success: false, error: "Download service not configured. Please add your RapidAPI key." }),
+        { headers: { ...corsHeaders, 'Content-Type': 'application/json' }, status: 500 }
+      );
+    }
+
     const { url, platform }: DownloadRequest = await req.json();
 
     console.log(`Processing ${platform} download for URL: ${url}`);
@@ -189,13 +278,13 @@ serve(async (req) => {
 
     switch (platform) {
       case 'youtube':
-        result = await downloadYouTube(url);
+        result = await downloadYouTube(url, apiKey);
         break;
       case 'instagram':
-        result = await downloadInstagram(url);
+        result = await downloadInstagram(url, apiKey);
         break;
       case 'tiktok':
-        result = await downloadTikTok(url);
+        result = await downloadTikTok(url, apiKey);
         break;
       default:
         result = { success: false, error: "Unsupported platform" };
