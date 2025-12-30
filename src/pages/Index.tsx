@@ -26,7 +26,7 @@ const Index = () => {
   return (
     <>
       <Helmet>
-        <title>ConvertFlow - Free Online File Converter | Convert Any File Format</title>
+        <title>TransformFiles - Free Online File Converter | Convert Any File Format</title>
         <meta
           name="description"
           content="Convert files online for free. Support for 1500+ formats including video, image, audio, documents. Fast, secure, no registration required."
@@ -35,17 +35,17 @@ const Index = () => {
           name="keywords"
           content="file converter, online converter, video converter, image converter, audio converter, PDF converter, free converter"
         />
-        <link rel="canonical" href="https://convertflow.com" />
+        <link rel="canonical" href="https://transformfiles.app" />
         
         {/* Open Graph */}
-        <meta property="og:title" content="ConvertFlow - Free Online File Converter" />
+        <meta property="og:title" content="TransformFiles - Free Online File Converter" />
         <meta property="og:description" content="Convert any file to any format. Fast, secure, and free." />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://convertflow.com" />
+        <meta property="og:url" content="https://transformfiles.app" />
         
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="ConvertFlow - Free Online File Converter" />
+        <meta name="twitter:title" content="TransformFiles - Free Online File Converter" />
         <meta name="twitter:description" content="Convert any file to any format. Fast, secure, and free." />
         
         {/* Structured Data */}
@@ -53,9 +53,9 @@ const Index = () => {
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "WebApplication",
-            "name": "ConvertFlow",
+            "name": "TransformFiles",
             "description": "Free online file converter supporting 1500+ formats",
-            "url": "https://convertflow.com",
+            "url": "https://transformfiles.app",
             "applicationCategory": "UtilityApplication",
             "operatingSystem": "All",
             "offers": {
