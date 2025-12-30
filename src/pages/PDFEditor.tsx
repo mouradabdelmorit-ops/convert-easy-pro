@@ -59,43 +59,47 @@ const PDFEditor = () => {
   const [brushSize, setBrushSize] = useState(3);
   const [textContent, setTextContent] = useState("Your text here");
   const [zoom, setZoom] = useState(100);
+  const [pdfLoaded, setPdfLoaded] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
   
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const fabricCanvasRef = useRef<FabricCanvas | null>(null);
+  const pdfDocRef = useRef<PDFDocument | null>(null);
 
-  // Initialize Fabric.js canvas when edit mode is active
-  useEffect(() => {
-    if (selectedTool === 'edit' && canvasRef.current && !fabricCanvasRef.current) {
+  // Initialize Fabric.js canvas
+  const initCanvas = useCallback(() => {
+    if (canvasRef.current && !fabricCanvasRef.current) {
       const canvas = new FabricCanvas(canvasRef.current, {
-        width: 600,
-        height: 800,
+        width: 612,
+        height: 792,
         backgroundColor: '#ffffff',
         selection: true,
       });
       
-      // Set drawing mode first to initialize freeDrawingBrush
       canvas.isDrawingMode = true;
-      
-      // Now freeDrawingBrush should exist
       if (canvas.freeDrawingBrush) {
         canvas.freeDrawingBrush.color = brushColor;
         canvas.freeDrawingBrush.width = brushSize;
       }
-      
-      // Switch back to select mode
       canvas.isDrawingMode = false;
       
       fabricCanvasRef.current = canvas;
-      toast({ title: "Canvas Ready", description: "Start editing your PDF!" });
     }
-    
+  }, [brushColor, brushSize]);
+
+  useEffect(() => {
+    if (selectedTool === 'edit') {
+      initCanvas();
+    }
     return () => {
       if (fabricCanvasRef.current && selectedTool !== 'edit') {
         fabricCanvasRef.current.dispose();
         fabricCanvasRef.current = null;
+        setPdfLoaded(false);
       }
     };
-  }, [selectedTool]);
+  }, [selectedTool, initCanvas]);
 
   // Update brush settings
   useEffect(() => {
@@ -122,6 +126,99 @@ const PDFEditor = () => {
       }
     }
   }, [editTool, brushColor, brushSize]);
+
+  // Render PDF page to canvas
+  const renderPDFPage = useCallback(async (pageNum: number) => {
+    if (!pdfDocRef.current || !fabricCanvasRef.current) return;
+    
+    try {
+      const pdfDoc = pdfDocRef.current;
+      const pages = pdfDoc.getPages();
+      if (pageNum < 1 || pageNum > pages.length) return;
+      
+      const page = pages[pageNum - 1];
+      const { width, height } = page.getSize();
+      
+      // Create a new PDF with just this page for rendering
+      const singlePagePdf = await PDFDocument.create();
+      const [copiedPage] = await singlePagePdf.copyPages(pdfDoc, [pageNum - 1]);
+      singlePagePdf.addPage(copiedPage);
+      
+      const pdfBytes = await singlePagePdf.save();
+      const arrayBuffer = new ArrayBuffer(pdfBytes.length);
+      const uint8View = new Uint8Array(arrayBuffer);
+      uint8View.set(pdfBytes);
+      const blob = new Blob([arrayBuffer], { type: 'application/pdf' });
+      const url = URL.createObjectURL(blob);
+      
+      // Resize canvas to match PDF page
+      const canvas = fabricCanvasRef.current;
+      const scale = Math.min(612 / width, 792 / height);
+      canvas.setWidth(width * scale);
+      canvas.setHeight(height * scale);
+      canvas.backgroundColor = '#ffffff';
+      
+      // For now, show a placeholder indicating PDF is loaded
+      // Real PDF rendering would require pdf.js
+      canvas.clear();
+      canvas.backgroundColor = '#ffffff';
+      
+      // Add a text indicating the page
+      const pageText = new IText(`PDF Page ${pageNum} of ${pages.length}\n\nClick tools above to add annotations`, {
+        left: 50,
+        top: 50,
+        fontSize: 18,
+        fill: '#666666',
+        fontFamily: 'Arial',
+        textAlign: 'center',
+      });
+      canvas.add(pageText);
+      canvas.renderAll();
+      
+      URL.revokeObjectURL(url);
+      setCurrentPage(pageNum);
+      
+    } catch (error) {
+      console.error('Error rendering PDF page:', error);
+    }
+  }, []);
+
+  // Load PDF into editor
+  const loadPDFForEditing = useCallback(async (file: File) => {
+    try {
+      setIsProcessing(true);
+      const arrayBuffer = await file.arrayBuffer();
+      const pdfDoc = await PDFDocument.load(arrayBuffer);
+      
+      pdfDocRef.current = pdfDoc;
+      const pageCount = pdfDoc.getPageCount();
+      setTotalPages(pageCount);
+      setPdfLoaded(true);
+      
+      // Initialize canvas if not already done
+      if (!fabricCanvasRef.current) {
+        initCanvas();
+        // Wait for canvas to initialize
+        await new Promise(resolve => setTimeout(resolve, 100));
+      }
+      
+      await renderPDFPage(1);
+      
+      toast({ 
+        title: "PDF Loaded", 
+        description: `${file.name} - ${pageCount} page(s) ready for editing` 
+      });
+    } catch (error) {
+      console.error('Error loading PDF:', error);
+      toast({ 
+        title: "Error", 
+        description: "Failed to load PDF. Please try another file.", 
+        variant: "destructive" 
+      });
+    } finally {
+      setIsProcessing(false);
+    }
+  }, [initCanvas, renderPDFPage]);
 
   const addShape = (type: string) => {
     if (!fabricCanvasRef.current) return;
@@ -186,6 +283,9 @@ const PDFEditor = () => {
       fabricCanvasRef.current.clear();
       fabricCanvasRef.current.backgroundColor = '#ffffff';
       fabricCanvasRef.current.renderAll();
+      setPdfLoaded(false);
+      pdfDocRef.current = null;
+      setTotalPages(0);
     }
   };
 
@@ -200,14 +300,29 @@ const PDFEditor = () => {
 
   const downloadCanvas = () => {
     if (fabricCanvasRef.current) {
-      const dataURL = fabricCanvasRef.current.toDataURL({ multiplier: 1, format: 'png', quality: 1 });
+      const dataURL = fabricCanvasRef.current.toDataURL({ multiplier: 2, format: 'png', quality: 1 });
       const link = document.createElement('a');
       link.download = 'edited-document.png';
       link.href = dataURL;
       link.click();
-      toast({ title: "Downloaded!", description: "Your edited document has been saved." });
+      toast({ title: "Downloaded!", description: "Your edited document has been saved as PNG." });
     }
   };
+
+  // Handle PDF upload for editing
+  const onDropEdit = useCallback(async (acceptedFiles: File[]) => {
+    const pdfFile = acceptedFiles.find(f => f.type === 'application/pdf');
+    if (pdfFile) {
+      await loadPDFForEditing(pdfFile);
+    }
+  }, [loadPDFForEditing]);
+
+  const { getRootProps: getEditRootProps, getInputProps: getEditInputProps, isDragActive: isEditDragActive, open: openEdit } = useDropzone({
+    onDrop: onDropEdit,
+    accept: { 'application/pdf': ['.pdf'] },
+    noClick: true,
+    multiple: false,
+  });
 
   const onDrop = useCallback(async (acceptedFiles: File[]) => {
     const pdfFiles = acceptedFiles.filter(f => f.type === 'application/pdf');
@@ -462,104 +577,188 @@ const PDFEditor = () => {
                 ))}
               </div>
 
-              {/* Edit Mode Canvas */}
+              {/* Edit Mode */}
               {selectedTool === 'edit' && (
                 <div className="max-w-5xl mx-auto">
-                  {/* Edit Toolbar */}
-                  <div className="glass rounded-xl p-3 mb-4">
-                    <div className="flex flex-wrap items-center gap-2">
-                      {/* Tool buttons */}
-                      <div className="flex gap-1 border-r border-border pr-3">
-                        {editTools.map((tool) => (
-                          <button
-                            key={tool.id}
-                            onClick={() => handleEditToolClick(tool.id)}
-                            className={`p-2 rounded-lg transition-all ${
-                              editTool === tool.id ? 'bg-primary text-primary-foreground' : 'hover:bg-secondary'
-                            }`}
-                            title={tool.label}
-                          >
-                            <tool.icon className="w-4 h-4" />
-                          </button>
-                        ))}
-                      </div>
-                      
-                      {/* Color picker */}
-                      <div className="flex items-center gap-2 border-r border-border pr-3">
-                        <input
-                          type="color"
-                          value={brushColor}
-                          onChange={(e) => setBrushColor(e.target.value)}
-                          className="w-8 h-8 rounded cursor-pointer"
-                        />
-                        <div className="flex gap-1">
-                          {['#00d4aa', '#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#ffeaa7', '#000000'].map(color => (
-                            <button
-                              key={color}
-                              onClick={() => setBrushColor(color)}
-                              className={`w-6 h-6 rounded-full border-2 ${brushColor === color ? 'border-foreground' : 'border-transparent'}`}
-                              style={{ backgroundColor: color }}
-                            />
-                          ))}
+                  {/* Upload zone for Edit mode */}
+                  {!pdfLoaded && (
+                    <div {...getEditRootProps()} className="mb-6">
+                      <input {...getEditInputProps()} />
+                      <div className={`rounded-2xl border-2 border-dashed transition-all duration-300 ${
+                        isEditDragActive ? 'border-primary bg-primary/5' : 'border-border hover:border-primary/50'
+                      }`}>
+                        <div className="p-8 md:p-12 text-center">
+                          <div className={`w-16 h-16 mx-auto mb-4 rounded-xl flex items-center justify-center ${
+                            isEditDragActive ? 'gradient-teal' : 'bg-secondary'
+                          }`}>
+                            <Upload className={`w-8 h-8 ${isEditDragActive ? 'text-primary-foreground' : 'text-primary'}`} />
+                          </div>
+                          <h3 className="text-xl font-semibold text-foreground mb-2">
+                            {isEditDragActive ? 'Drop your PDF here!' : 'Upload PDF to Edit'}
+                          </h3>
+                          <p className="text-muted-foreground mb-4">Drag & drop your PDF file here or click to browse</p>
+                          <Button variant="hero" size="lg" onClick={openEdit} disabled={isProcessing}>
+                            {isProcessing ? (
+                              <>
+                                <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+                                Loading...
+                              </>
+                            ) : (
+                              <>
+                                Choose PDF File <ArrowRight className="w-5 h-5 ml-2" />
+                              </>
+                            )}
+                          </Button>
                         </div>
                       </div>
-                      
-                      {/* Brush size */}
-                      <div className="flex items-center gap-2 border-r border-border pr-3 min-w-[120px]">
-                        <span className="text-xs text-muted-foreground">Size:</span>
-                        <Slider
-                          value={[brushSize]}
-                          onValueChange={(v) => setBrushSize(v[0])}
-                          min={1}
-                          max={20}
-                          step={1}
-                          className="w-20"
-                        />
-                        <span className="text-xs text-foreground w-4">{brushSize}</span>
-                      </div>
-                      
-                      {/* Text input for text tool */}
-                      <div className="flex items-center gap-2 border-r border-border pr-3">
-                        <Input
-                          value={textContent}
-                          onChange={(e) => setTextContent(e.target.value)}
-                          placeholder="Text content"
-                          className="w-32 h-8 text-xs"
-                        />
-                      </div>
-                      
-                      {/* Actions */}
-                      <div className="flex gap-1">
-                        <button onClick={deleteSelected} className="p-2 rounded-lg hover:bg-secondary" title="Delete selected">
-                          <Trash2 className="w-4 h-4" />
-                        </button>
-                        <button onClick={clearCanvas} className="p-2 rounded-lg hover:bg-secondary" title="Clear all">
-                          <Eraser className="w-4 h-4" />
-                        </button>
-                        <button onClick={() => setZoom(z => Math.min(200, z + 10))} className="p-2 rounded-lg hover:bg-secondary" title="Zoom in">
-                          <ZoomIn className="w-4 h-4" />
-                        </button>
-                        <button onClick={() => setZoom(z => Math.max(50, z - 10))} className="p-2 rounded-lg hover:bg-secondary" title="Zoom out">
-                          <ZoomOut className="w-4 h-4" />
-                        </button>
-                      </div>
                     </div>
-                  </div>
+                  )}
 
-                  {/* Canvas Area */}
-                  <div className="glass rounded-xl p-4 overflow-auto" style={{ maxHeight: '600px' }}>
-                    <div className="flex justify-center" style={{ transform: `scale(${zoom / 100})`, transformOrigin: 'top center' }}>
-                      <canvas ref={canvasRef} className="border border-border rounded-lg shadow-lg" />
+                  {/* Edit Toolbar - show only when PDF is loaded */}
+                  {pdfLoaded && (
+                    <>
+                      <div className="glass rounded-xl p-3 mb-4">
+                        <div className="flex flex-wrap items-center gap-2">
+                          {/* Tool buttons */}
+                          <div className="flex gap-1 border-r border-border pr-3">
+                            {editTools.map((tool) => (
+                              <button
+                                key={tool.id}
+                                onClick={() => handleEditToolClick(tool.id)}
+                                className={`p-2 rounded-lg transition-all ${
+                                  editTool === tool.id ? 'bg-primary text-primary-foreground' : 'hover:bg-secondary'
+                                }`}
+                                title={tool.label}
+                              >
+                                <tool.icon className="w-4 h-4" />
+                              </button>
+                            ))}
+                          </div>
+                          
+                          {/* Color picker */}
+                          <div className="flex items-center gap-2 border-r border-border pr-3">
+                            <input
+                              type="color"
+                              value={brushColor}
+                              onChange={(e) => setBrushColor(e.target.value)}
+                              className="w-8 h-8 rounded cursor-pointer"
+                            />
+                            <div className="flex gap-1">
+                              {['#00d4aa', '#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#ffeaa7', '#000000'].map(color => (
+                                <button
+                                  key={color}
+                                  onClick={() => setBrushColor(color)}
+                                  className={`w-6 h-6 rounded-full border-2 ${brushColor === color ? 'border-foreground' : 'border-transparent'}`}
+                                  style={{ backgroundColor: color }}
+                                />
+                              ))}
+                            </div>
+                          </div>
+                          
+                          {/* Brush size */}
+                          <div className="flex items-center gap-2 border-r border-border pr-3 min-w-[120px]">
+                            <span className="text-xs text-muted-foreground">Size:</span>
+                            <Slider
+                              value={[brushSize]}
+                              onValueChange={(v) => setBrushSize(v[0])}
+                              min={1}
+                              max={20}
+                              step={1}
+                              className="w-20"
+                            />
+                            <span className="text-xs text-foreground w-4">{brushSize}</span>
+                          </div>
+                          
+                          {/* Text input */}
+                          <div className="flex items-center gap-2 border-r border-border pr-3">
+                            <Input
+                              value={textContent}
+                              onChange={(e) => setTextContent(e.target.value)}
+                              placeholder="Text content"
+                              className="w-32 h-8 text-xs"
+                            />
+                          </div>
+                          
+                          {/* Page navigation */}
+                          {totalPages > 1 && (
+                            <div className="flex items-center gap-2 border-r border-border pr-3">
+                              <button 
+                                onClick={() => renderPDFPage(Math.max(1, currentPage - 1))}
+                                disabled={currentPage <= 1}
+                                className="p-1 rounded hover:bg-secondary disabled:opacity-50"
+                              >
+                                <ChevronLeft className="w-4 h-4" />
+                              </button>
+                              <span className="text-xs text-muted-foreground">
+                                {currentPage} / {totalPages}
+                              </span>
+                              <button 
+                                onClick={() => renderPDFPage(Math.min(totalPages, currentPage + 1))}
+                                disabled={currentPage >= totalPages}
+                                className="p-1 rounded hover:bg-secondary disabled:opacity-50"
+                              >
+                                <ChevronRight className="w-4 h-4" />
+                              </button>
+                            </div>
+                          )}
+                          
+                          {/* Actions */}
+                          <div className="flex gap-1">
+                            <button onClick={deleteSelected} className="p-2 rounded-lg hover:bg-secondary" title="Delete selected">
+                              <Trash2 className="w-4 h-4" />
+                            </button>
+                            <button onClick={clearCanvas} className="p-2 rounded-lg hover:bg-secondary" title="Clear & upload new">
+                              <X className="w-4 h-4" />
+                            </button>
+                            <button onClick={() => setZoom(z => Math.min(200, z + 10))} className="p-2 rounded-lg hover:bg-secondary" title="Zoom in">
+                              <ZoomIn className="w-4 h-4" />
+                            </button>
+                            <button onClick={() => setZoom(z => Math.max(50, z - 10))} className="p-2 rounded-lg hover:bg-secondary" title="Zoom out">
+                              <ZoomOut className="w-4 h-4" />
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Canvas Area */}
+                      <div className="glass rounded-xl p-4 overflow-auto" style={{ maxHeight: '600px' }}>
+                        <div className="flex justify-center" style={{ transform: `scale(${zoom / 100})`, transformOrigin: 'top center' }}>
+                          <canvas ref={canvasRef} className="border border-border rounded-lg shadow-lg" />
+                        </div>
+                      </div>
+
+                      {/* Download Button */}
+                      <div className="flex justify-center mt-4 gap-4">
+                        <Button variant="outline" onClick={clearCanvas}>
+                          <Upload className="w-4 h-4 mr-2" />
+                          Upload New PDF
+                        </Button>
+                        <Button variant="hero" size="lg" onClick={downloadCanvas}>
+                          <Download className="w-5 h-5 mr-2" />
+                          Download as Image
+                        </Button>
+                      </div>
+                    </>
+                  )}
+
+                  {/* Show canvas for blank editing if not loading PDF */}
+                  {!pdfLoaded && !isProcessing && (
+                    <div className="text-center mt-4">
+                      <p className="text-muted-foreground mb-4">Or start with a blank canvas:</p>
+                      <Button 
+                        variant="outline" 
+                        onClick={() => {
+                          initCanvas();
+                          setPdfLoaded(true);
+                          setTotalPages(0);
+                          toast({ title: "Canvas Ready", description: "Start creating your document!" });
+                        }}
+                      >
+                        <Pencil className="w-4 h-4 mr-2" />
+                        Start Blank Canvas
+                      </Button>
                     </div>
-                  </div>
-
-                  {/* Download Button */}
-                  <div className="flex justify-center mt-4">
-                    <Button variant="hero" size="lg" onClick={downloadCanvas}>
-                      <Download className="w-5 h-5 mr-2" />
-                      Download Edited Document
-                    </Button>
-                  </div>
+                  )}
                 </div>
               )}
 
@@ -618,74 +817,116 @@ const PDFEditor = () => {
                           ))}
                         </div>
 
-                        <div className="glass rounded-xl p-3 min-h-[250px]">
-                          <h3 className="text-sm font-medium text-muted-foreground mb-2">Preview</h3>
-                          {files[previewPage] && (
-                            <div className="h-full flex flex-col">
-                              <div className="flex-1 bg-secondary rounded-lg overflow-hidden">
-                                <iframe src={files[previewPage].preview} className="w-full h-full min-h-[200px]" title="Preview" />
-                              </div>
-                              <div className="flex items-center justify-between mt-2">
-                                <Button variant="outline" size="sm" onClick={() => setPreviewPage(Math.max(0, previewPage - 1))} disabled={previewPage === 0}>
-                                  <ChevronLeft className="w-4 h-4" />
-                                </Button>
-                                <span className="text-xs text-muted-foreground">{previewPage + 1} / {files.length}</span>
-                                <Button variant="outline" size="sm" onClick={() => setPreviewPage(Math.min(files.length - 1, previewPage + 1))} disabled={previewPage === files.length - 1}>
-                                  <ChevronRight className="w-4 h-4" />
-                                </Button>
+                        {/* Tool-specific options */}
+                        <div className="space-y-4">
+                          {selectedTool === 'split' && (
+                            <div className="glass rounded-xl p-4">
+                              <h3 className="text-sm font-medium text-foreground mb-2">Page Range</h3>
+                              <Input
+                                value={pageRange}
+                                onChange={(e) => setPageRange(e.target.value)}
+                                placeholder="e.g., 1-5, 8, 10-15"
+                                className="mb-2"
+                              />
+                              <p className="text-xs text-muted-foreground">
+                                Total pages: {files[0]?.pageCount || 0}
+                              </p>
+                            </div>
+                          )}
+
+                          {selectedTool === 'rotate' && (
+                            <div className="glass rounded-xl p-4">
+                              <h3 className="text-sm font-medium text-foreground mb-3">Rotation Angle</h3>
+                              <div className="flex gap-2">
+                                {[90, 180, 270].map(angle => (
+                                  <button
+                                    key={angle}
+                                    onClick={() => setRotateAngle(angle)}
+                                    className={`px-4 py-2 rounded-lg transition-all ${
+                                      rotateAngle === angle 
+                                        ? 'bg-primary text-primary-foreground' 
+                                        : 'bg-secondary hover:bg-secondary/80'
+                                    }`}
+                                  >
+                                    {angle}°
+                                  </button>
+                                ))}
                               </div>
                             </div>
                           )}
+
+                          {selectedTool === 'add-watermark' && (
+                            <div className="glass rounded-xl p-4">
+                              <h3 className="text-sm font-medium text-foreground mb-2">Watermark Text</h3>
+                              <Input
+                                value={watermarkText}
+                                onChange={(e) => setWatermarkText(e.target.value)}
+                                placeholder="Enter watermark text"
+                              />
+                            </div>
+                          )}
+
+                          <Button 
+                            variant="hero" 
+                            size="lg" 
+                            className="w-full"
+                            onClick={processFiles}
+                            disabled={isProcessing}
+                          >
+                            {isProcessing ? (
+                              <>
+                                <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+                                Processing...
+                              </>
+                            ) : (
+                              <>
+                                <Download className="w-5 h-5 mr-2" />
+                                {selectedTool === 'merge' && 'Merge PDFs'}
+                                {selectedTool === 'split' && 'Split PDF'}
+                                {selectedTool === 'compress' && 'Compress PDF'}
+                                {selectedTool === 'rotate' && 'Rotate PDF'}
+                                {selectedTool === 'add-watermark' && 'Add Watermark'}
+                              </>
+                            )}
+                          </Button>
                         </div>
                       </div>
                     </div>
                   )}
-
-                  {/* Tool Options */}
-                  {files.length > 0 && (
-                    <div className="max-w-xl mx-auto mt-6 glass rounded-xl p-4">
-                      {selectedTool === 'split' && (
-                        <div>
-                          <label className="text-sm text-muted-foreground mb-2 block">Page Range (e.g., 1-5, 7, 10-12)</label>
-                          <Input value={pageRange} onChange={(e) => setPageRange(e.target.value)} placeholder="1-5" />
-                        </div>
-                      )}
-                      {selectedTool === 'rotate' && (
-                        <div>
-                          <label className="text-sm text-muted-foreground mb-2 block">Rotation Angle</label>
-                          <div className="flex gap-2">
-                            {[90, 180, 270].map(angle => (
-                              <Button key={angle} variant={rotateAngle === angle ? 'default' : 'outline'} onClick={() => setRotateAngle(angle)}>
-                                {angle}°
-                              </Button>
-                            ))}
-                          </div>
-                        </div>
-                      )}
-                      {selectedTool === 'add-watermark' && (
-                        <div>
-                          <label className="text-sm text-muted-foreground mb-2 block">Watermark Text</label>
-                          <Input value={watermarkText} onChange={(e) => setWatermarkText(e.target.value)} placeholder="CONFIDENTIAL" />
-                        </div>
-                      )}
-
-                      <Button variant="hero" size="lg" className="w-full mt-4" onClick={processFiles} disabled={isProcessing}>
-                        {isProcessing ? (
-                          <>
-                            <Loader2 className="w-5 h-5 mr-2 animate-spin" />
-                            Processing...
-                          </>
-                        ) : (
-                          <>
-                            <Download className="w-5 h-5 mr-2" />
-                            Process & Download
-                          </>
-                        )}
-                      </Button>
-                    </div>
-                  )}
                 </>
               )}
+            </div>
+          </section>
+
+          {/* Features Section */}
+          <section className="py-12 md:py-16 bg-background">
+            <div className="container mx-auto px-4">
+              <h2 className="font-display text-2xl md:text-3xl font-bold text-center text-foreground mb-8">
+                Why Use Our PDF Editor?
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+                <div className="glass rounded-xl p-6 text-center">
+                  <div className="w-12 h-12 mx-auto mb-4 rounded-xl gradient-teal flex items-center justify-center">
+                    <Pencil className="w-6 h-6 text-primary-foreground" />
+                  </div>
+                  <h3 className="font-semibold text-foreground mb-2">Full Editing</h3>
+                  <p className="text-sm text-muted-foreground">Add text, draw, shapes, and annotations directly on your PDFs</p>
+                </div>
+                <div className="glass rounded-xl p-6 text-center">
+                  <div className="w-12 h-12 mx-auto mb-4 rounded-xl gradient-teal flex items-center justify-center">
+                    <Minimize2 className="w-6 h-6 text-primary-foreground" />
+                  </div>
+                  <h3 className="font-semibold text-foreground mb-2">Compress & Optimize</h3>
+                  <p className="text-sm text-muted-foreground">Reduce file size while maintaining quality</p>
+                </div>
+                <div className="glass rounded-xl p-6 text-center">
+                  <div className="w-12 h-12 mx-auto mb-4 rounded-xl gradient-teal flex items-center justify-center">
+                    <Merge className="w-6 h-6 text-primary-foreground" />
+                  </div>
+                  <h3 className="font-semibold text-foreground mb-2">Merge & Split</h3>
+                  <p className="text-sm text-muted-foreground">Combine multiple PDFs or extract specific pages</p>
+                </div>
+              </div>
             </div>
           </section>
         </main>
