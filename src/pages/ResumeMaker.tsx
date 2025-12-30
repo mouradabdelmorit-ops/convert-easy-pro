@@ -7,7 +7,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { toast } from "@/hooks/use-toast";
 import { 
   FileText, User, Briefcase, GraduationCap, Code, 
-  Download, Loader2, Plus, X, Sparkles
+  Download, Loader2, Plus, X, Sparkles, Eye
 } from "lucide-react";
 
 interface Experience {
@@ -35,6 +35,7 @@ const ResumeMaker = () => {
   const [selectedTemplate, setSelectedTemplate] = useState('modern');
   const [isGenerating, setIsGenerating] = useState(false);
   const [generatedHTML, setGeneratedHTML] = useState<string | null>(null);
+  const [showPreview, setShowPreview] = useState(false);
 
   const [formData, setFormData] = useState({
     fullName: '',
@@ -131,11 +132,13 @@ const ResumeMaker = () => {
       if (error) throw error;
 
       setGeneratedHTML(data.html);
-      toast({ title: "Success", description: "Resume generated with AI enhancement!" });
+      setShowPreview(true);
+      toast({ title: "Success!", description: "Resume generated with AI enhancement!" });
 
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Error:', error);
-      toast({ title: "Error", description: error.message || "Generation failed", variant: "destructive" });
+      const message = error instanceof Error ? error.message : 'Generation failed';
+      toast({ title: "Error", description: message, variant: "destructive" });
     } finally {
       setIsGenerating(false);
     }
@@ -158,9 +161,9 @@ const ResumeMaker = () => {
   return (
     <>
       <Helmet>
-        <title>Free AI Resume Maker | Create Professional Resume - ConvertFlow</title>
+        <title>Free AI Resume Maker | Create Professional Resume - TransformFiles</title>
         <meta name="description" content="Create a professional resume with AI assistance. Choose from multiple templates. Free online resume builder with instant download." />
-        <link rel="canonical" href="https://convertflow.com/resume-maker" />
+        <link rel="canonical" href="https://transformfiles.app/resume-maker" />
       </Helmet>
 
       <div className="min-h-screen bg-background">
@@ -168,18 +171,18 @@ const ResumeMaker = () => {
         
         <main className="pt-20">
           {/* Hero */}
-          <section className="relative gradient-hero py-16">
-            <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-accent/10 rounded-full blur-3xl" />
+          <section className="relative gradient-hero py-12 md:py-16">
+            <div className="absolute top-1/4 right-1/4 w-64 md:w-96 h-64 md:h-96 bg-accent/10 rounded-full blur-3xl" />
             <div className="container mx-auto px-4 relative z-10">
               <div className="max-w-3xl mx-auto text-center">
                 <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-6">
                   <Sparkles className="w-4 h-4 text-primary" />
                   <span className="text-sm font-medium text-foreground">AI-Powered Resume Builder</span>
                 </div>
-                <h1 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-4">
+                <h1 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
                   Create Your <span className="text-gradient">Perfect Resume</span>
                 </h1>
-                <p className="text-lg text-muted-foreground mb-8">
+                <p className="text-base md:text-lg text-muted-foreground mb-8">
                   Build a professional resume in minutes with AI-enhanced content. Free to use, instant download.
                 </p>
               </div>
@@ -187,27 +190,27 @@ const ResumeMaker = () => {
           </section>
 
           {/* Form Section */}
-          <section className="py-12 bg-navy-dark">
+          <section className="py-8 md:py-12 bg-navy-dark">
             <div className="container mx-auto px-4">
               <div className="max-w-4xl mx-auto">
                 {/* Template Selection */}
-                <div className="glass rounded-2xl p-6 mb-8">
+                <div className="glass rounded-2xl p-4 md:p-6 mb-6 md:mb-8">
                   <h3 className="font-display font-semibold text-foreground mb-4 flex items-center gap-2">
                     <FileText className="w-5 h-5 text-primary" />
                     Choose Template
                   </h3>
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
                     {templates.map((template) => (
                       <button
                         key={template.id}
                         onClick={() => setSelectedTemplate(template.id)}
-                        className={`p-4 rounded-xl border-2 transition-all ${
+                        className={`p-3 md:p-4 rounded-xl border-2 transition-all ${
                           selectedTemplate === template.id 
                             ? 'border-primary glow-teal' 
                             : 'border-border hover:border-primary/50'
                         }`}
                       >
-                        <div className={`w-full h-20 ${template.color} rounded-lg mb-2`} />
+                        <div className={`w-full h-16 md:h-20 ${template.color} rounded-lg mb-2`} />
                         <p className="text-sm font-medium text-foreground">{template.name}</p>
                       </button>
                     ))}
@@ -215,12 +218,12 @@ const ResumeMaker = () => {
                 </div>
 
                 {/* Personal Info */}
-                <div className="glass rounded-2xl p-6 mb-6">
+                <div className="glass rounded-2xl p-4 md:p-6 mb-4 md:mb-6">
                   <h3 className="font-display font-semibold text-foreground mb-4 flex items-center gap-2">
                     <User className="w-5 h-5 text-primary" />
                     Personal Information
                   </h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
                     <input
                       type="text"
                       placeholder="Full Name *"
@@ -254,12 +257,12 @@ const ResumeMaker = () => {
                     placeholder="Professional Summary"
                     value={formData.summary}
                     onChange={(e) => updateField('summary', e.target.value)}
-                    className="w-full mt-4 bg-secondary border border-border rounded-lg px-4 py-3 text-foreground placeholder:text-muted-foreground min-h-[100px]"
+                    className="w-full mt-3 md:mt-4 bg-secondary border border-border rounded-lg px-4 py-3 text-foreground placeholder:text-muted-foreground min-h-[100px]"
                   />
                 </div>
 
                 {/* Experience */}
-                <div className="glass rounded-2xl p-6 mb-6">
+                <div className="glass rounded-2xl p-4 md:p-6 mb-4 md:mb-6">
                   <div className="flex items-center justify-between mb-4">
                     <h3 className="font-display font-semibold text-foreground flex items-center gap-2">
                       <Briefcase className="w-5 h-5 text-primary" />
@@ -269,9 +272,9 @@ const ResumeMaker = () => {
                       <Plus className="w-4 h-4 mr-1" /> Add
                     </Button>
                   </div>
-                  <div className="space-y-6">
+                  <div className="space-y-4 md:space-y-6">
                     {formData.experience.map((exp, index) => (
-                      <div key={index} className="bg-secondary/50 rounded-xl p-4 relative">
+                      <div key={index} className="bg-secondary/50 rounded-xl p-3 md:p-4 relative">
                         {formData.experience.length > 1 && (
                           <button 
                             onClick={() => removeExperience(index)}
@@ -322,7 +325,7 @@ const ResumeMaker = () => {
                 </div>
 
                 {/* Education */}
-                <div className="glass rounded-2xl p-6 mb-6">
+                <div className="glass rounded-2xl p-4 md:p-6 mb-4 md:mb-6">
                   <div className="flex items-center justify-between mb-4">
                     <h3 className="font-display font-semibold text-foreground flex items-center gap-2">
                       <GraduationCap className="w-5 h-5 text-primary" />
@@ -334,7 +337,7 @@ const ResumeMaker = () => {
                   </div>
                   <div className="space-y-4">
                     {formData.education.map((edu, index) => (
-                      <div key={index} className="bg-secondary/50 rounded-xl p-4 relative">
+                      <div key={index} className="bg-secondary/50 rounded-xl p-3 md:p-4 relative">
                         {formData.education.length > 1 && (
                           <button 
                             onClick={() => removeEducation(index)}
@@ -372,7 +375,7 @@ const ResumeMaker = () => {
                 </div>
 
                 {/* Skills */}
-                <div className="glass rounded-2xl p-6 mb-8">
+                <div className="glass rounded-2xl p-4 md:p-6 mb-6 md:mb-8">
                   <div className="flex items-center justify-between mb-4">
                     <h3 className="font-display font-semibold text-foreground flex items-center gap-2">
                       <Code className="w-5 h-5 text-primary" />
@@ -390,10 +393,10 @@ const ResumeMaker = () => {
                           placeholder="Skill"
                           value={skill}
                           onChange={(e) => updateSkill(index, e.target.value)}
-                          className="bg-secondary border border-border rounded-lg px-3 py-2 text-foreground placeholder:text-muted-foreground w-32"
+                          className="bg-secondary border border-border rounded-lg px-3 py-2 text-foreground placeholder:text-muted-foreground w-28 md:w-32"
                         />
                         {formData.skills.length > 1 && (
-                          <button onClick={() => removeSkill(index)} className="text-muted-foreground hover:text-destructive">
+                          <button onClick={() => removeSkill(index)} className="text-muted-foreground hover:text-destructive p-1">
                             <X className="w-4 h-4" />
                           </button>
                         )}
@@ -403,51 +406,78 @@ const ResumeMaker = () => {
                 </div>
 
                 {/* Generate Button */}
-                <Button
-                  variant="teal"
-                  size="xl"
-                  className="w-full mb-8"
-                  onClick={generateResume}
-                  disabled={isGenerating}
-                >
-                  {isGenerating ? (
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <Button
+                    variant="teal"
+                    size="xl"
+                    className="flex-1"
+                    onClick={generateResume}
+                    disabled={isGenerating}
+                  >
+                    {isGenerating ? (
+                      <>
+                        <Loader2 className="w-5 h-5 animate-spin mr-2" />
+                        Generating...
+                      </>
+                    ) : (
+                      <>
+                        <Sparkles className="w-5 h-5 mr-2" />
+                        Generate Resume with AI
+                      </>
+                    )}
+                  </Button>
+                  
+                  {generatedHTML && (
                     <>
-                      <Loader2 className="w-5 h-5 animate-spin mr-2" />
-                      Generating with AI...
-                    </>
-                  ) : (
-                    <>
-                      <Sparkles className="w-5 h-5 mr-2" />
-                      Generate Resume with AI
+                      <Button
+                        variant="outline"
+                        size="xl"
+                        onClick={() => setShowPreview(true)}
+                      >
+                        <Eye className="w-5 h-5 mr-2" />
+                        Preview
+                      </Button>
+                      <Button
+                        variant="hero"
+                        size="xl"
+                        onClick={downloadResume}
+                      >
+                        <Download className="w-5 h-5 mr-2" />
+                        Download
+                      </Button>
                     </>
                   )}
-                </Button>
-
-                {/* Preview */}
-                {generatedHTML && (
-                  <div className="glass rounded-2xl p-6">
-                    <div className="flex items-center justify-between mb-4">
-                      <h3 className="font-display font-semibold text-foreground">Preview</h3>
-                      <Button variant="hero" onClick={downloadResume}>
-                        <Download className="w-4 h-4 mr-2" />
-                        Download HTML
-                      </Button>
-                    </div>
-                    <div className="bg-white rounded-lg overflow-hidden">
-                      <iframe
-                        srcDoc={generatedHTML}
-                        className="w-full h-[600px]"
-                        title="Resume Preview"
-                      />
-                    </div>
-                    <p className="text-sm text-muted-foreground mt-4 text-center">
-                      Tip: Open the downloaded HTML file in your browser and use Print → Save as PDF for a PDF version.
-                    </p>
-                  </div>
-                )}
+                </div>
               </div>
             </div>
           </section>
+
+          {/* Preview Modal */}
+          {showPreview && generatedHTML && (
+            <div className="fixed inset-0 z-50 bg-background/80 backdrop-blur-sm flex items-center justify-center p-4">
+              <div className="bg-card rounded-2xl border border-border w-full max-w-4xl max-h-[90vh] overflow-hidden shadow-2xl">
+                <div className="flex items-center justify-between p-4 border-b border-border">
+                  <h3 className="font-display font-semibold text-foreground">Resume Preview</h3>
+                  <div className="flex items-center gap-2">
+                    <Button variant="hero" size="sm" onClick={downloadResume}>
+                      <Download className="w-4 h-4 mr-1" />
+                      Download
+                    </Button>
+                    <button onClick={() => setShowPreview(false)} className="text-muted-foreground hover:text-foreground p-2">
+                      <X className="w-5 h-5" />
+                    </button>
+                  </div>
+                </div>
+                <div className="overflow-auto max-h-[calc(90vh-80px)]">
+                  <iframe
+                    srcDoc={generatedHTML}
+                    className="w-full h-[800px] bg-white"
+                    title="Resume Preview"
+                  />
+                </div>
+              </div>
+            </div>
+          )}
         </main>
 
         <Footer />
