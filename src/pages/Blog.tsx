@@ -268,23 +268,23 @@ const Blog = () => {
       <Helmet>
         <title>{t.meta.blogTitle}</title>
         <meta name="description" content={t.meta.blogDesc} />
-        <link rel="canonical" href={`https://transformfiles.app${language === 'en' ? '' : `/${language}`}/blog`} />
+        <link rel="canonical" href={`https://transformfiles.com${language === 'en' ? '' : `/${language}`}/blog`} />
         <meta property="og:title" content={t.meta.blogTitle} />
         <meta property="og:description" content={t.meta.blogDesc} />
         <meta property="og:type" content="website" />
         
         {/* Hreflang tags for SEO */}
-        <link rel="alternate" hrefLang="x-default" href="https://transformfiles.app/blog" />
-        <link rel="alternate" hrefLang="en" href="https://transformfiles.app/blog" />
-        <link rel="alternate" hrefLang="de" href="https://transformfiles.app/de/blog" />
-        <link rel="alternate" hrefLang="es" href="https://transformfiles.app/es/blog" />
-        <link rel="alternate" hrefLang="fr" href="https://transformfiles.app/fr/blog" />
-        <link rel="alternate" hrefLang="it" href="https://transformfiles.app/it/blog" />
-        <link rel="alternate" hrefLang="pt" href="https://transformfiles.app/pt/blog" />
-        <link rel="alternate" hrefLang="ja" href="https://transformfiles.app/ja/blog" />
-        <link rel="alternate" hrefLang="zh" href="https://transformfiles.app/zh/blog" />
-        <link rel="alternate" hrefLang="ko" href="https://transformfiles.app/ko/blog" />
-        <link rel="alternate" hrefLang="ar" href="https://transformfiles.app/ar/blog" />
+        <link rel="alternate" hrefLang="x-default" href="https://transformfiles.com/blog" />
+        <link rel="alternate" hrefLang="en" href="https://transformfiles.com/blog" />
+        <link rel="alternate" hrefLang="de" href="https://transformfiles.com/de/blog" />
+        <link rel="alternate" hrefLang="es" href="https://transformfiles.com/es/blog" />
+        <link rel="alternate" hrefLang="fr" href="https://transformfiles.com/fr/blog" />
+        <link rel="alternate" hrefLang="it" href="https://transformfiles.com/it/blog" />
+        <link rel="alternate" hrefLang="pt" href="https://transformfiles.com/pt/blog" />
+        <link rel="alternate" hrefLang="ja" href="https://transformfiles.com/ja/blog" />
+        <link rel="alternate" hrefLang="zh" href="https://transformfiles.com/zh/blog" />
+        <link rel="alternate" hrefLang="ko" href="https://transformfiles.com/ko/blog" />
+        <link rel="alternate" hrefLang="ar" href="https://transformfiles.com/ar/blog" />
       </Helmet>
 
       <div className="min-h-screen bg-background">

@@ -26,13 +26,13 @@ const Index = () => {
   };
 
   const canonicalUrl = language === 'en' 
-    ? 'https://transformfiles.app' 
-    : `https://transformfiles.app/${language}`;
+    ? 'https://transformfiles.com' 
+    : `https://transformfiles.com/${language}`;
 
   // Generate hreflang tags for all languages
   const hreflangTags = Object.keys(languages).map((lang) => ({
     lang,
-    url: lang === 'en' ? 'https://transformfiles.app' : `https://transformfiles.app/${lang}`
+    url: lang === 'en' ? 'https://transformfiles.com' : `https://transformfiles.com/${lang}`
   }));
 
   return (
@@ -47,7 +47,7 @@ const Index = () => {
         {hreflangTags.map(({ lang, url }) => (
           <link key={lang} rel="alternate" hrefLang={lang} href={url} />
         ))}
-        <link rel="alternate" hrefLang="x-default" href="https://transformfiles.app" />
+        <link rel="alternate" hrefLang="x-default" href="https://transformfiles.com" />
         
         {/* Open Graph */}
         <meta property="og:title" content={t.meta.homeTitle} />

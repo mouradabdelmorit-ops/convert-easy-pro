@@ -70,9 +70,9 @@ We regularly review our cookie usage to ensure we only use cookies that are nece
       title: "Contact Us",
       content: `If you have questions about our use of cookies, please contact us:
 
-**Email:** privacy@transformfiles.app
+**Email:** privacy@transformfiles.com
 
-**Address:** TransformFiles.app
+**Address:** TransformFiles.com
 123 Tech Street
 San Francisco, CA 94105
 
@@ -81,8 +81,8 @@ We will respond to your inquiry within 30 days.`
   ];
 
   const canonicalUrl = language === 'en' 
-    ? 'https://transformfiles.app/cookies' 
-    : `https://transformfiles.app/${language}/cookies`;
+    ? 'https://transformfiles.com/cookies' 
+    : `https://transformfiles.com/${language}/cookies`;
 
   return (
     <>

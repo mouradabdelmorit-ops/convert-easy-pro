@@ -55,7 +55,7 @@ const Footer = () => {
               <a href="#" className="text-muted-foreground hover:text-primary transition-colors" aria-label="LinkedIn">
                 <Linkedin className="w-5 h-5" />
               </a>
-              <a href="mailto:contact@transformfiles.app" className="text-muted-foreground hover:text-primary transition-colors" aria-label="Email">
+              <a href="mailto:contact@transformfiles.com" className="text-muted-foreground hover:text-primary transition-colors" aria-label="Email">
                 <Mail className="w-5 h-5" />
               </a>
             </div>
@@ -134,7 +134,7 @@ const Footer = () => {
         <div className="mt-12 pt-8 border-t border-border">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-sm text-muted-foreground">
-              © {currentYear} TransformFiles.app. All rights reserved.
+              © {currentYear} TransformFiles.com. All rights reserved.
             </p>
             <p className="text-sm text-muted-foreground">
               Made with ❤️ for file conversion enthusiasts

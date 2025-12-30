@@ -94,7 +94,7 @@ const Privacy = () => {
 - Right to restrict processing
 - Right to lodge a complaint with a supervisory authority
 
-To exercise any of these rights, contact us at privacy@transformfiles.app`
+To exercise any of these rights, contact us at privacy@transformfiles.com`
     },
     {
       icon: Clock,
@@ -125,24 +125,24 @@ You can manage your cookie preferences at any time by clicking "Cookie Settings"
       title: "Contact Us",
       content: `If you have questions about this Privacy Policy or our data practices:
 
-**Email:** privacy@transformfiles.app
+**Email:** privacy@transformfiles.com
 
 **Mail:**
-TransformFiles.app
+TransformFiles.com
 123 Tech Street
 San Francisco, CA 94105
 United States
 
 **Data Protection Officer:**
-dpo@transformfiles.app
+dpo@transformfiles.com
 
 We aim to respond to all inquiries within 48 hours.`
     }
   ];
 
   const canonicalUrl = language === 'en' 
-    ? 'https://transformfiles.app/privacy' 
-    : `https://transformfiles.app/${language}/privacy`;
+    ? 'https://transformfiles.com/privacy' 
+    : `https://transformfiles.com/${language}/privacy`;
 
   return (
     <>
