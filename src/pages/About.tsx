@@ -44,8 +44,8 @@ const About = () => {
   ];
 
   const canonicalUrl = language === 'en' 
-    ? 'https://transformfiles.app/about' 
-    : `https://transformfiles.app/${language}/about`;
+    ? 'https://transformfiles.com/about' 
+    : `https://transformfiles.com/${language}/about`;
 
   return (
     <>
@@ -197,7 +197,7 @@ const About = () => {
                         </div>
                         <div>
                           <p className="text-sm text-muted-foreground">Email</p>
-                          <p className="text-foreground">hello@transformfiles.app</p>
+                          <p className="text-foreground">hello@transformfiles.com</p>
                         </div>
                       </div>
                       <div className="flex items-center gap-4">

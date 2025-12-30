@@ -1,27 +1,214 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <!-- Main pages -->
   <url>
-    <loc>https://convertflow.com/</loc>
-    <lastmod>2024-12-29</lastmod>
+    <loc>https://transformfiles.com/</loc>
+    <lastmod>2024-12-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://transformfiles.com/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://transformfiles.com/de"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://transformfiles.com/es"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://transformfiles.com/fr"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://transformfiles.com/it"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://transformfiles.com/pt"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://transformfiles.com/nl"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://transformfiles.com/pl"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://transformfiles.com/ru"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://transformfiles.com/ja"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://transformfiles.com/zh"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://transformfiles.com/ko"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://transformfiles.com/ar"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://transformfiles.com/tr"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://transformfiles.com/hi"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://transformfiles.com/"/>
+  </url>
+
+  <!-- Tools -->
+  <url>
+    <loc>https://transformfiles.com/pdf-editor</loc>
+    <lastmod>2024-12-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://convertflow.com/about</loc>
-    <lastmod>2024-12-29</lastmod>
-    <changefreq>monthly</changefreq>
+    <loc>https://transformfiles.com/resume-maker</loc>
+    <lastmod>2024-12-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Converters -->
+  <url>
+    <loc>https://transformfiles.com/video-converter</loc>
+    <lastmod>2024-12-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://transformfiles.com/image-converter</loc>
+    <lastmod>2024-12-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://transformfiles.com/audio-converter</loc>
+    <lastmod>2024-12-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://transformfiles.com/document-converter</loc>
+    <lastmod>2024-12-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Blog -->
+  <url>
+    <loc>https://transformfiles.com/blog</loc>
+    <lastmod>2024-12-30</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
+
+  <!-- Company -->
   <url>
-    <loc>https://convertflow.com/privacy</loc>
-    <lastmod>2024-12-29</lastmod>
+    <loc>https://transformfiles.com/about</loc>
+    <lastmod>2024-12-30</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Legal -->
+  <url>
+    <loc>https://transformfiles.com/privacy</loc>
+    <lastmod>2024-12-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://convertflow.com/terms</loc>
-    <lastmod>2024-12-29</lastmod>
+    <loc>https://transformfiles.com/terms</loc>
+    <lastmod>2024-12-30</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.5</priority>
   </url>
+  <url>
+    <loc>https://transformfiles.com/cookies</loc>
+    <lastmod>2024-12-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <!-- German (de) -->
+  <url><loc>https://transformfiles.com/de</loc><lastmod>2024-12-30</lastmod><priority>0.9</priority></url>
+  <url><loc>https://transformfiles.com/de/about</loc><lastmod>2024-12-30</lastmod><priority>0.6</priority></url>
+  <url><loc>https://transformfiles.com/de/privacy</loc><lastmod>2024-12-30</lastmod><priority>0.5</priority></url>
+  <url><loc>https://transformfiles.com/de/terms</loc><lastmod>2024-12-30</lastmod><priority>0.5</priority></url>
+  <url><loc>https://transformfiles.com/de/cookies</loc><lastmod>2024-12-30</lastmod><priority>0.5</priority></url>
+  <url><loc>https://transformfiles.com/de/blog</loc><lastmod>2024-12-30</lastmod><priority>0.7</priority></url>
+
+  <!-- Spanish (es) -->
+  <url><loc>https://transformfiles.com/es</loc><lastmod>2024-12-30</lastmod><priority>0.9</priority></url>
+  <url><loc>https://transformfiles.com/es/about</loc><lastmod>2024-12-30</lastmod><priority>0.6</priority></url>
+  <url><loc>https://transformfiles.com/es/privacy</loc><lastmod>2024-12-30</lastmod><priority>0.5</priority></url>
+  <url><loc>https://transformfiles.com/es/terms</loc><lastmod>2024-12-30</lastmod><priority>0.5</priority></url>
+  <url><loc>https://transformfiles.com/es/cookies</loc><lastmod>2024-12-30</lastmod><priority>0.5</priority></url>
+  <url><loc>https://transformfiles.com/es/blog</loc><lastmod>2024-12-30</lastmod><priority>0.7</priority></url>
+
+  <!-- French (fr) -->
+  <url><loc>https://transformfiles.com/fr</loc><lastmod>2024-12-30</lastmod><priority>0.9</priority></url>
+  <url><loc>https://transformfiles.com/fr/about</loc><lastmod>2024-12-30</lastmod><priority>0.6</priority></url>
+  <url><loc>https://transformfiles.com/fr/privacy</loc><lastmod>2024-12-30</lastmod><priority>0.5</priority></url>
+  <url><loc>https://transformfiles.com/fr/terms</loc><lastmod>2024-12-30</lastmod><priority>0.5</priority></url>
+  <url><loc>https://transformfiles.com/fr/cookies</loc><lastmod>2024-12-30</lastmod><priority>0.5</priority></url>
+  <url><loc>https://transformfiles.com/fr/blog</loc><lastmod>2024-12-30</lastmod><priority>0.7</priority></url>
+
+  <!-- Italian (it) -->
+  <url><loc>https://transformfiles.com/it</loc><lastmod>2024-12-30</lastmod><priority>0.9</priority></url>
+  <url><loc>https://transformfiles.com/it/about</loc><lastmod>2024-12-30</lastmod><priority>0.6</priority></url>
+  <url><loc>https://transformfiles.com/it/privacy</loc><lastmod>2024-12-30</lastmod><priority>0.5</priority></url>
+  <url><loc>https://transformfiles.com/it/terms</loc><lastmod>2024-12-30</lastmod><priority>0.5</priority></url>
+  <url><loc>https://transformfiles.com/it/cookies</loc><lastmod>2024-12-30</lastmod><priority>0.5</priority></url>
+  <url><loc>https://transformfiles.com/it/blog</loc><lastmod>2024-12-30</lastmod><priority>0.7</priority></url>
+
+  <!-- Portuguese (pt) -->
+  <url><loc>https://transformfiles.com/pt</loc><lastmod>2024-12-30</lastmod><priority>0.9</priority></url>
+  <url><loc>https://transformfiles.com/pt/about</loc><lastmod>2024-12-30</lastmod><priority>0.6</priority></url>
+  <url><loc>https://transformfiles.com/pt/privacy</loc><lastmod>2024-12-30</lastmod><priority>0.5</priority></url>
+  <url><loc>https://transformfiles.com/pt/terms</loc><lastmod>2024-12-30</lastmod><priority>0.5</priority></url>
+  <url><loc>https://transformfiles.com/pt/cookies</loc><lastmod>2024-12-30</lastmod><priority>0.5</priority></url>
+  <url><loc>https://transformfiles.com/pt/blog</loc><lastmod>2024-12-30</lastmod><priority>0.7</priority></url>
+
+  <!-- Dutch (nl) -->
+  <url><loc>https://transformfiles.com/nl</loc><lastmod>2024-12-30</lastmod><priority>0.9</priority></url>
+  <url><loc>https://transformfiles.com/nl/about</loc><lastmod>2024-12-30</lastmod><priority>0.6</priority></url>
+  <url><loc>https://transformfiles.com/nl/privacy</loc><lastmod>2024-12-30</lastmod><priority>0.5</priority></url>
+  <url><loc>https://transformfiles.com/nl/terms</loc><lastmod>2024-12-30</lastmod><priority>0.5</priority></url>
+  <url><loc>https://transformfiles.com/nl/cookies</loc><lastmod>2024-12-30</lastmod><priority>0.5</priority></url>
+  <url><loc>https://transformfiles.com/nl/blog</loc><lastmod>2024-12-30</lastmod><priority>0.7</priority></url>
+
+  <!-- Polish (pl) -->
+  <url><loc>https://transformfiles.com/pl</loc><lastmod>2024-12-30</lastmod><priority>0.9</priority></url>
+  <url><loc>https://transformfiles.com/pl/about</loc><lastmod>2024-12-30</lastmod><priority>0.6</priority></url>
+  <url><loc>https://transformfiles.com/pl/privacy</loc><lastmod>2024-12-30</lastmod><priority>0.5</priority></url>
+  <url><loc>https://transformfiles.com/pl/terms</loc><lastmod>2024-12-30</lastmod><priority>0.5</priority></url>
+  <url><loc>https://transformfiles.com/pl/cookies</loc><lastmod>2024-12-30</lastmod><priority>0.5</priority></url>
+  <url><loc>https://transformfiles.com/pl/blog</loc><lastmod>2024-12-30</lastmod><priority>0.7</priority></url>
+
+  <!-- Russian (ru) -->
+  <url><loc>https://transformfiles.com/ru</loc><lastmod>2024-12-30</lastmod><priority>0.9</priority></url>
+  <url><loc>https://transformfiles.com/ru/about</loc><lastmod>2024-12-30</lastmod><priority>0.6</priority></url>
+  <url><loc>https://transformfiles.com/ru/privacy</loc><lastmod>2024-12-30</lastmod><priority>0.5</priority></url>
+  <url><loc>https://transformfiles.com/ru/terms</loc><lastmod>2024-12-30</lastmod><priority>0.5</priority></url>
+  <url><loc>https://transformfiles.com/ru/cookies</loc><lastmod>2024-12-30</lastmod><priority>0.5</priority></url>
+  <url><loc>https://transformfiles.com/ru/blog</loc><lastmod>2024-12-30</lastmod><priority>0.7</priority></url>
+
+  <!-- Japanese (ja) -->
+  <url><loc>https://transformfiles.com/ja</loc><lastmod>2024-12-30</lastmod><priority>0.9</priority></url>
+  <url><loc>https://transformfiles.com/ja/about</loc><lastmod>2024-12-30</lastmod><priority>0.6</priority></url>
+  <url><loc>https://transformfiles.com/ja/privacy</loc><lastmod>2024-12-30</lastmod><priority>0.5</priority></url>
+  <url><loc>https://transformfiles.com/ja/terms</loc><lastmod>2024-12-30</lastmod><priority>0.5</priority></url>
+  <url><loc>https://transformfiles.com/ja/cookies</loc><lastmod>2024-12-30</lastmod><priority>0.5</priority></url>
+  <url><loc>https://transformfiles.com/ja/blog</loc><lastmod>2024-12-30</lastmod><priority>0.7</priority></url>
+
+  <!-- Chinese (zh) -->
+  <url><loc>https://transformfiles.com/zh</loc><lastmod>2024-12-30</lastmod><priority>0.9</priority></url>
+  <url><loc>https://transformfiles.com/zh/about</loc><lastmod>2024-12-30</lastmod><priority>0.6</priority></url>
+  <url><loc>https://transformfiles.com/zh/privacy</loc><lastmod>2024-12-30</lastmod><priority>0.5</priority></url>
+  <url><loc>https://transformfiles.com/zh/terms</loc><lastmod>2024-12-30</lastmod><priority>0.5</priority></url>
+  <url><loc>https://transformfiles.com/zh/cookies</loc><lastmod>2024-12-30</lastmod><priority>0.5</priority></url>
+  <url><loc>https://transformfiles.com/zh/blog</loc><lastmod>2024-12-30</lastmod><priority>0.7</priority></url>
+
+  <!-- Korean (ko) -->
+  <url><loc>https://transformfiles.com/ko</loc><lastmod>2024-12-30</lastmod><priority>0.9</priority></url>
+  <url><loc>https://transformfiles.com/ko/about</loc><lastmod>2024-12-30</lastmod><priority>0.6</priority></url>
+  <url><loc>https://transformfiles.com/ko/privacy</loc><lastmod>2024-12-30</lastmod><priority>0.5</priority></url>
+  <url><loc>https://transformfiles.com/ko/terms</loc><lastmod>2024-12-30</lastmod><priority>0.5</priority></url>
+  <url><loc>https://transformfiles.com/ko/cookies</loc><lastmod>2024-12-30</lastmod><priority>0.5</priority></url>
+  <url><loc>https://transformfiles.com/ko/blog</loc><lastmod>2024-12-30</lastmod><priority>0.7</priority></url>
+
+  <!-- Arabic (ar) -->
+  <url><loc>https://transformfiles.com/ar</loc><lastmod>2024-12-30</lastmod><priority>0.9</priority></url>
+  <url><loc>https://transformfiles.com/ar/about</loc><lastmod>2024-12-30</lastmod><priority>0.6</priority></url>
+  <url><loc>https://transformfiles.com/ar/privacy</loc><lastmod>2024-12-30</lastmod><priority>0.5</priority></url>
+  <url><loc>https://transformfiles.com/ar/terms</loc><lastmod>2024-12-30</lastmod><priority>0.5</priority></url>
+  <url><loc>https://transformfiles.com/ar/cookies</loc><lastmod>2024-12-30</lastmod><priority>0.5</priority></url>
+  <url><loc>https://transformfiles.com/ar/blog</loc><lastmod>2024-12-30</lastmod><priority>0.7</priority></url>
+
+  <!-- Turkish (tr) -->
+  <url><loc>https://transformfiles.com/tr</loc><lastmod>2024-12-30</lastmod><priority>0.9</priority></url>
+  <url><loc>https://transformfiles.com/tr/about</loc><lastmod>2024-12-30</lastmod><priority>0.6</priority></url>
+  <url><loc>https://transformfiles.com/tr/privacy</loc><lastmod>2024-12-30</lastmod><priority>0.5</priority></url>
+  <url><loc>https://transformfiles.com/tr/terms</loc><lastmod>2024-12-30</lastmod><priority>0.5</priority></url>
+  <url><loc>https://transformfiles.com/tr/cookies</loc><lastmod>2024-12-30</lastmod><priority>0.5</priority></url>
+  <url><loc>https://transformfiles.com/tr/blog</loc><lastmod>2024-12-30</lastmod><priority>0.7</priority></url>
+
+  <!-- Hindi (hi) -->
+  <url><loc>https://transformfiles.com/hi</loc><lastmod>2024-12-30</lastmod><priority>0.9</priority></url>
+  <url><loc>https://transformfiles.com/hi/about</loc><lastmod>2024-12-30</lastmod><priority>0.6</priority></url>
+  <url><loc>https://transformfiles.com/hi/privacy</loc><lastmod>2024-12-30</lastmod><priority>0.5</priority></url>
+  <url><loc>https://transformfiles.com/hi/terms</loc><lastmod>2024-12-30</lastmod><priority>0.5</priority></url>
+  <url><loc>https://transformfiles.com/hi/cookies</loc><lastmod>2024-12-30</lastmod><priority>0.5</priority></url>
+  <url><loc>https://transformfiles.com/hi/blog</loc><lastmod>2024-12-30</lastmod><priority>0.7</priority></url>
 </urlset>

@@ -81,7 +81,10 @@ const PDFEditor = () => {
   };
 
   const downloadPDF = (pdfBytes: Uint8Array, fileName: string) => {
-    const blob = new Blob([pdfBytes.buffer], { type: 'application/pdf' });
+    const arrayBuffer = new ArrayBuffer(pdfBytes.length);
+    const uint8View = new Uint8Array(arrayBuffer);
+    uint8View.set(pdfBytes);
+    const blob = new Blob([arrayBuffer], { type: 'application/pdf' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
@@ -173,8 +176,8 @@ const PDFEditor = () => {
           pdf.setAuthor('');
           pdf.setSubject('');
           pdf.setKeywords([]);
-          pdf.setProducer('TransformFiles.app');
-          pdf.setCreator('TransformFiles.app');
+          pdf.setProducer('TransformFiles.com');
+          pdf.setCreator('TransformFiles.com');
           
           const compressedPdfBytes = await pdf.save({ 
             useObjectStreams: true,
@@ -235,8 +238,8 @@ const PDFEditor = () => {
   };
 
   const canonicalUrl = language === 'en' 
-    ? 'https://transformfiles.app/pdf-editor' 
-    : `https://transformfiles.app/${language}/pdf-editor`;
+    ? 'https://transformfiles.com/pdf-editor' 
+    : `https://transformfiles.com/${language}/pdf-editor`;
 
   return (
     <>

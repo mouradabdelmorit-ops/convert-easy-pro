@@ -100,13 +100,13 @@ You agree to resolve disputes with us on an individual basis. You waive the righ
 Either party may seek injunctive relief in any court of competent jurisdiction to protect intellectual property rights or confidential information.
 
 **Contact:**
-For questions about these Terms, contact us at legal@transformfiles.app`
+For questions about these Terms, contact us at legal@transformfiles.com`
     }
   ];
 
   const canonicalUrl = language === 'en' 
-    ? 'https://transformfiles.app/terms' 
-    : `https://transformfiles.app/${language}/terms`;
+    ? 'https://transformfiles.com/terms' 
+    : `https://transformfiles.com/${language}/terms`;
 
   return (
     <>
