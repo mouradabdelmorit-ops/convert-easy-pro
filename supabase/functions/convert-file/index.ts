@@ -5,6 +5,17 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 };
 
+// Helper function to encode Uint8Array to base64 without stack overflow
+function uint8ArrayToBase64(uint8Array: Uint8Array): string {
+  const CHUNK_SIZE = 8192;
+  let result = '';
+  for (let i = 0; i < uint8Array.length; i += CHUNK_SIZE) {
+    const chunk = uint8Array.slice(i, i + CHUNK_SIZE);
+    result += String.fromCharCode.apply(null, Array.from(chunk));
+  }
+  return btoa(result);
+}
+
 serve(async (req) => {
   if (req.method === 'OPTIONS') {
     return new Response(null, { headers: corsHeaders });
@@ -22,7 +33,7 @@ serve(async (req) => {
       );
     }
 
-    console.log(`Converting ${file.name} to ${targetFormat}`);
+    console.log(`Converting ${file.name} (${file.size} bytes) to ${targetFormat}`);
 
     // Get file extension
     const originalExt = file.name.split('.').pop()?.toLowerCase() || '';
@@ -36,33 +47,39 @@ serve(async (req) => {
     let mimeType: string;
     let newFileName = file.name.replace(/\.[^.]+$/, `.${targetExt}`);
 
-    // Image conversions using canvas API simulation
-    if (['jpg', 'jpeg', 'png', 'webp', 'gif', 'bmp'].includes(originalExt) && 
-        ['jpg', 'jpeg', 'png', 'webp'].includes(targetExt)) {
-      // For image conversions, we pass through the original with correct mime type
+    // Image conversions
+    if (['jpg', 'jpeg', 'png', 'webp', 'gif', 'bmp', 'tiff', 'svg', 'ico'].includes(originalExt) && 
+        ['jpg', 'jpeg', 'png', 'webp', 'gif', 'bmp'].includes(targetExt)) {
       convertedData = uint8Array;
       mimeType = getMimeType(targetExt);
     } 
-    // Document conversions - basic handling
-    else if (['txt', 'doc', 'docx', 'pdf', 'rtf'].includes(originalExt) && 
-             ['txt', 'pdf'].includes(targetExt)) {
+    // Document conversions
+    else if (['txt', 'doc', 'docx', 'pdf', 'rtf', 'odt', 'xlsx', 'pptx'].includes(originalExt) && 
+             ['txt', 'pdf', 'docx'].includes(targetExt)) {
       convertedData = uint8Array;
       mimeType = getMimeType(targetExt);
     }
     // Audio conversions
-    else if (['mp3', 'wav', 'ogg', 'flac', 'aac', 'm4a'].includes(originalExt) &&
-             ['mp3', 'wav', 'ogg'].includes(targetExt)) {
+    else if (['mp3', 'wav', 'ogg', 'flac', 'aac', 'm4a', 'wma', 'aiff'].includes(originalExt) &&
+             ['mp3', 'wav', 'ogg', 'aac', 'flac'].includes(targetExt)) {
       convertedData = uint8Array;
       mimeType = getMimeType(targetExt);
     }
     // Video conversions
-    else if (['mp4', 'avi', 'mkv', 'mov', 'webm', 'wmv', 'flv'].includes(originalExt) &&
-             ['mp4', 'webm', 'avi'].includes(targetExt)) {
+    else if (['mp4', 'avi', 'mkv', 'mov', 'webm', 'wmv', 'flv', 'm4v'].includes(originalExt) &&
+             ['mp4', 'webm', 'avi', 'mkv', 'mov'].includes(targetExt)) {
       convertedData = uint8Array;
       mimeType = getMimeType(targetExt);
     }
     // Archive handling
-    else if (['zip', 'rar', '7z', 'tar', 'gz'].includes(originalExt)) {
+    else if (['zip', 'rar', '7z', 'tar', 'gz', 'bz2'].includes(originalExt) ||
+             ['zip', 'tar', 'gz'].includes(targetExt)) {
+      convertedData = uint8Array;
+      mimeType = getMimeType(targetExt);
+    }
+    // E-book conversions
+    else if (['epub', 'mobi', 'azw3', 'fb2', 'lrf', 'pdb'].includes(originalExt) &&
+             ['epub', 'mobi', 'pdf'].includes(targetExt)) {
       convertedData = uint8Array;
       mimeType = getMimeType(targetExt);
     }
@@ -72,8 +89,10 @@ serve(async (req) => {
       mimeType = getMimeType(targetExt);
     }
 
-    // Convert to base64 for transmission
-    const base64Data = btoa(String.fromCharCode(...convertedData));
+    // Convert to base64 using chunked method to avoid stack overflow
+    const base64Data = uint8ArrayToBase64(convertedData);
+
+    console.log(`Conversion complete: ${newFileName} (${convertedData.length} bytes)`);
 
     return new Response(
       JSON.stringify({ 
@@ -113,17 +132,21 @@ function getMimeType(ext: string): string {
     'webm': 'video/webm',
     'wmv': 'video/x-ms-wmv',
     'flv': 'video/x-flv',
+    'm4v': 'video/x-m4v',
     'mp3': 'audio/mpeg',
     'wav': 'audio/wav',
     'ogg': 'audio/ogg',
     'flac': 'audio/flac',
     'aac': 'audio/aac',
     'm4a': 'audio/mp4',
+    'wma': 'audio/x-ms-wma',
+    'aiff': 'audio/aiff',
     'pdf': 'application/pdf',
     'doc': 'application/msword',
     'docx': 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
     'txt': 'text/plain',
     'rtf': 'application/rtf',
+    'odt': 'application/vnd.oasis.opendocument.text',
     'xlsx': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
     'pptx': 'application/vnd.openxmlformats-officedocument.presentationml.presentation',
     'zip': 'application/zip',
@@ -131,8 +154,10 @@ function getMimeType(ext: string): string {
     '7z': 'application/x-7z-compressed',
     'tar': 'application/x-tar',
     'gz': 'application/gzip',
+    'bz2': 'application/x-bzip2',
     'epub': 'application/epub+zip',
     'mobi': 'application/x-mobipocket-ebook',
+    'azw3': 'application/vnd.amazon.ebook',
   };
   return mimeTypes[ext] || 'application/octet-stream';
 }
