@@ -11,15 +11,15 @@ const Footer = () => {
       { name: "Resume Maker", path: "/resume-maker" },
     ],
     converters: [
-      { name: "Video Converter", path: "/#video" },
-      { name: "Image Converter", path: "/#image" },
-      { name: "Audio Converter", path: "/#audio" },
-      { name: "Document Converter", path: "/#document" },
+      { name: "Video Converter", path: "/video-converter" },
+      { name: "Image Converter", path: "/image-converter" },
+      { name: "Audio Converter", path: "/audio-converter" },
+      { name: "Document Converter", path: "/document-converter" },
     ],
     legal: [
       { name: "Privacy Policy", path: "/privacy" },
       { name: "Terms of Service", path: "/terms" },
-      { name: "Cookie Policy", path: "/privacy#cookies" },
+      { name: "Cookie Policy", path: "/cookies" },
     ],
     company: [
       { name: "About Us", path: "/about" },
