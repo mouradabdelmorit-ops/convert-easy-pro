@@ -1,20 +1,24 @@
 import { Helmet } from "react-helmet-async";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { useLanguage } from "@/i18n/LanguageContext";
 import { Cookie, Shield, Settings, Info, Clock, Mail } from "lucide-react";
 
-const sections = [
-  {
-    icon: Cookie,
-    title: "What Are Cookies",
-    content: `Cookies are small text files that are stored on your computer or mobile device when you visit our website. They help us provide you with a better experience by remembering your preferences and understanding how you use our site.
+const CookiePolicy = () => {
+  const { t, language } = useLanguage();
+
+  const sections = [
+    {
+      icon: Cookie,
+      title: "What Are Cookies",
+      content: `Cookies are small text files that are stored on your computer or mobile device when you visit our website. They help us provide you with a better experience by remembering your preferences and understanding how you use our site.
 
 Cookies can be "session" cookies (deleted when you close your browser) or "persistent" cookies (remain on your device for a set period or until you delete them).`
-  },
-  {
-    icon: Shield,
-    title: "How We Use Cookies",
-    content: `We use cookies for the following purposes:
+    },
+    {
+      icon: Shield,
+      title: "How We Use Cookies",
+      content: `We use cookies for the following purposes:
 
 **Essential Cookies:** These are necessary for the website to function properly. They enable core functionality such as security, network management, and accessibility.
 
@@ -23,11 +27,11 @@ Cookies can be "session" cookies (deleted when you close your browser) or "persi
 **Preference Cookies:** These remember your settings and preferences, such as language preferences or cookie consent choices.
 
 **Marketing Cookies:** With your consent, we may use these to deliver relevant advertisements and track their effectiveness.`
-  },
-  {
-    icon: Settings,
-    title: "Managing Cookies",
-    content: `You have control over cookies. Most web browsers allow you to:
+    },
+    {
+      icon: Settings,
+      title: "Managing Cookies",
+      content: `You have control over cookies. Most web browsers allow you to:
 
 • View what cookies are stored on your device
 • Delete cookies individually or all at once
@@ -37,22 +41,22 @@ Cookies can be "session" cookies (deleted when you close your browser) or "persi
 • Delete all cookies when you close your browser
 
 Please note that blocking all cookies may affect your experience on our website, as some features may not work properly.`
-  },
-  {
-    icon: Info,
-    title: "Third-Party Cookies",
-    content: `Some cookies are placed by third-party services that appear on our pages:
+    },
+    {
+      icon: Info,
+      title: "Third-Party Cookies",
+      content: `Some cookies are placed by third-party services that appear on our pages:
 
 **Google Analytics:** We use Google Analytics to understand website usage. Google's privacy policy: https://policies.google.com/privacy
 
 **Google AdSense:** We display advertisements through Google AdSense. These may use cookies to show you relevant ads. Google's ad settings: https://adssettings.google.com
 
 You can opt out of personalized advertising by visiting https://www.aboutads.info/choices/`
-  },
-  {
-    icon: Clock,
-    title: "Cookie Retention",
-    content: `Different cookies have different lifespans:
+    },
+    {
+      icon: Clock,
+      title: "Cookie Retention",
+      content: `Different cookies have different lifespans:
 
 • **Session Cookies:** Deleted when you close your browser
 • **Preference Cookies:** Up to 1 year
@@ -60,11 +64,11 @@ You can opt out of personalized advertising by visiting https://www.aboutads.inf
 • **Marketing Cookies:** Up to 90 days
 
 We regularly review our cookie usage to ensure we only use cookies that are necessary and beneficial.`
-  },
-  {
-    icon: Mail,
-    title: "Contact Us",
-    content: `If you have questions about our use of cookies, please contact us:
+    },
+    {
+      icon: Mail,
+      title: "Contact Us",
+      content: `If you have questions about our use of cookies, please contact us:
 
 **Email:** privacy@transformfiles.app
 
@@ -73,16 +77,22 @@ We regularly review our cookie usage to ensure we only use cookies that are nece
 San Francisco, CA 94105
 
 We will respond to your inquiry within 30 days.`
-  }
-];
+    }
+  ];
 
-const CookiePolicy = () => {
+  const canonicalUrl = language === 'en' 
+    ? 'https://transformfiles.app/cookies' 
+    : `https://transformfiles.app/${language}/cookies`;
+
   return (
     <>
       <Helmet>
-        <title>Cookie Policy | TransformFiles.app</title>
-        <meta name="description" content="Learn about how TransformFiles.app uses cookies and how you can manage your cookie preferences." />
-        <link rel="canonical" href="https://transformfiles.app/cookies" />
+        <title>{t.meta.cookiesTitle}</title>
+        <meta name="description" content={t.meta.cookiesDesc} />
+        <link rel="canonical" href={canonicalUrl} />
+        <meta property="og:title" content={t.meta.cookiesTitle} />
+        <meta property="og:description" content={t.meta.cookiesDesc} />
+        <html lang={language} />
       </Helmet>
 
       <div className="min-h-screen bg-background">
@@ -95,13 +105,13 @@ const CookiePolicy = () => {
               <div className="max-w-3xl mx-auto text-center">
                 <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-6">
                   <Cookie className="w-4 h-4 text-primary" />
-                  <span className="text-sm font-medium text-foreground">Cookie Policy</span>
+                  <span className="text-sm font-medium text-foreground">{t.cookies.title}</span>
                 </div>
                 <h1 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
-                  Our <span className="text-gradient">Cookie Policy</span>
+                  {t.cookies.title}
                 </h1>
                 <p className="text-lg text-muted-foreground">
-                  Understanding how we use cookies to improve your experience
+                  {t.cookies.subtitle}
                 </p>
                 <p className="text-sm text-muted-foreground mt-4">
                   Last updated: December 30, 2024
@@ -116,7 +126,7 @@ const CookiePolicy = () => {
               <div className="max-w-4xl mx-auto">
                 <div className="glass rounded-2xl p-6 md:p-8 mb-8">
                   <p className="text-muted-foreground leading-relaxed">
-                    This Cookie Policy explains how TransformFiles.app ("we", "us", or "our") uses cookies and similar technologies when you visit our website. By using our website, you consent to our use of cookies as described in this policy. You can manage your cookie preferences at any time.
+                    {t.cookies.intro}
                   </p>
                 </div>
 

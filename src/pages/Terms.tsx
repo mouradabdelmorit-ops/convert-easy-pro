@@ -1,16 +1,18 @@
 import { Helmet } from "react-helmet-async";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { useLanguage } from "@/i18n/LanguageContext";
 import { FileText, Scale, AlertTriangle, Ban, Copyright, Gavel } from "lucide-react";
 
 const Terms = () => {
-  const lastUpdated = "December 29, 2024";
+  const { t, language } = useLanguage();
+  const lastUpdated = "December 30, 2024";
 
   const sections = [
     {
       icon: Scale,
       title: "Acceptance of Terms",
-      content: `By accessing or using ConvertFlow ("Service"), you agree to be bound by these Terms of Service ("Terms"). If you disagree with any part of these terms, you may not access the Service.
+      content: `By accessing or using TransformFiles ("Service"), you agree to be bound by these Terms of Service ("Terms"). If you disagree with any part of these terms, you may not access the Service.
 
 These Terms apply to all visitors, users, and others who access or use the Service. By using the Service, you represent that you are at least 13 years of age, or the age of majority in your jurisdiction, whichever is greater.
 
@@ -19,7 +21,7 @@ We reserve the right to modify these Terms at any time. We will notify users of 
     {
       icon: FileText,
       title: "Description of Service",
-      content: `ConvertFlow provides an online file conversion service that allows users to convert files between various formats including but not limited to:
+      content: `TransformFiles provides an online file conversion service that allows users to convert files between various formats including but not limited to:
 
 - Video formats (MP4, AVI, MKV, MOV, etc.)
 - Image formats (JPG, PNG, GIF, WEBP, etc.)
@@ -62,10 +64,10 @@ Violation of these terms may result in immediate termination of access and repor
 You retain all rights to the files you upload. By using our Service, you grant us a limited license to process your files solely for the purpose of providing the conversion service. This license terminates when your files are deleted.
 
 **Our Content:**
-The Service, including its design, features, and code, is owned by ConvertFlow and protected by copyright, trademark, and other intellectual property laws. You may not copy, modify, distribute, or create derivative works based on our Service.
+The Service, including its design, features, and code, is owned by TransformFiles and protected by copyright, trademark, and other intellectual property laws. You may not copy, modify, distribute, or create derivative works based on our Service.
 
 **Trademarks:**
-"ConvertFlow" and our logo are trademarks of ConvertFlow Inc. You may not use our trademarks without prior written permission.`
+"TransformFiles" and our logo are trademarks of TransformFiles. You may not use our trademarks without prior written permission.`
     },
     {
       icon: AlertTriangle,
@@ -74,7 +76,7 @@ The Service, including its design, features, and code, is owned by ConvertFlow a
 THE SERVICE IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND. WE DISCLAIM ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
 
 **Limitation of Damages:**
-IN NO EVENT SHALL CONVERTFLOW BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, INCLUDING BUT NOT LIMITED TO LOSS OF DATA, PROFITS, OR GOODWILL.
+IN NO EVENT SHALL TRANSFORMFILES BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, INCLUDING BUT NOT LIMITED TO LOSS OF DATA, PROFITS, OR GOODWILL.
 
 **Maximum Liability:**
 Our total liability for any claims arising from your use of the Service shall not exceed the amount you paid us (if any) in the 12 months prior to the claim.
@@ -98,16 +100,23 @@ You agree to resolve disputes with us on an individual basis. You waive the righ
 Either party may seek injunctive relief in any court of competent jurisdiction to protect intellectual property rights or confidential information.
 
 **Contact:**
-For questions about these Terms, contact us at legal@convertflow.com`
+For questions about these Terms, contact us at legal@transformfiles.app`
     }
   ];
+
+  const canonicalUrl = language === 'en' 
+    ? 'https://transformfiles.app/terms' 
+    : `https://transformfiles.app/${language}/terms`;
 
   return (
     <>
       <Helmet>
-        <title>Terms of Service | TransformFiles</title>
-        <meta name="description" content="Read TransformFiles Terms of Service. Understand your rights and responsibilities when using our file conversion service." />
-        <link rel="canonical" href="https://transformfiles.app/terms" />
+        <title>{t.meta.termsTitle}</title>
+        <meta name="description" content={t.meta.termsDesc} />
+        <link rel="canonical" href={canonicalUrl} />
+        <meta property="og:title" content={t.meta.termsTitle} />
+        <meta property="og:description" content={t.meta.termsDesc} />
+        <html lang={language} />
       </Helmet>
 
       <div className="min-h-screen bg-background">
@@ -120,10 +129,10 @@ For questions about these Terms, contact us at legal@convertflow.com`
               <div className="text-center mb-12">
                 <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-6">
                   <FileText className="w-4 h-4 text-primary" />
-                  <span className="text-sm font-medium text-foreground">Legal</span>
+                  <span className="text-sm font-medium text-foreground">{t.terms.subtitle}</span>
                 </div>
                 <h1 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-4">
-                  Terms of Service
+                  {t.terms.title}
                 </h1>
                 <p className="text-muted-foreground">
                   Last updated: {lastUpdated}
@@ -133,10 +142,7 @@ For questions about these Terms, contact us at legal@convertflow.com`
               {/* Introduction */}
               <div className="glass rounded-2xl p-6 md:p-8 mb-8">
                 <p className="text-muted-foreground leading-relaxed">
-                  Welcome to ConvertFlow. These Terms of Service govern your use of our file conversion 
-                  service and website. Please read these terms carefully before using our Service. 
-                  Your access to and use of the Service is conditioned on your acceptance of and 
-                  compliance with these Terms.
+                  {t.terms.intro}
                 </p>
               </div>
 

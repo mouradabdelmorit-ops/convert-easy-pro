@@ -1,10 +1,12 @@
 import { Helmet } from "react-helmet-async";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { useLanguage } from "@/i18n/LanguageContext";
 import { Shield, Lock, Eye, Clock, Server, Mail } from "lucide-react";
 
 const Privacy = () => {
-  const lastUpdated = "December 29, 2024";
+  const { t, language } = useLanguage();
+  const lastUpdated = "December 30, 2024";
 
   const sections = [
     {
@@ -92,7 +94,7 @@ const Privacy = () => {
 - Right to restrict processing
 - Right to lodge a complaint with a supervisory authority
 
-To exercise any of these rights, contact us at privacy@convertflow.com`
+To exercise any of these rights, contact us at privacy@transformfiles.app`
     },
     {
       icon: Clock,
@@ -123,27 +125,34 @@ You can manage your cookie preferences at any time by clicking "Cookie Settings"
       title: "Contact Us",
       content: `If you have questions about this Privacy Policy or our data practices:
 
-**Email:** privacy@convertflow.com
+**Email:** privacy@transformfiles.app
 
 **Mail:**
-ConvertFlow Inc.
+TransformFiles.app
 123 Tech Street
 San Francisco, CA 94105
 United States
 
 **Data Protection Officer:**
-dpo@convertflow.com
+dpo@transformfiles.app
 
 We aim to respond to all inquiries within 48 hours.`
     }
   ];
 
+  const canonicalUrl = language === 'en' 
+    ? 'https://transformfiles.app/privacy' 
+    : `https://transformfiles.app/${language}/privacy`;
+
   return (
     <>
       <Helmet>
-        <title>Privacy Policy | TransformFiles</title>
-        <meta name="description" content="Learn how TransformFiles protects your privacy and handles your data. GDPR and CCPA compliant." />
-        <link rel="canonical" href="https://transformfiles.app/privacy" />
+        <title>{t.meta.privacyTitle}</title>
+        <meta name="description" content={t.meta.privacyDesc} />
+        <link rel="canonical" href={canonicalUrl} />
+        <meta property="og:title" content={t.meta.privacyTitle} />
+        <meta property="og:description" content={t.meta.privacyDesc} />
+        <html lang={language} />
       </Helmet>
 
       <div className="min-h-screen bg-background">
@@ -156,10 +165,10 @@ We aim to respond to all inquiries within 48 hours.`
               <div className="text-center mb-12">
                 <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-6">
                   <Shield className="w-4 h-4 text-primary" />
-                  <span className="text-sm font-medium text-foreground">Your Privacy Matters</span>
+                  <span className="text-sm font-medium text-foreground">{t.privacy.subtitle}</span>
                 </div>
                 <h1 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-4">
-                  Privacy Policy
+                  {t.privacy.title}
                 </h1>
                 <p className="text-muted-foreground">
                   Last updated: {lastUpdated}
@@ -169,10 +178,7 @@ We aim to respond to all inquiries within 48 hours.`
               {/* Introduction */}
               <div className="glass rounded-2xl p-6 md:p-8 mb-8">
                 <p className="text-muted-foreground leading-relaxed">
-                  At ConvertFlow, we take your privacy seriously. This Privacy Policy explains how we collect, 
-                  use, disclose, and safeguard your information when you use our file conversion service. 
-                  We are committed to being transparent about our data practices and ensuring your data is 
-                  handled securely and responsibly.
+                  {t.privacy.intro}
                 </p>
               </div>
 

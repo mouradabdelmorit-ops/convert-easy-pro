@@ -1,20 +1,23 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import { useDropzone } from "react-dropzone";
+import { PDFDocument, degrees } from "pdf-lib";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { supabase } from "@/integrations/supabase/client";
 import { toast } from "@/hooks/use-toast";
+import { useLanguage } from "@/i18n/LanguageContext";
 import { 
   FileText, Upload, Merge, Scissors, Minimize2, 
   RotateCw, Type, Droplet, Download, Loader2, X,
-  ArrowRight, CheckCircle
+  ArrowRight, CheckCircle, Eye, ChevronLeft, ChevronRight
 } from "lucide-react";
 
 interface PDFFile {
   file: File;
   preview: string;
+  pageCount?: number;
+  arrayBuffer?: ArrayBuffer;
 }
 
 const pdfTools = [
@@ -26,21 +29,8 @@ const pdfTools = [
   { id: 'add-watermark', icon: Droplet, label: 'Watermark', description: 'Add text overlay' },
 ];
 
-// Helper to convert file to base64 in chunks
-const fileToBase64 = (file: File): Promise<string> => {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onload = () => {
-      const result = reader.result as string;
-      const base64 = result.split(',')[1];
-      resolve(base64);
-    };
-    reader.onerror = reject;
-    reader.readAsDataURL(file);
-  });
-};
-
 const PDFEditor = () => {
+  const { t, language } = useLanguage();
   const [files, setFiles] = useState<PDFFile[]>([]);
   const [selectedTool, setSelectedTool] = useState<string | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
@@ -48,17 +38,34 @@ const PDFEditor = () => {
   const [pageRange, setPageRange] = useState("1-5");
   const [rotateAngle, setRotateAngle] = useState(90);
   const [compressionQuality, setCompressionQuality] = useState("medium");
+  const [previewPage, setPreviewPage] = useState(0);
 
-  const onDrop = useCallback((acceptedFiles: File[]) => {
+  const onDrop = useCallback(async (acceptedFiles: File[]) => {
     const pdfFiles = acceptedFiles.filter(f => f.type === 'application/pdf');
-    const newFiles = pdfFiles.map(file => ({
-      file,
-      preview: URL.createObjectURL(file)
+    
+    const newFiles = await Promise.all(pdfFiles.map(async (file) => {
+      const arrayBuffer = await file.arrayBuffer();
+      let pageCount = 0;
+      
+      try {
+        const pdfDoc = await PDFDocument.load(arrayBuffer);
+        pageCount = pdfDoc.getPageCount();
+      } catch (e) {
+        console.error('Error loading PDF:', e);
+      }
+      
+      return {
+        file,
+        preview: URL.createObjectURL(file),
+        pageCount,
+        arrayBuffer: arrayBuffer.slice(0)
+      };
     }));
+    
     setFiles(prev => [...prev, ...newFiles]);
     
     if (pdfFiles.length > 0) {
-      toast({ title: "Files added", description: `${pdfFiles.length} PDF file(s) ready` });
+      toast({ title: "Files added", description: `${pdfFiles.length} PDF file(s) ready with ${newFiles.reduce((acc, f) => acc + (f.pageCount || 0), 0)} total pages` });
     }
   }, []);
 
@@ -69,7 +76,18 @@ const PDFEditor = () => {
   });
 
   const removeFile = (index: number) => {
+    URL.revokeObjectURL(files[index].preview);
     setFiles(prev => prev.filter((_, i) => i !== index));
+  };
+
+  const downloadPDF = (pdfBytes: Uint8Array, fileName: string) => {
+    const blob = new Blob([pdfBytes.buffer], { type: 'application/pdf' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = fileName;
+    a.click();
+    URL.revokeObjectURL(url);
   };
 
   const processFiles = async () => {
@@ -81,47 +99,132 @@ const PDFEditor = () => {
     setIsProcessing(true);
 
     try {
-      // Convert files to base64 using FileReader (no stack overflow)
-      const fileData = await Promise.all(files.map(f => fileToBase64(f.file)));
-
-      const options: Record<string, unknown> = {};
-      if (selectedTool === 'add-watermark') options.text = watermarkText;
-      if (selectedTool === 'split') options.pageRanges = pageRange;
-      if (selectedTool === 'rotate') options.angle = rotateAngle;
-      if (selectedTool === 'compress') options.quality = compressionQuality;
-
-      const { data, error } = await supabase.functions.invoke('pdf-edit', {
-        body: { action: selectedTool, files: fileData, options }
-      });
-
-      if (error) throw error;
-
-      toast({ title: "Success!", description: data.message });
-
-      // If there's file data to download
-      if (data.data && data.fileName) {
-        const binaryString = atob(data.data);
-        const bytes = new Uint8Array(binaryString.length);
-        for (let i = 0; i < binaryString.length; i++) {
-          bytes[i] = binaryString.charCodeAt(i);
+      switch (selectedTool) {
+        case 'merge': {
+          const mergedPdf = await PDFDocument.create();
+          
+          for (const pdfFile of files) {
+            if (!pdfFile.arrayBuffer) continue;
+            const pdf = await PDFDocument.load(pdfFile.arrayBuffer);
+            const pages = await mergedPdf.copyPages(pdf, pdf.getPageIndices());
+            pages.forEach(page => mergedPdf.addPage(page));
+          }
+          
+          const mergedPdfBytes = await mergedPdf.save();
+          downloadPDF(mergedPdfBytes, 'merged.pdf');
+          toast({ title: "Success!", description: `Merged ${files.length} PDFs successfully` });
+          break;
         }
-        const blob = new Blob([bytes], { type: 'application/pdf' });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = data.fileName;
-        a.click();
-        URL.revokeObjectURL(url);
+        
+        case 'split': {
+          if (!files[0]?.arrayBuffer) throw new Error('No file to split');
+          const pdf = await PDFDocument.load(files[0].arrayBuffer);
+          const totalPages = pdf.getPageCount();
+          
+          // Parse page range (e.g., "1-5, 7, 10-12")
+          const ranges = pageRange.split(',').map(r => r.trim());
+          const pagesToExtract: number[] = [];
+          
+          for (const range of ranges) {
+            if (range.includes('-')) {
+              const [start, end] = range.split('-').map(n => parseInt(n.trim()));
+              for (let i = Math.max(1, start); i <= Math.min(totalPages, end); i++) {
+                pagesToExtract.push(i - 1);
+              }
+            } else {
+              const page = parseInt(range);
+              if (page >= 1 && page <= totalPages) {
+                pagesToExtract.push(page - 1);
+              }
+            }
+          }
+          
+          const splitPdf = await PDFDocument.create();
+          const pages = await splitPdf.copyPages(pdf, pagesToExtract);
+          pages.forEach(page => splitPdf.addPage(page));
+          
+          const splitPdfBytes = await splitPdf.save();
+          downloadPDF(splitPdfBytes, 'split.pdf');
+          toast({ title: "Success!", description: `Extracted ${pagesToExtract.length} pages` });
+          break;
+        }
+        
+        case 'rotate': {
+          if (!files[0]?.arrayBuffer) throw new Error('No file to rotate');
+          const pdf = await PDFDocument.load(files[0].arrayBuffer);
+          const pages = pdf.getPages();
+          
+          pages.forEach(page => {
+            page.setRotation(degrees(page.getRotation().angle + rotateAngle));
+          });
+          
+          const rotatedPdfBytes = await pdf.save();
+          downloadPDF(rotatedPdfBytes, 'rotated.pdf');
+          toast({ title: "Success!", description: `Rotated all pages by ${rotateAngle}°` });
+          break;
+        }
+        
+        case 'compress': {
+          if (!files[0]?.arrayBuffer) throw new Error('No file to compress');
+          const pdf = await PDFDocument.load(files[0].arrayBuffer);
+          
+          // Basic compression by removing metadata and optimizing
+          pdf.setTitle('');
+          pdf.setAuthor('');
+          pdf.setSubject('');
+          pdf.setKeywords([]);
+          pdf.setProducer('TransformFiles.app');
+          pdf.setCreator('TransformFiles.app');
+          
+          const compressedPdfBytes = await pdf.save({ 
+            useObjectStreams: true,
+          });
+          
+          const originalSize = files[0].file.size;
+          const newSize = compressedPdfBytes.length;
+          const reduction = ((originalSize - newSize) / originalSize * 100).toFixed(1);
+          
+          downloadPDF(compressedPdfBytes, 'compressed.pdf');
+          toast({ 
+            title: "Success!", 
+            description: `Compressed from ${(originalSize/1024/1024).toFixed(2)}MB to ${(newSize/1024/1024).toFixed(2)}MB (${reduction}% reduction)` 
+          });
+          break;
+        }
+        
+        case 'add-watermark': {
+          if (!files[0]?.arrayBuffer) throw new Error('No file to watermark');
+          const pdf = await PDFDocument.load(files[0].arrayBuffer);
+          const pages = pdf.getPages();
+          
+          for (const page of pages) {
+            const { width, height } = page.getSize();
+            page.drawText(watermarkText, {
+              x: width / 2 - (watermarkText.length * 10),
+              y: height / 2,
+              size: 50,
+              opacity: 0.3,
+              rotate: degrees(45),
+            });
+          }
+          
+          const watermarkedPdfBytes = await pdf.save();
+          downloadPDF(watermarkedPdfBytes, 'watermarked.pdf');
+          toast({ title: "Success!", description: `Added watermark to all ${pages.length} pages` });
+          break;
+        }
+        
+        case 'extract-text': {
+          toast({ 
+            title: "Text Extraction", 
+            description: "For text extraction, use a dedicated OCR service. PDF-lib doesn't support text extraction." 
+          });
+          break;
+        }
+        
+        default:
+          throw new Error(`Unknown action: ${selectedTool}`);
       }
-
-      // If it's text extraction, show the text in a better way
-      if (data.text) {
-        toast({ 
-          title: "Text Extracted", 
-          description: data.text.substring(0, 200) + (data.text.length > 200 ? '...' : '')
-        });
-      }
-
     } catch (error: unknown) {
       console.error('Error:', error);
       const message = error instanceof Error ? error.message : 'Processing failed';
@@ -131,12 +234,17 @@ const PDFEditor = () => {
     }
   };
 
+  const canonicalUrl = language === 'en' 
+    ? 'https://transformfiles.app/pdf-editor' 
+    : `https://transformfiles.app/${language}/pdf-editor`;
+
   return (
     <>
       <Helmet>
         <title>Free PDF Editor Online | Merge, Split, Compress PDF - TransformFiles</title>
         <meta name="description" content="Edit PDF files online for free. Merge, split, compress, rotate PDFs. Add watermarks and extract text. No registration required." />
-        <link rel="canonical" href="https://transformfiles.app/pdf-editor" />
+        <link rel="canonical" href={canonicalUrl} />
+        <html lang={language} />
       </Helmet>
 
       <div className="min-h-screen bg-background">
@@ -150,7 +258,7 @@ const PDFEditor = () => {
               <div className="max-w-3xl mx-auto text-center">
                 <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-6">
                   <FileText className="w-4 h-4 text-primary" />
-                  <span className="text-sm font-medium text-foreground">Free PDF Editor</span>
+                  <span className="text-sm font-medium text-foreground">{t.nav.pdfEditor}</span>
                 </div>
                 <h1 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
                   Edit Your <span className="text-gradient">PDF Files</span> Online
@@ -198,9 +306,9 @@ const PDFEditor = () => {
                       <Upload className={`w-7 h-7 md:w-8 md:h-8 ${isDragActive ? 'text-primary-foreground' : 'text-primary'}`} />
                     </div>
                     <h3 className="text-lg md:text-xl font-semibold text-foreground mb-2">
-                      {isDragActive ? 'Drop your PDFs here!' : 'Upload PDF Files'}
+                      {isDragActive ? 'Drop your PDFs here!' : t.converter.upload}
                     </h3>
-                    <p className="text-muted-foreground mb-4 text-sm md:text-base">Drag & drop or click to browse</p>
+                    <p className="text-muted-foreground mb-4 text-sm md:text-base">{t.hero.orBrowse}</p>
                     <Button variant="hero" onClick={open} size="lg">
                       Choose Files <ArrowRight className="w-4 h-4 ml-2" />
                     </Button>
@@ -208,25 +316,89 @@ const PDFEditor = () => {
                 </div>
               </div>
 
-              {/* File List */}
+              {/* File List with Preview */}
               {files.length > 0 && (
-                <div className="max-w-3xl mx-auto mt-6 md:mt-8 space-y-3">
-                  {files.map((f, index) => (
-                    <div key={index} className="glass rounded-xl p-3 md:p-4 flex items-center gap-3 md:gap-4">
-                      <div className="w-10 h-10 md:w-12 md:h-12 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-                        <FileText className="w-5 h-5 md:w-6 md:h-6 text-primary" />
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <p className="font-medium text-foreground truncate text-sm md:text-base">{f.file.name}</p>
-                        <p className="text-xs md:text-sm text-muted-foreground">
-                          {(f.file.size / 1024 / 1024).toFixed(2)} MB
-                        </p>
-                      </div>
-                      <button onClick={() => removeFile(index)} className="text-muted-foreground hover:text-destructive p-2">
-                        <X className="w-5 h-5" />
-                      </button>
+                <div className="max-w-4xl mx-auto mt-6 md:mt-8">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {/* File List */}
+                    <div className="space-y-3">
+                      <h3 className="text-sm font-medium text-muted-foreground mb-2">
+                        Uploaded Files ({files.length})
+                      </h3>
+                      {files.map((f, index) => (
+                        <div 
+                          key={index} 
+                          className={`glass rounded-xl p-3 md:p-4 flex items-center gap-3 md:gap-4 cursor-pointer transition-all ${
+                            previewPage === index ? 'ring-2 ring-primary' : 'hover:bg-card/50'
+                          }`}
+                          onClick={() => setPreviewPage(index)}
+                        >
+                          <div className="w-10 h-10 md:w-12 md:h-12 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                            <FileText className="w-5 h-5 md:w-6 md:h-6 text-primary" />
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <p className="font-medium text-foreground truncate text-sm md:text-base">{f.file.name}</p>
+                            <p className="text-xs md:text-sm text-muted-foreground">
+                              {(f.file.size / 1024 / 1024).toFixed(2)} MB • {f.pageCount || '?'} pages
+                            </p>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <button 
+                              onClick={(e) => { e.stopPropagation(); setPreviewPage(index); }}
+                              className="text-muted-foreground hover:text-primary p-2"
+                            >
+                              <Eye className="w-5 h-5" />
+                            </button>
+                            <button 
+                              onClick={(e) => { e.stopPropagation(); removeFile(index); }} 
+                              className="text-muted-foreground hover:text-destructive p-2"
+                            >
+                              <X className="w-5 h-5" />
+                            </button>
+                          </div>
+                        </div>
+                      ))}
                     </div>
-                  ))}
+
+                    {/* PDF Preview */}
+                    <div className="glass rounded-xl p-4 min-h-[300px] flex flex-col">
+                      <h3 className="text-sm font-medium text-muted-foreground mb-2">
+                        Preview
+                      </h3>
+                      {files[previewPage] && (
+                        <div className="flex-1 flex flex-col">
+                          <div className="flex-1 bg-secondary rounded-lg overflow-hidden">
+                            <iframe 
+                              src={files[previewPage].preview}
+                              className="w-full h-full min-h-[250px]"
+                              title="PDF Preview"
+                            />
+                          </div>
+                          <div className="flex items-center justify-between mt-3">
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              onClick={() => setPreviewPage(Math.max(0, previewPage - 1))}
+                              disabled={previewPage === 0}
+                            >
+                              <ChevronLeft className="w-4 h-4" />
+                            </Button>
+                            <span className="text-sm text-muted-foreground">
+                              File {previewPage + 1} of {files.length}
+                            </span>
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              onClick={() => setPreviewPage(Math.min(files.length - 1, previewPage + 1))}
+                              disabled={previewPage === files.length - 1}
+                            >
+                              <ChevronRight className="w-4 h-4" />
+                            </Button>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  </div>
                 </div>
               )}
 
@@ -252,7 +424,9 @@ const PDFEditor = () => {
                   
                   {selectedTool === 'split' && (
                     <div>
-                      <label className="block text-sm text-muted-foreground mb-2">Page Range (e.g., 1-5, 7, 10-12)</label>
+                      <label className="block text-sm text-muted-foreground mb-2">
+                        Page Range (e.g., 1-5, 7, 10-12) - Total: {files[0]?.pageCount || '?'} pages
+                      </label>
                       <input
                         type="text"
                         value={pageRange}
@@ -295,7 +469,7 @@ const PDFEditor = () => {
                   {(selectedTool === 'merge' || selectedTool === 'extract-text') && (
                     <p className="text-muted-foreground text-sm">
                       {selectedTool === 'merge' 
-                        ? 'All uploaded PDFs will be merged into a single file.'
+                        ? `All ${files.length} uploaded PDFs will be merged into a single file.`
                         : 'Text content will be extracted from your PDF.'}
                     </p>
                   )}
@@ -310,7 +484,7 @@ const PDFEditor = () => {
                     {isProcessing ? (
                       <>
                         <Loader2 className="w-5 h-5 animate-spin mr-2" />
-                        Processing...
+                        {t.converter.converting}
                       </>
                     ) : (
                       <>

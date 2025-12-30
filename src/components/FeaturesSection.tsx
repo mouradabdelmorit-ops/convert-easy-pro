@@ -2,38 +2,41 @@ import {
   Zap, Shield, Cloud, Smartphone, Globe, Clock,
   Video, Image, Music, FileText, Lock, Sparkles
 } from "lucide-react";
+import { useLanguage } from "@/i18n/LanguageContext";
 
 const FeaturesSection = () => {
+  const { t } = useLanguage();
+
   const features = [
     {
       icon: Zap,
-      title: "Lightning Fast",
-      description: "Convert files in seconds with our optimized processing engine. No waiting, no delays.",
+      title: t.features.lightning.title,
+      description: t.features.lightning.desc,
     },
     {
       icon: Shield,
-      title: "Bank-Level Security",
-      description: "256-bit SSL encryption protects your files. Auto-delete ensures complete privacy.",
-    },
-    {
-      icon: Cloud,
-      title: "Cloud-Based",
-      description: "No software to install. Works directly in your browser on any device.",
-    },
-    {
-      icon: Smartphone,
-      title: "Mobile Friendly",
-      description: "Convert files on the go. Fully responsive design works on all devices.",
+      title: t.features.secure.title,
+      description: t.features.secure.desc,
     },
     {
       icon: Globe,
-      title: "1500+ Formats",
-      description: "Support for virtually every file format. Video, audio, image, document, and more.",
+      title: t.features.formats.title,
+      description: t.features.formats.desc,
     },
     {
-      icon: Clock,
-      title: "Batch Processing",
-      description: "Convert multiple files at once. Save time with bulk conversions.",
+      icon: Cloud,
+      title: t.features.free.title,
+      description: t.features.free.desc,
+    },
+    {
+      icon: Sparkles,
+      title: t.features.quality.title,
+      description: t.features.quality.desc,
+    },
+    {
+      icon: Smartphone,
+      title: t.features.mobile.title,
+      description: t.features.mobile.desc,
     },
   ];
 
@@ -59,15 +62,13 @@ const FeaturesSection = () => {
         <div className="text-center max-w-3xl mx-auto mb-16">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-6">
             <Sparkles className="w-4 h-4 text-primary" />
-            <span className="text-sm font-medium text-foreground">Powerful Features</span>
+            <span className="text-sm font-medium text-foreground">{t.features.title}</span>
           </div>
           <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6">
-            Everything You Need to{" "}
-            <span className="text-gradient">Convert Files</span>
+            {t.features.title}
           </h2>
           <p className="text-lg text-muted-foreground">
-            Professional-grade file conversion with enterprise features. 
-            Free forever, no registration required.
+            {t.features.subtitle}
           </p>
         </div>
 
@@ -121,24 +122,24 @@ const FeaturesSection = () => {
             <div className="flex items-center gap-3">
               <Lock className="w-8 h-8 text-primary" />
               <div className="text-left">
-                <p className="font-display font-semibold text-foreground">Secure & Private</p>
-                <p className="text-sm text-muted-foreground">Files auto-delete after 2 hours</p>
+                <p className="font-display font-semibold text-foreground">{t.features.secure.title}</p>
+                <p className="text-sm text-muted-foreground">{t.features.secure.desc}</p>
               </div>
             </div>
             <div className="hidden md:block w-px h-12 bg-border" />
             <div className="flex items-center gap-3">
               <Globe className="w-8 h-8 text-primary" />
               <div className="text-left">
-                <p className="font-display font-semibold text-foreground">10M+ Files Converted</p>
-                <p className="text-sm text-muted-foreground">Trusted by users worldwide</p>
+                <p className="font-display font-semibold text-foreground">{t.hero.trusted}</p>
+                <p className="text-sm text-muted-foreground">{t.hero.badge}</p>
               </div>
             </div>
             <div className="hidden md:block w-px h-12 bg-border" />
             <div className="flex items-center gap-3">
               <Zap className="w-8 h-8 text-primary" />
               <div className="text-left">
-                <p className="font-display font-semibold text-foreground">99.9% Uptime</p>
-                <p className="text-sm text-muted-foreground">Always available</p>
+                <p className="font-display font-semibold text-foreground">{t.features.lightning.title}</p>
+                <p className="text-sm text-muted-foreground">{t.features.lightning.desc}</p>
               </div>
             </div>
           </div>

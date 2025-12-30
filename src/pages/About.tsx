@@ -2,12 +2,15 @@ import { Helmet } from "react-helmet-async";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
+import { useLanguage } from "@/i18n/LanguageContext";
 import { 
   Users, Target, Heart, Zap, Mail, MapPin, Phone,
   Linkedin, Twitter, Github
 } from "lucide-react";
 
 const About = () => {
+  const { t, language } = useLanguage();
+
   const values = [
     {
       icon: Zap,
@@ -40,12 +43,19 @@ const About = () => {
     { value: "180+", label: "Countries" },
   ];
 
+  const canonicalUrl = language === 'en' 
+    ? 'https://transformfiles.app/about' 
+    : `https://transformfiles.app/${language}/about`;
+
   return (
     <>
       <Helmet>
-        <title>About Us | TransformFiles - Our Mission & Team</title>
-        <meta name="description" content="Learn about TransformFiles mission to make file conversion accessible to everyone. Meet our team and discover our values." />
-        <link rel="canonical" href="https://transformfiles.app/about" />
+        <title>{t.meta.aboutTitle}</title>
+        <meta name="description" content={t.meta.aboutDesc} />
+        <link rel="canonical" href={canonicalUrl} />
+        <meta property="og:title" content={t.meta.aboutTitle} />
+        <meta property="og:description" content={t.meta.aboutDesc} />
+        <html lang={language} />
       </Helmet>
 
       <div className="min-h-screen bg-background">
@@ -58,15 +68,14 @@ const About = () => {
               <div className="max-w-4xl mx-auto text-center">
                 <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-6">
                   <Users className="w-4 h-4 text-primary" />
-                  <span className="text-sm font-medium text-foreground">About Us</span>
+                  <span className="text-sm font-medium text-foreground">{t.nav.about}</span>
                 </div>
                 <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">
-                  Making File Conversion{" "}
-                  <span className="text-gradient">Accessible to All</span>
+                  {t.about.title}{" "}
+                  <span className="text-gradient">{t.about.subtitle}</span>
                 </h1>
                 <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
-                  We're on a mission to simplify digital file conversion for everyone, 
-                  everywhere. No software, no signups, no limits.
+                  {t.hero.description}
                 </p>
               </div>
             </div>
@@ -94,24 +103,12 @@ const About = () => {
               <div className="max-w-4xl mx-auto">
                 <div className="glass rounded-2xl p-8 md:p-12">
                   <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-6">
-                    Our Story
+                    {t.about.ourStory}
                   </h2>
                   <div className="space-y-4 text-muted-foreground leading-relaxed">
-                    <p>
-                      ConvertFlow was born from a simple frustration: why is converting files so complicated? 
-                      In 2023, our founder Alex Chen was working on a creative project and needed to convert 
-                      hundreds of files. The existing tools were either slow, expensive, or required downloading 
-                      software.
-                    </p>
-                    <p>
-                      That's when the idea for ConvertFlow came to life. We set out to build the fastest, 
-                      most user-friendly file converter on the web. No downloads, no signups, no hassle.
-                    </p>
-                    <p>
-                      Today, ConvertFlow serves millions of users worldwide, processing over 10 million 
-                      files every month. But we're just getting started. Our team continues to innovate, 
-                      adding new formats, improving speed, and enhancing the user experience.
-                    </p>
+                    {t.about.storyContent.map((paragraph, index) => (
+                      <p key={index}>{paragraph}</p>
+                    ))}
                   </div>
                 </div>
               </div>
@@ -123,10 +120,10 @@ const About = () => {
             <div className="container mx-auto px-4">
               <div className="text-center mb-12">
                 <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4">
-                  Our Values
+                  {t.about.values}
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto">
-                  The principles that guide everything we do
+                  {t.about.valuesSubtitle}
                 </p>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
@@ -152,10 +149,10 @@ const About = () => {
             <div className="container mx-auto px-4">
               <div className="text-center mb-12">
                 <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4">
-                  Meet Our Team
+                  {t.about.team}
                 </h2>
                 <p className="text-muted-foreground max-w-2xl mx-auto">
-                  The passionate people behind ConvertFlow
+                  {t.about.teamSubtitle}
                 </p>
               </div>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
@@ -180,10 +177,10 @@ const About = () => {
               <div className="max-w-4xl mx-auto">
                 <div className="text-center mb-12">
                   <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4">
-                    Get In Touch
+                    {t.about.contact}
                   </h2>
                   <p className="text-muted-foreground max-w-2xl mx-auto">
-                    Have questions or feedback? We'd love to hear from you.
+                    {t.about.contactSubtitle}
                   </p>
                 </div>
 
@@ -200,7 +197,7 @@ const About = () => {
                         </div>
                         <div>
                           <p className="text-sm text-muted-foreground">Email</p>
-                          <p className="text-foreground">hello@convertflow.com</p>
+                          <p className="text-foreground">hello@transformfiles.app</p>
                         </div>
                       </div>
                       <div className="flex items-center gap-4">
