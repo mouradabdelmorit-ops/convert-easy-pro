@@ -1,7 +1,7 @@
 import { useState, useCallback } from "react";
 import { useDropzone } from "react-dropzone";
 import { Button } from "@/components/ui/button";
-import { Upload, FileType, Zap, Shield, Clock, ArrowRight } from "lucide-react";
+import { Upload, Zap, Shield, Globe, ArrowRight, Sparkles, Check } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
 
 interface HeroSectionProps {
@@ -25,45 +25,55 @@ const HeroSection = ({ onFilesSelected }: HeroSectionProps) => {
     onDropRejected: () => setIsDragActive(false),
   });
 
-  const stats = [
-    { icon: FileType, label: t.hero.supportedFormats, description: t.features.formats.title },
-    { icon: Zap, label: t.features.lightning.title, description: t.features.lightning.desc.split(' ').slice(0, 2).join(' ') },
-    { icon: Shield, label: t.features.secure.title, description: t.features.secure.desc.split(' ').slice(0, 2).join(' ') },
-    { icon: Clock, label: t.features.free.title, description: t.features.free.desc.split(' ').slice(0, 2).join(' ') },
+  const benefits = [
+    { icon: Zap, text: "Lightning fast conversion" },
+    { icon: Shield, text: "100% secure & private" },
+    { icon: Globe, text: "Works on any device" },
+    { icon: Sparkles, text: "No registration needed" },
+  ];
+
+  const supportedFormats = [
+    { category: "Video", formats: "MP4, AVI, MKV, MOV, WebM" },
+    { category: "Image", formats: "JPG, PNG, WebP, GIF, SVG" },
+    { category: "Audio", formats: "MP3, WAV, FLAC, AAC, OGG" },
+    { category: "Document", formats: "PDF, DOCX, XLSX, PPT" },
   ];
 
   return (
     <section className="relative min-h-screen gradient-hero overflow-hidden pt-20">
-      {/* Background Glow Effects */}
+      {/* Background Effects */}
       <div className="absolute top-1/4 left-1/4 w-64 md:w-96 h-64 md:h-96 bg-primary/10 rounded-full blur-3xl animate-pulse-slow" />
       <div className="absolute bottom-1/4 right-1/4 w-56 md:w-80 h-56 md:h-80 bg-accent/10 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: "1s" }} />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/5 rounded-full blur-3xl" />
       
-      <div className="container mx-auto px-4 py-12 md:py-24 relative z-10">
-        <div className="max-w-4xl mx-auto text-center mb-10 md:mb-16">
+      <div className="container mx-auto px-4 py-12 md:py-20 relative z-10">
+        <div className="max-w-5xl mx-auto text-center mb-10 md:mb-14">
           {/* Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-6 animate-fade-in">
-            <Zap className="w-4 h-4 text-primary" />
-            <span className="text-sm font-medium text-foreground">{t.hero.badge}</span>
+            <Sparkles className="w-4 h-4 text-primary" />
+            <span className="text-sm font-medium text-foreground">Free Online File Converter</span>
           </div>
 
           {/* Headline */}
-          <h1 className="font-display text-3xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4 md:mb-6 animate-fade-in" style={{ animationDelay: "0.1s" }}>
-            {t.hero.title}{" "}
-            <span className="text-gradient">{t.hero.titleHighlight}</span>
+          <h1 className="font-display text-4xl md:text-6xl lg:text-7xl font-bold text-foreground mb-6 animate-fade-in leading-tight" style={{ animationDelay: "0.1s" }}>
+            Convert Any File <br className="hidden md:block" />
+            <span className="text-gradient">In Seconds</span>
           </h1>
 
           {/* Subheadline */}
-          <p className="text-base md:text-xl text-muted-foreground max-w-2xl mx-auto mb-6 md:mb-8 animate-fade-in" style={{ animationDelay: "0.2s" }}>
-            {t.hero.description}
+          <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-8 animate-fade-in leading-relaxed" style={{ animationDelay: "0.2s" }}>
+            The fastest, most reliable online file converter. Transform videos, images, audio, 
+            and documents instantly. No software to install, no registration required.
           </p>
 
-          {/* Stats */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 mb-10 md:mb-12 animate-fade-in" style={{ animationDelay: "0.3s" }}>
-            {stats.map((stat, index) => (
-              <div key={index} className="glass rounded-xl p-3 md:p-4 text-center hover:glow-teal transition-all duration-300">
-                <stat.icon className="w-5 h-5 md:w-6 md:h-6 text-primary mx-auto mb-2" />
-                <p className="font-display font-semibold text-foreground text-xs md:text-sm">{stat.label}</p>
-                <p className="text-xs text-muted-foreground">{stat.description}</p>
+          {/* Benefits Row */}
+          <div className="flex flex-wrap justify-center gap-4 md:gap-6 mb-10 animate-fade-in" style={{ animationDelay: "0.25s" }}>
+            {benefits.map((benefit, index) => (
+              <div key={index} className="flex items-center gap-2 text-sm text-muted-foreground">
+                <div className="w-5 h-5 rounded-full bg-primary/20 flex items-center justify-center">
+                  <Check className="w-3 h-3 text-primary" />
+                </div>
+                <span>{benefit.text}</span>
               </div>
             ))}
           </div>
@@ -72,46 +82,68 @@ const HeroSection = ({ onFilesSelected }: HeroSectionProps) => {
         {/* Drop Zone */}
         <div 
           {...getRootProps()} 
-          className="max-w-3xl mx-auto animate-fade-in"
-          style={{ animationDelay: "0.4s" }}
+          className="max-w-4xl mx-auto animate-fade-in"
+          style={{ animationDelay: "0.3s" }}
           id="convert"
         >
           <input {...getInputProps()} />
           <div 
-            className={`relative rounded-2xl border-2 border-dashed transition-all duration-300 ${
+            className={`relative rounded-3xl border-2 border-dashed transition-all duration-300 ${
               isDragActive 
                 ? "border-primary bg-primary/5 drop-zone-active" 
-                : "border-border hover:border-primary/50 hover:bg-card/50"
+                : "border-border hover:border-primary/50 hover:bg-card/30"
             }`}
           >
-            <div className="p-6 md:p-12 text-center">
-              <div className={`w-16 h-16 md:w-20 md:h-20 mx-auto mb-4 md:mb-6 rounded-2xl flex items-center justify-center transition-all duration-300 ${
+            <div className="p-8 md:p-16 text-center">
+              <div className={`w-20 h-20 md:w-24 md:h-24 mx-auto mb-6 rounded-2xl flex items-center justify-center transition-all duration-300 ${
                 isDragActive ? "gradient-teal glow-teal-lg scale-110" : "bg-secondary"
               }`}>
-                <Upload className={`w-8 h-8 md:w-10 md:h-10 ${isDragActive ? "text-primary-foreground" : "text-primary"}`} />
+                <Upload className={`w-10 h-10 md:w-12 md:h-12 ${isDragActive ? "text-primary-foreground" : "text-primary"}`} />
               </div>
               
-              <h3 className="font-display text-lg md:text-2xl font-semibold text-foreground mb-2">
-                {isDragActive ? t.hero.dragActive : t.hero.dropzone}
+              <h3 className="font-display text-xl md:text-3xl font-semibold text-foreground mb-3">
+                {isDragActive ? "Drop your files here!" : "Drag & drop your files"}
               </h3>
-              <p className="text-muted-foreground mb-4 md:mb-6 text-sm md:text-base">
-                {t.hero.orBrowse}
+              <p className="text-muted-foreground mb-6 text-base md:text-lg">
+                or click the button below to browse
               </p>
 
               <Button 
                 variant="hero" 
                 size="lg" 
                 onClick={open}
-                className="group"
+                className="group text-base md:text-lg px-8 py-6"
               >
-                {t.converter.upload}
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                Choose Files
+                <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
               </Button>
 
-              <p className="mt-4 md:mt-6 text-xs md:text-sm text-muted-foreground">
-                {t.hero.supportedFormats}
-              </p>
+              {/* Supported Formats Grid */}
+              <div className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-4">
+                {supportedFormats.map((item, index) => (
+                  <div key={index} className="text-left p-3 rounded-xl bg-card/30 border border-border/30">
+                    <p className="text-xs font-medium text-primary mb-1">{item.category}</p>
+                    <p className="text-xs text-muted-foreground">{item.formats}</p>
+                  </div>
+                ))}
+              </div>
             </div>
+          </div>
+        </div>
+
+        {/* Bottom Stats */}
+        <div className="max-w-4xl mx-auto mt-12 grid grid-cols-3 gap-6 text-center animate-fade-in" style={{ animationDelay: "0.4s" }}>
+          <div className="glass rounded-xl p-4">
+            <p className="font-display text-2xl md:text-3xl font-bold text-primary">1500+</p>
+            <p className="text-sm text-muted-foreground">Formats Supported</p>
+          </div>
+          <div className="glass rounded-xl p-4">
+            <p className="font-display text-2xl md:text-3xl font-bold text-primary">Free</p>
+            <p className="text-sm text-muted-foreground">Always & Forever</p>
+          </div>
+          <div className="glass rounded-xl p-4">
+            <p className="font-display text-2xl md:text-3xl font-bold text-primary">100%</p>
+            <p className="text-sm text-muted-foreground">Secure & Private</p>
           </div>
         </div>
       </div>
