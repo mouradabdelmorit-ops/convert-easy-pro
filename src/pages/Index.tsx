@@ -7,9 +7,11 @@ import ConversionPanel from "@/components/ConversionPanel";
 import FeaturesSection from "@/components/FeaturesSection";
 import CookieConsent from "@/components/CookieConsent";
 import AdPlaceholder from "@/components/AdPlaceholder";
+import { useLanguage } from "@/i18n/LanguageContext";
 
 const Index = () => {
   const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
+  const { t, language, languages } = useLanguage();
 
   const handleFilesSelected = (files: File[]) => {
     setSelectedFiles((prev) => [...prev, ...files]);
@@ -23,30 +25,43 @@ const Index = () => {
     setSelectedFiles([]);
   };
 
+  const canonicalUrl = language === 'en' 
+    ? 'https://transformfiles.app' 
+    : `https://transformfiles.app/${language}`;
+
+  // Generate hreflang tags for all languages
+  const hreflangTags = Object.keys(languages).map((lang) => ({
+    lang,
+    url: lang === 'en' ? 'https://transformfiles.app' : `https://transformfiles.app/${lang}`
+  }));
+
   return (
     <>
       <Helmet>
-        <title>TransformFiles - Free Online File Converter | Convert Any File Format</title>
-        <meta
-          name="description"
-          content="Convert files online for free. Support for 1500+ formats including video, image, audio, documents. Fast, secure, no registration required."
-        />
-        <meta
-          name="keywords"
-          content="file converter, online converter, video converter, image converter, audio converter, PDF converter, free converter"
-        />
-        <link rel="canonical" href="https://transformfiles.app" />
+        <title>{t.meta.homeTitle}</title>
+        <meta name="description" content={t.meta.homeDesc} />
+        <meta name="keywords" content="file converter, online converter, video converter, image converter, audio converter, PDF converter, free converter" />
+        <link rel="canonical" href={canonicalUrl} />
+        
+        {/* Hreflang tags for international SEO */}
+        {hreflangTags.map(({ lang, url }) => (
+          <link key={lang} rel="alternate" hrefLang={lang} href={url} />
+        ))}
+        <link rel="alternate" hrefLang="x-default" href="https://transformfiles.app" />
         
         {/* Open Graph */}
-        <meta property="og:title" content="TransformFiles - Free Online File Converter" />
-        <meta property="og:description" content="Convert any file to any format. Fast, secure, and free." />
+        <meta property="og:title" content={t.meta.homeTitle} />
+        <meta property="og:description" content={t.meta.homeDesc} />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://transformfiles.app" />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:locale" content={language} />
         
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="TransformFiles - Free Online File Converter" />
-        <meta name="twitter:description" content="Convert any file to any format. Fast, secure, and free." />
+        <meta name="twitter:title" content={t.meta.homeTitle} />
+        <meta name="twitter:description" content={t.meta.homeDesc} />
+        
+        <html lang={language} />
         
         {/* Structured Data */}
         <script type="application/ld+json">
@@ -54,15 +69,16 @@ const Index = () => {
             "@context": "https://schema.org",
             "@type": "WebApplication",
             "name": "TransformFiles",
-            "description": "Free online file converter supporting 1500+ formats",
-            "url": "https://transformfiles.app",
+            "description": t.meta.homeDesc,
+            "url": canonicalUrl,
             "applicationCategory": "UtilityApplication",
             "operatingSystem": "All",
             "offers": {
               "@type": "Offer",
               "price": "0",
               "priceCurrency": "USD"
-            }
+            },
+            "inLanguage": language
           })}
         </script>
       </Helmet>
