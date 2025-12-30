@@ -73,8 +73,17 @@ const PDFEditor = () => {
         selection: true,
       });
       
-      canvas.freeDrawingBrush.color = brushColor;
-      canvas.freeDrawingBrush.width = brushSize;
+      // Set drawing mode first to initialize freeDrawingBrush
+      canvas.isDrawingMode = true;
+      
+      // Now freeDrawingBrush should exist
+      if (canvas.freeDrawingBrush) {
+        canvas.freeDrawingBrush.color = brushColor;
+        canvas.freeDrawingBrush.width = brushSize;
+      }
+      
+      // Switch back to select mode
+      canvas.isDrawingMode = false;
       
       fabricCanvasRef.current = canvas;
       toast({ title: "Canvas Ready", description: "Start editing your PDF!" });
@@ -90,7 +99,7 @@ const PDFEditor = () => {
 
   // Update brush settings
   useEffect(() => {
-    if (fabricCanvasRef.current) {
+    if (fabricCanvasRef.current && fabricCanvasRef.current.freeDrawingBrush) {
       fabricCanvasRef.current.freeDrawingBrush.color = brushColor;
       fabricCanvasRef.current.freeDrawingBrush.width = brushSize;
     }
@@ -101,15 +110,16 @@ const PDFEditor = () => {
     if (!fabricCanvasRef.current) return;
     
     const canvas = fabricCanvasRef.current;
-    canvas.isDrawingMode = editTool === 'draw';
+    canvas.isDrawingMode = editTool === 'draw' || editTool === 'eraser';
     
-    if (editTool === 'eraser') {
-      canvas.isDrawingMode = true;
-      canvas.freeDrawingBrush.color = '#ffffff';
-      canvas.freeDrawingBrush.width = brushSize * 3;
-    } else if (editTool === 'draw') {
-      canvas.freeDrawingBrush.color = brushColor;
-      canvas.freeDrawingBrush.width = brushSize;
+    if (canvas.freeDrawingBrush) {
+      if (editTool === 'eraser') {
+        canvas.freeDrawingBrush.color = '#ffffff';
+        canvas.freeDrawingBrush.width = brushSize * 3;
+      } else if (editTool === 'draw') {
+        canvas.freeDrawingBrush.color = brushColor;
+        canvas.freeDrawingBrush.width = brushSize;
+      }
     }
   }, [editTool, brushColor, brushSize]);
 
