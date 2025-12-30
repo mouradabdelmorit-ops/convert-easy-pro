@@ -105,9 +105,9 @@ For questions about these Terms, contact us at legal@convertflow.com`
   return (
     <>
       <Helmet>
-        <title>Terms of Service | ConvertFlow</title>
-        <meta name="description" content="Read ConvertFlow's Terms of Service. Understand your rights and responsibilities when using our file conversion service." />
-        <link rel="canonical" href="https://convertflow.com/terms" />
+        <title>Terms of Service | TransformFiles</title>
+        <meta name="description" content="Read TransformFiles Terms of Service. Understand your rights and responsibilities when using our file conversion service." />
+        <link rel="canonical" href="https://transformfiles.app/terms" />
       </Helmet>
 
       <div className="min-h-screen bg-background">
