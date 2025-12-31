@@ -14,6 +14,7 @@ const Header = () => {
     { name: t.nav.home, path: "/" },
     { name: t.nav.pdfEditor, path: "/pdf-editor" },
     { name: t.nav.resumeMaker, path: "/resume-maker" },
+    { name: "AI Tools", path: "/image-to-code" },
     { name: t.nav.blog, path: "/blog" },
     { name: t.nav.about, path: "/about" },
   ];
