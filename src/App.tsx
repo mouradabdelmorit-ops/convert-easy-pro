@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import { LanguageProvider } from "./i18n/LanguageContext";
 import ScrollToTop from "./components/ScrollToTop";
+import AIChatAssistant from "./components/AIChatAssistant";
 import Index from "./pages/Index";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
@@ -20,6 +21,9 @@ import VideoConverter from "./pages/converters/VideoConverter";
 import ImageConverter from "./pages/converters/ImageConverter";
 import AudioConverter from "./pages/converters/AudioConverter";
 import DocumentConverter from "./pages/converters/DocumentConverter";
+import ImageToCode from "./pages/ai/ImageToCode";
+import BackgroundRemover from "./pages/ai/BackgroundRemover";
+import ImageEnhancer from "./pages/ai/ImageEnhancer";
 import Admin from "./pages/Admin";
 import AdminLogin from "./pages/AdminLogin";
 import NotFound from "./pages/NotFound";
@@ -41,6 +45,9 @@ const LanguageRoutes = () => (
     <Route path="image-converter" element={<ImageConverter />} />
     <Route path="audio-converter" element={<AudioConverter />} />
     <Route path="document-converter" element={<DocumentConverter />} />
+    <Route path="image-to-code" element={<ImageToCode />} />
+    <Route path="background-remover" element={<BackgroundRemover />} />
+    <Route path="image-enhancer" element={<ImageEnhancer />} />
   </>
 );
 
@@ -69,6 +76,9 @@ const App = () => (
               <Route path="/image-converter" element={<ImageConverter />} />
               <Route path="/audio-converter" element={<AudioConverter />} />
               <Route path="/document-converter" element={<DocumentConverter />} />
+              <Route path="/image-to-code" element={<ImageToCode />} />
+              <Route path="/background-remover" element={<BackgroundRemover />} />
+              <Route path="/image-enhancer" element={<ImageEnhancer />} />
               
               {/* Admin routes */}
               <Route path="/admin" element={<Admin />} />
@@ -91,11 +101,15 @@ const App = () => (
                   <Route path="image-converter" element={<ImageConverter />} />
                   <Route path="audio-converter" element={<AudioConverter />} />
                   <Route path="document-converter" element={<DocumentConverter />} />
+                  <Route path="image-to-code" element={<ImageToCode />} />
+                  <Route path="background-remover" element={<BackgroundRemover />} />
+                  <Route path="image-enhancer" element={<ImageEnhancer />} />
                 </Route>
               ))}
               
               <Route path="*" element={<NotFound />} />
             </Routes>
+            <AIChatAssistant />
           </LanguageProvider>
         </BrowserRouter>
       </TooltipProvider>
