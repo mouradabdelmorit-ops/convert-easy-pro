@@ -16,7 +16,6 @@ import CookiePolicy from "./pages/CookiePolicy";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import Compress from "./pages/Compress";
-import Downloader from "./pages/Downloader";
 import VideoConverter from "./pages/converters/VideoConverter";
 import ImageConverter from "./pages/converters/ImageConverter";
 import AudioConverter from "./pages/converters/AudioConverter";
@@ -64,7 +63,6 @@ const App = () => (
               <Route path="/blog" element={<Blog />} />
               <Route path="/blog/:slug" element={<BlogPost />} />
               <Route path="/compress" element={<Compress />} />
-              <Route path="/downloader" element={<Downloader />} />
               <Route path="/video-converter" element={<VideoConverter />} />
               <Route path="/image-converter" element={<ImageConverter />} />
               <Route path="/audio-converter" element={<AudioConverter />} />
@@ -83,7 +81,6 @@ const App = () => (
                   <Route path="blog" element={<Blog />} />
                   <Route path="blog/:slug" element={<BlogPost />} />
                   <Route path="compress" element={<Compress />} />
-                  <Route path="downloader" element={<Downloader />} />
                   <Route path="video-converter" element={<VideoConverter />} />
                   <Route path="image-converter" element={<ImageConverter />} />
                   <Route path="audio-converter" element={<AudioConverter />} />
