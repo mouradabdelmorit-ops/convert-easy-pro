@@ -5,6 +5,7 @@ import {
   ChevronDown, ChevronUp, Settings, X, Download, Loader2,
   Check, AlertCircle
 } from "lucide-react";
+import { useLanguage } from "@/i18n/LanguageContext";
 
 interface ConversionFile {
   file: File;
@@ -61,6 +62,7 @@ const formatCategories = {
 };
 
 const ConversionPanel = ({ files, onRemoveFile, onClearAll }: ConversionPanelProps) => {
+  const { t } = useLanguage();
   const [conversionFiles, setConversionFiles] = useState<ConversionFile[]>(
     files.map((file) => ({
       file,
@@ -169,10 +171,10 @@ const ConversionPanel = ({ files, onRemoveFile, onClearAll }: ConversionPanelPro
           {/* Header */}
           <div className="flex items-center justify-between mb-8">
             <h2 className="font-display text-2xl font-bold text-foreground">
-              Convert Your Files
+              {t.converter.convert}
             </h2>
             <Button variant="ghost" size="sm" onClick={onClearAll}>
-              Clear All
+              {t.converter.removeAll}
             </Button>
           </div>
 
@@ -215,7 +217,7 @@ const ConversionPanel = ({ files, onRemoveFile, onClearAll }: ConversionPanelPro
                       {cf.status === "done" && (
                         <Button variant="hero" size="sm" onClick={() => handleDownload(cf)}>
                           <Download className="w-4 h-4 mr-1" />
-                          Download
+                          {t.converter.download}
                         </Button>
                       )}
                       {cf.status === "converting" && (
@@ -239,7 +241,7 @@ const ConversionPanel = ({ files, onRemoveFile, onClearAll }: ConversionPanelPro
           {/* Format Selection */}
           <div className="glass rounded-2xl p-6 mb-6">
             <h3 className="font-display font-semibold text-foreground mb-4">
-              Select Output Format
+              {t.converter.selectFormat}
             </h3>
 
             {/* Category Tabs */}
@@ -336,11 +338,11 @@ const ConversionPanel = ({ files, onRemoveFile, onClearAll }: ConversionPanelPro
             {isConverting ? (
               <>
                 <Loader2 className="w-5 h-5 animate-spin mr-2" />
-                Converting...
+                {t.converter.converting}
               </>
             ) : (
               <>
-                Convert {files.length} File{files.length > 1 ? "s" : ""}
+                {t.converter.convert} {files.length} {files.length > 1 ? "Files" : "File"}
               </>
             )}
           </Button>
