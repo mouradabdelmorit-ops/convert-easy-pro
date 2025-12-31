@@ -26,14 +26,14 @@ const HeroSection = ({ onFilesSelected }: HeroSectionProps) => {
   });
 
   const benefits = [
-    { icon: Zap, text: "Lightning fast conversion" },
-    { icon: Shield, text: "100% secure & private" },
-    { icon: Globe, text: "Works on any device" },
-    { icon: Sparkles, text: "No registration needed" },
+    { icon: Zap, text: t.features.lightning.title },
+    { icon: Shield, text: t.features.secure.title },
+    { icon: Globe, text: t.features.mobile.title },
+    { icon: Sparkles, text: t.features.free.title },
   ];
 
   const supportedFormats = [
-    { category: "Video", formats: "MP4, AVI, MKV, MOV, WebM" },
+    { category: t.hero.supportedFormats.includes("Video") ? "Video" : "Video", formats: "MP4, AVI, MKV, MOV, WebM" },
     { category: "Image", formats: "JPG, PNG, WebP, GIF, SVG" },
     { category: "Audio", formats: "MP3, WAV, FLAC, AAC, OGG" },
     { category: "Document", formats: "PDF, DOCX, XLSX, PPT" },
@@ -51,19 +51,18 @@ const HeroSection = ({ onFilesSelected }: HeroSectionProps) => {
           {/* Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-6 animate-fade-in">
             <Sparkles className="w-4 h-4 text-primary" />
-            <span className="text-sm font-medium text-foreground">Free Online File Converter</span>
+            <span className="text-sm font-medium text-foreground">{t.hero.badge}</span>
           </div>
 
           {/* Headline */}
           <h1 className="font-display text-4xl md:text-6xl lg:text-7xl font-bold text-foreground mb-6 animate-fade-in leading-tight" style={{ animationDelay: "0.1s" }}>
-            Convert Any File <br className="hidden md:block" />
-            <span className="text-gradient">In Seconds</span>
+            {t.hero.title} <br className="hidden md:block" />
+            <span className="text-gradient">{t.hero.titleHighlight}</span>
           </h1>
 
           {/* Subheadline */}
           <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-8 animate-fade-in leading-relaxed" style={{ animationDelay: "0.2s" }}>
-            The fastest, most reliable online file converter. Transform videos, images, audio, 
-            and documents instantly. No software to install, no registration required.
+            {t.hero.description}
           </p>
 
           {/* Benefits Row */}
@@ -102,10 +101,10 @@ const HeroSection = ({ onFilesSelected }: HeroSectionProps) => {
               </div>
               
               <h3 className="font-display text-xl md:text-3xl font-semibold text-foreground mb-3">
-                {isDragActive ? "Drop your files here!" : "Drag & drop your files"}
+                {isDragActive ? t.hero.dragActive : t.hero.dropzone}
               </h3>
               <p className="text-muted-foreground mb-6 text-base md:text-lg">
-                or click the button below to browse
+                {t.hero.orBrowse}
               </p>
 
               <Button 
@@ -114,7 +113,7 @@ const HeroSection = ({ onFilesSelected }: HeroSectionProps) => {
                 onClick={open}
                 className="group text-base md:text-lg px-8 py-6"
               >
-                Choose Files
+                {t.converter.upload}
                 <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
               </Button>
 
@@ -135,15 +134,15 @@ const HeroSection = ({ onFilesSelected }: HeroSectionProps) => {
         <div className="max-w-4xl mx-auto mt-12 grid grid-cols-3 gap-6 text-center animate-fade-in" style={{ animationDelay: "0.4s" }}>
           <div className="glass rounded-xl p-4">
             <p className="font-display text-2xl md:text-3xl font-bold text-primary">1500+</p>
-            <p className="text-sm text-muted-foreground">Formats Supported</p>
+            <p className="text-sm text-muted-foreground">{t.features.formats.title}</p>
           </div>
           <div className="glass rounded-xl p-4">
-            <p className="font-display text-2xl md:text-3xl font-bold text-primary">Free</p>
-            <p className="text-sm text-muted-foreground">Always & Forever</p>
+            <p className="font-display text-2xl md:text-3xl font-bold text-primary">{t.features.free.title}</p>
+            <p className="text-sm text-muted-foreground">{t.features.free.desc}</p>
           </div>
           <div className="glass rounded-xl p-4">
             <p className="font-display text-2xl md:text-3xl font-bold text-primary">100%</p>
-            <p className="text-sm text-muted-foreground">Secure & Private</p>
+            <p className="text-sm text-muted-foreground">{t.features.secure.title}</p>
           </div>
         </div>
       </div>
