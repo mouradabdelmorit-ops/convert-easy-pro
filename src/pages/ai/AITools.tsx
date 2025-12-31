@@ -1,6 +1,9 @@
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
-import { Code, ImageIcon, Wand2, Sparkles, ArrowRight, Zap, Shield, Clock } from "lucide-react";
+import { 
+  Code, ImageIcon, Wand2, Sparkles, ArrowRight, Zap, Shield, Clock,
+  FileText, CheckCircle, Mail, Languages, RefreshCw, Code2
+} from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { useLanguage } from "@/i18n/LanguageContext";
@@ -12,23 +15,65 @@ const AITools = () => {
     {
       icon: Code,
       title: "Image to Code",
-      description: "Convert screenshots and designs to clean, responsive HTML/CSS code instantly.",
+      description: "Convert screenshots and designs to clean, responsive HTML/CSS code.",
       path: "/image-to-code",
       gradient: "from-blue-500 to-cyan-500",
     },
     {
       icon: ImageIcon,
       title: "Background Remover",
-      description: "Remove backgrounds from images with AI-powered precision. Perfect for products and portraits.",
+      description: "Remove backgrounds from images with AI precision.",
       path: "/background-remover",
       gradient: "from-purple-500 to-pink-500",
     },
     {
       icon: Wand2,
       title: "Image Enhancer",
-      description: "Enhance your photos with powerful adjustment tools. Improve brightness, contrast, and more.",
+      description: "Enhance photos with brightness, contrast, and sharpness adjustments.",
       path: "/image-enhancer",
       gradient: "from-orange-500 to-red-500",
+    },
+    {
+      icon: FileText,
+      title: "Text Summarizer",
+      description: "Summarize long articles and documents instantly.",
+      path: "/text-summarizer",
+      gradient: "from-green-500 to-emerald-500",
+    },
+    {
+      icon: CheckCircle,
+      title: "Grammar Fixer",
+      description: "Fix grammar, spelling, and punctuation errors.",
+      path: "/grammar-fixer",
+      gradient: "from-yellow-500 to-amber-500",
+    },
+    {
+      icon: Mail,
+      title: "Email Generator",
+      description: "Generate professional emails in seconds.",
+      path: "/email-generator",
+      gradient: "from-indigo-500 to-violet-500",
+    },
+    {
+      icon: Languages,
+      title: "AI Translator",
+      description: "Translate text between any languages accurately.",
+      path: "/translator",
+      gradient: "from-teal-500 to-cyan-500",
+    },
+    {
+      icon: RefreshCw,
+      title: "Paraphraser",
+      description: "Rewrite text in different words while keeping the meaning.",
+      path: "/paraphraser",
+      gradient: "from-rose-500 to-pink-500",
+    },
+    {
+      icon: Code2,
+      title: "Code Explainer",
+      description: "Get clear explanations of any code snippet.",
+      path: "/code-explainer",
+      gradient: "from-slate-500 to-gray-500",
     },
   ];
 
@@ -54,7 +99,7 @@ const AITools = () => {
     <>
       <Helmet>
         <title>AI Tools - Free Online AI-Powered Tools | TransformFiles</title>
-        <meta name="description" content="Free AI-powered tools: Image to Code converter, Background Remover, Image Enhancer. Transform your files with artificial intelligence." />
+        <meta name="description" content="Free AI-powered tools: Image to Code, Background Remover, Text Summarizer, Grammar Fixer, Email Generator, Translator, and more." />
         <html lang={language} />
       </Helmet>
 
@@ -62,41 +107,40 @@ const AITools = () => {
         <Header />
         
         <main className="pt-24 pb-16">
-          {/* Hero Section */}
           <div className="container mx-auto px-4">
             <div className="text-center mb-16">
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary mb-6">
                 <Sparkles className="w-4 h-4" />
-                <span className="text-sm font-medium">AI-Powered Tools</span>
+                <span className="text-sm font-medium">9 AI-Powered Tools</span>
               </div>
               <h1 className="font-display text-4xl md:text-6xl font-bold text-foreground mb-6">
-                Transform Your Files with{" "}
+                Transform Your Work with{" "}
                 <span className="text-gradient">Artificial Intelligence</span>
               </h1>
               <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
-                Powerful AI tools to convert, enhance, and transform your images. 
+                Powerful AI tools to convert, enhance, translate, and transform your content. 
                 Fast, free, and available right in your browser.
               </p>
             </div>
 
             {/* Tools Grid */}
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto mb-20">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto mb-20">
               {tools.map((tool) => (
                 <Link
                   key={tool.path}
                   to={getLocalizedPath(tool.path)}
                   className="group bg-card border border-border rounded-2xl p-6 hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/5"
                 >
-                  <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${tool.gradient} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
-                    <tool.icon className="w-7 h-7 text-white" />
+                  <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${tool.gradient} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
+                    <tool.icon className="w-6 h-6 text-white" />
                   </div>
-                  <h3 className="text-xl font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
+                  <h3 className="text-lg font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
                     {tool.title}
                   </h3>
-                  <p className="text-muted-foreground mb-4">
+                  <p className="text-sm text-muted-foreground mb-4">
                     {tool.description}
                   </p>
-                  <div className="flex items-center text-primary font-medium">
+                  <div className="flex items-center text-primary font-medium text-sm">
                     Try Now
                     <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
                   </div>

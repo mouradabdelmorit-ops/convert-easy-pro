@@ -1,4 +1,3 @@
-import "https://deno.land/x/xhr@0.1.0/mod.ts";
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 
 const corsHeaders = {
@@ -12,51 +11,58 @@ serve(async (req) => {
   }
 
   try {
-    const OPENROUTER_API_KEY = Deno.env.get('OPENROUTER_API_KEY');
-    if (!OPENROUTER_API_KEY) {
-      throw new Error('OPENROUTER_API_KEY is not configured');
+    const LOVABLE_API_KEY = Deno.env.get('LOVABLE_API_KEY');
+    if (!LOVABLE_API_KEY) {
+      throw new Error('LOVABLE_API_KEY is not configured');
     }
 
-    const { action, prompt, imageBase64, messages } = await req.json();
+    const { action, prompt, imageBase64, messages, text } = await req.json();
     console.log(`AI Tools - Action: ${action}`);
 
     let systemPrompt = '';
-    let userContent: any[] = [];
+    let userContent: any = '';
 
     switch (action) {
       case 'image-to-code':
-        systemPrompt = `You are an expert frontend developer. When given an image of a UI/website design, you will generate clean, semantic HTML and CSS code that recreates the design as accurately as possible. 
-        
-        Guidelines:
-        - Use modern HTML5 and CSS3
-        - Make the code responsive
-        - Use flexbox or grid for layouts
-        - Include comments explaining key sections
-        - Return ONLY the code, no explanations before or after
-        - Start with <!DOCTYPE html> and include complete HTML document`;
-        
+        systemPrompt = `You are an expert frontend developer. When given an image of a UI/website design, generate clean, semantic HTML and CSS code that recreates the design. Use modern HTML5/CSS3, make it responsive, use flexbox/grid for layouts. Return ONLY the code starting with <!DOCTYPE html>.`;
         userContent = [
-          { type: 'text', text: prompt || 'Convert this design to HTML/CSS code. Make it responsive and pixel-perfect.' },
+          { type: 'text', text: prompt || 'Convert this design to HTML/CSS code.' },
           { type: 'image_url', image_url: { url: imageBase64 } }
         ];
         break;
 
-      case 'enhance-image':
-        systemPrompt = `You are an AI image enhancement expert. Describe how to enhance this image and provide detailed suggestions for improving its quality, colors, lighting, and composition.`;
-        userContent = [
-          { type: 'text', text: prompt || 'Analyze this image and provide enhancement suggestions.' },
-          { type: 'image_url', image_url: { url: imageBase64 } }
-        ];
+      case 'summarizer':
+        systemPrompt = `You are a professional text summarizer. Provide clear, concise summaries that capture the key points. Be accurate and maintain the original meaning.`;
+        userContent = `Please summarize the following text:\n\n${text}`;
+        break;
+
+      case 'grammar-fixer':
+        systemPrompt = `You are a professional editor. Fix grammar, spelling, and punctuation errors. Improve sentence structure while keeping the original meaning. Return ONLY the corrected text.`;
+        userContent = `Please fix the grammar and improve the following text:\n\n${text}`;
+        break;
+
+      case 'email-generator':
+        systemPrompt = `You are a professional email writer. Generate well-structured, professional emails based on the given context. Include appropriate greeting and sign-off.`;
+        userContent = `Write a professional email based on: ${text}`;
+        break;
+
+      case 'translator':
+        systemPrompt = `You are a professional translator. Translate text accurately while maintaining the original tone and meaning.`;
+        userContent = text;
+        break;
+
+      case 'paraphraser':
+        systemPrompt = `You are a writing assistant. Rewrite the given text in a different way while keeping the same meaning. Make it sound natural and fluent.`;
+        userContent = `Please paraphrase the following text:\n\n${text}`;
+        break;
+
+      case 'code-explainer':
+        systemPrompt = `You are a programming expert. Explain code clearly and simply, breaking down complex concepts. Be thorough but accessible.`;
+        userContent = `Please explain this code:\n\n${text}`;
         break;
 
       case 'chat':
-        systemPrompt = `You are a helpful AI assistant for TransformFiles, a file conversion website. Help users with:
-        - File format questions (which format to use, compatibility, etc.)
-        - Conversion guidance and tips
-        - Image, video, audio, and document format information
-        - General questions about the website features
-        
-        Be concise, friendly, and helpful. If you don't know something, say so.`;
+        systemPrompt = `You are a helpful AI assistant for TransformFiles, a file conversion website. Help users with file format questions, conversion guidance, and tips. Be concise and friendly.`;
         break;
 
       default:
@@ -64,36 +70,46 @@ serve(async (req) => {
     }
 
     const requestBody: any = {
-      model: 'google/gemini-2.0-flash-001',
+      model: 'google/gemini-2.5-flash',
       messages: action === 'chat' 
         ? [{ role: 'system', content: systemPrompt }, ...messages]
         : [
             { role: 'system', content: systemPrompt },
             { role: 'user', content: userContent }
           ],
-      max_tokens: 4096,
     };
 
-    console.log('Calling OpenRouter API with model: google/gemini-2.0-flash-001');
-    const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+    console.log('Calling Lovable AI Gateway...');
+    const response = await fetch('https://ai.gateway.lovable.dev/v1/chat/completions', {
       method: 'POST',
       headers: {
-        'Authorization': `Bearer ${OPENROUTER_API_KEY}`,
+        'Authorization': `Bearer ${LOVABLE_API_KEY}`,
         'Content-Type': 'application/json',
-        'HTTP-Referer': 'https://transformfiles.com',
-        'X-Title': 'TransformFiles AI',
       },
       body: JSON.stringify(requestBody),
     });
 
     if (!response.ok) {
       const errorText = await response.text();
-      console.error('OpenRouter API error:', response.status, errorText);
+      console.error('Lovable AI error:', response.status, errorText);
+      
+      if (response.status === 429) {
+        return new Response(JSON.stringify({ error: 'Rate limit reached. Please try again in a moment.' }), {
+          status: 429,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        });
+      }
+      if (response.status === 402) {
+        return new Response(JSON.stringify({ error: 'API credits exhausted. Please try again later.' }), {
+          status: 402,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        });
+      }
       throw new Error(`API error: ${response.status}`);
     }
 
     const data = await response.json();
-    console.log('OpenRouter response received');
+    console.log('Lovable AI response received');
 
     const result = data.choices?.[0]?.message?.content || '';
 
