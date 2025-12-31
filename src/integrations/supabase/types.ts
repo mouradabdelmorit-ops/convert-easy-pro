@@ -14,13 +14,102 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      admin_users: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id?: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+        }
+        Relationships: []
+      }
+      blog_posts: {
+        Row: {
+          author: string | null
+          canonical_url: string | null
+          category: string
+          content: Json
+          created_at: string
+          excerpt: Json
+          featured_image: string | null
+          id: string
+          keywords: Json | null
+          meta_description: Json | null
+          meta_title: Json | null
+          og_description: Json | null
+          og_image: string | null
+          og_title: Json | null
+          published_at: string | null
+          read_time: number | null
+          slug: string
+          status: string
+          tags: string[] | null
+          title: Json
+          updated_at: string
+        }
+        Insert: {
+          author?: string | null
+          canonical_url?: string | null
+          category?: string
+          content?: Json
+          created_at?: string
+          excerpt?: Json
+          featured_image?: string | null
+          id?: string
+          keywords?: Json | null
+          meta_description?: Json | null
+          meta_title?: Json | null
+          og_description?: Json | null
+          og_image?: string | null
+          og_title?: Json | null
+          published_at?: string | null
+          read_time?: number | null
+          slug: string
+          status?: string
+          tags?: string[] | null
+          title?: Json
+          updated_at?: string
+        }
+        Update: {
+          author?: string | null
+          canonical_url?: string | null
+          category?: string
+          content?: Json
+          created_at?: string
+          excerpt?: Json
+          featured_image?: string | null
+          id?: string
+          keywords?: Json | null
+          meta_description?: Json | null
+          meta_title?: Json | null
+          og_description?: Json | null
+          og_image?: string | null
+          og_title?: Json | null
+          published_at?: string | null
+          read_time?: number | null
+          slug?: string
+          status?: string
+          tags?: string[] | null
+          title?: Json
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      is_admin: { Args: never; Returns: boolean }
     }
     Enums: {
       [_ in never]: never

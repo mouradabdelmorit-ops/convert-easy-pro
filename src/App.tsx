@@ -20,6 +20,8 @@ import VideoConverter from "./pages/converters/VideoConverter";
 import ImageConverter from "./pages/converters/ImageConverter";
 import AudioConverter from "./pages/converters/AudioConverter";
 import DocumentConverter from "./pages/converters/DocumentConverter";
+import Admin from "./pages/Admin";
+import AdminLogin from "./pages/AdminLogin";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -67,6 +69,10 @@ const App = () => (
               <Route path="/image-converter" element={<ImageConverter />} />
               <Route path="/audio-converter" element={<AudioConverter />} />
               <Route path="/document-converter" element={<DocumentConverter />} />
+              
+              {/* Admin routes */}
+              <Route path="/admin" element={<Admin />} />
+              <Route path="/admin/login" element={<AdminLogin />} />
               
               {/* Language prefixed routes */}
               {['de', 'es', 'fr', 'it', 'pt', 'nl', 'pl', 'ru', 'ja', 'zh', 'ko', 'ar', 'tr', 'hi'].map((lang) => (
