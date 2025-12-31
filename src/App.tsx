@@ -24,6 +24,7 @@ import DocumentConverter from "./pages/converters/DocumentConverter";
 import ImageToCode from "./pages/ai/ImageToCode";
 import BackgroundRemover from "./pages/ai/BackgroundRemover";
 import ImageEnhancer from "./pages/ai/ImageEnhancer";
+import AITools from "./pages/ai/AITools";
 import Admin from "./pages/Admin";
 import AdminLogin from "./pages/AdminLogin";
 import NotFound from "./pages/NotFound";
@@ -45,6 +46,7 @@ const LanguageRoutes = () => (
     <Route path="image-converter" element={<ImageConverter />} />
     <Route path="audio-converter" element={<AudioConverter />} />
     <Route path="document-converter" element={<DocumentConverter />} />
+    <Route path="ai-tools" element={<AITools />} />
     <Route path="image-to-code" element={<ImageToCode />} />
     <Route path="background-remover" element={<BackgroundRemover />} />
     <Route path="image-enhancer" element={<ImageEnhancer />} />
@@ -76,6 +78,7 @@ const App = () => (
               <Route path="/image-converter" element={<ImageConverter />} />
               <Route path="/audio-converter" element={<AudioConverter />} />
               <Route path="/document-converter" element={<DocumentConverter />} />
+              <Route path="/ai-tools" element={<AITools />} />
               <Route path="/image-to-code" element={<ImageToCode />} />
               <Route path="/background-remover" element={<BackgroundRemover />} />
               <Route path="/image-enhancer" element={<ImageEnhancer />} />
@@ -101,6 +104,7 @@ const App = () => (
                   <Route path="image-converter" element={<ImageConverter />} />
                   <Route path="audio-converter" element={<AudioConverter />} />
                   <Route path="document-converter" element={<DocumentConverter />} />
+                  <Route path="ai-tools" element={<AITools />} />
                   <Route path="image-to-code" element={<ImageToCode />} />
                   <Route path="background-remover" element={<BackgroundRemover />} />
                   <Route path="image-enhancer" element={<ImageEnhancer />} />

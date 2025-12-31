@@ -64,7 +64,7 @@ serve(async (req) => {
     }
 
     const requestBody: any = {
-      model: 'google/gemini-2.0-flash-exp:free',
+      model: 'google/gemini-2.0-flash-001',
       messages: action === 'chat' 
         ? [{ role: 'system', content: systemPrompt }, ...messages]
         : [
@@ -74,7 +74,7 @@ serve(async (req) => {
       max_tokens: 4096,
     };
 
-    console.log('Calling OpenRouter API...');
+    console.log('Calling OpenRouter API with model: google/gemini-2.0-flash-001');
     const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
       method: 'POST',
       headers: {
