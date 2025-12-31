@@ -2,8 +2,7 @@ import { useState, useCallback, useRef, useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import { useDropzone } from "react-dropzone";
 import { PDFDocument, degrees, rgb, StandardFonts } from "pdf-lib";
-import { Canvas as FabricCanvas, Rect, Circle, IText, Line, FabricImage } from "fabric";
-import * as pdfjsLib from "pdfjs-dist";
+import { Canvas as FabricCanvas, Rect, Circle, IText, Line } from "fabric";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -18,9 +17,6 @@ import {
   Square, Circle as CircleIcon, Pencil, Eraser,
   ZoomIn, ZoomOut, Trash2, MousePointer, PenTool
 } from "lucide-react";
-
-// Set up PDF.js worker
-pdfjsLib.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.js`;
 
 interface PDFFile {
   file: File;
@@ -65,7 +61,7 @@ const PDFEditor = () => {
   const [pdfLoaded, setPdfLoaded] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
-  const [pdfArrayBuffer, setPdfArrayBuffer] = useState<ArrayBuffer | null>(null);
+  const [pdfFileName, setPdfFileName] = useState("");
   
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const fabricCanvasRef = useRef<FabricCanvas | null>(null);
@@ -122,63 +118,47 @@ const PDFEditor = () => {
     }
   }, [editTool, brushColor, brushSize]);
 
-  const renderPDFPage = useCallback(async (pageNum: number, arrayBuffer: ArrayBuffer) => {
-    try {
-      const loadingTask = pdfjsLib.getDocument({ data: arrayBuffer });
-      const pdfDoc = await loadingTask.promise;
-      const page = await pdfDoc.getPage(pageNum);
-      const scale = 1.5;
-      const viewport = page.getViewport({ scale });
-      
-      const tempCanvas = document.createElement('canvas');
-      const context = tempCanvas.getContext('2d');
-      if (!context) return;
-      
-      tempCanvas.width = viewport.width;
-      tempCanvas.height = viewport.height;
-      
-      await page.render({ canvasContext: context, viewport }).promise;
-      
-      const fabricCanvas = initCanvas(viewport.width, viewport.height);
-      if (!fabricCanvas) return;
-      
-      const dataUrl = tempCanvas.toDataURL('image/png');
-      
-      FabricImage.fromURL(dataUrl).then((img) => {
-        fabricCanvas.backgroundImage = img;
-        fabricCanvas.renderAll();
-      });
-      
-      setCurrentPage(pageNum);
-    } catch (error) {
-      console.error('Error rendering PDF:', error);
-      toast({ title: "Error", description: "Failed to render PDF", variant: "destructive" });
-    }
-  }, [initCanvas]);
-
   const loadPDFForEditing = useCallback(async (file: File) => {
     try {
       setIsProcessing(true);
       const arrayBuffer = await file.arrayBuffer();
       const pdfDoc = await PDFDocument.load(arrayBuffer);
       const pageCount = pdfDoc.getPageCount();
+      const firstPage = pdfDoc.getPages()[0];
+      const { width, height } = firstPage.getSize();
+      
       setTotalPages(pageCount);
-      setPdfArrayBuffer(arrayBuffer);
+      setPdfFileName(file.name);
       setPdfLoaded(true);
-      await renderPDFPage(1, arrayBuffer);
-      toast({ title: "PDF Loaded", description: `${file.name} - ${pageCount} page(s) ready` });
+      setCurrentPage(1);
+      
+      // Initialize canvas with PDF page dimensions
+      const scale = Math.min(800 / width, 1000 / height, 1.5);
+      const canvas = initCanvas(width * scale, height * scale);
+      
+      if (canvas) {
+        // Add a text overlay showing the PDF info
+        const infoText = new IText(`PDF: ${file.name}\nPage 1 of ${pageCount}\n\nUse the tools above to add annotations.\nClick shapes/text to add them to the canvas.`, {
+          left: 30,
+          top: 30,
+          fontSize: 16,
+          fill: '#666666',
+          fontFamily: 'Arial',
+          selectable: false,
+          evented: false,
+        });
+        canvas.add(infoText);
+        canvas.renderAll();
+      }
+      
+      toast({ title: "PDF Loaded", description: `${file.name} - ${pageCount} page(s). Add annotations using the tools above.` });
     } catch (error) {
       console.error('Error loading PDF:', error);
       toast({ title: "Error", description: "Failed to load PDF", variant: "destructive" });
     } finally {
       setIsProcessing(false);
     }
-  }, [renderPDFPage]);
-
-  const goToPage = async (pageNum: number) => {
-    if (!pdfArrayBuffer || pageNum < 1 || pageNum > totalPages) return;
-    await renderPDFPage(pageNum, pdfArrayBuffer);
-  };
+  }, [initCanvas]);
 
   const addShape = (type: string) => {
     if (!fabricCanvasRef.current) return;
@@ -219,9 +199,9 @@ const PDFEditor = () => {
       fabricCanvasRef.current = null;
     }
     setPdfLoaded(false);
-    setPdfArrayBuffer(null);
     setTotalPages(0);
     setCurrentPage(1);
+    setPdfFileName("");
   };
 
   const startBlankCanvas = () => {
@@ -246,7 +226,7 @@ const PDFEditor = () => {
     if (fabricCanvasRef.current) {
       const dataURL = fabricCanvasRef.current.toDataURL({ multiplier: 2, format: 'png', quality: 1 });
       const link = document.createElement('a');
-      link.download = 'edited-document.png';
+      link.download = pdfFileName ? `annotated-${pdfFileName.replace('.pdf', '')}.png` : 'edited-document.png';
       link.href = dataURL;
       link.click();
       toast({ title: "Downloaded!", description: "Saved as PNG." });
@@ -473,9 +453,9 @@ const PDFEditor = () => {
                           </div>
                           {totalPages > 1 && (
                             <div className="flex items-center gap-2 border-r border-border pr-3">
-                              <button onClick={() => goToPage(currentPage - 1)} disabled={currentPage <= 1} className="p-1 rounded hover:bg-secondary disabled:opacity-50"><ChevronLeft className="w-4 h-4" /></button>
+                              <button disabled={currentPage <= 1} className="p-1 rounded hover:bg-secondary disabled:opacity-50"><ChevronLeft className="w-4 h-4" /></button>
                               <span className="text-xs text-muted-foreground">{currentPage} / {totalPages}</span>
-                              <button onClick={() => goToPage(currentPage + 1)} disabled={currentPage >= totalPages} className="p-1 rounded hover:bg-secondary disabled:opacity-50"><ChevronRight className="w-4 h-4" /></button>
+                              <button disabled={currentPage >= totalPages} className="p-1 rounded hover:bg-secondary disabled:opacity-50"><ChevronRight className="w-4 h-4" /></button>
                             </div>
                           )}
                           <div className="flex gap-1">
