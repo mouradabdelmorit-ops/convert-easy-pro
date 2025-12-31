@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -14,10 +14,17 @@ import { useLanguage } from "@/i18n/LanguageContext";
 const Index = () => {
   const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
   const { t, language, languages } = useLanguage();
+  const conversionPanelRef = useRef<HTMLDivElement>(null);
 
   const handleFilesSelected = (files: File[]) => {
     setSelectedFiles((prev) => [...prev, ...files]);
   };
+
+  useEffect(() => {
+    if (selectedFiles.length > 0 && conversionPanelRef.current) {
+      conversionPanelRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }, [selectedFiles]);
 
   const handleRemoveFile = (index: number) => {
     setSelectedFiles((prev) => prev.filter((_, i) => i !== index));
@@ -78,11 +85,13 @@ const Index = () => {
           <HeroSection onFilesSelected={handleFilesSelected} />
           
           {selectedFiles.length > 0 && (
-            <ConversionPanel
-              files={selectedFiles}
-              onRemoveFile={handleRemoveFile}
-              onClearAll={handleClearAll}
-            />
+            <div ref={conversionPanelRef}>
+              <ConversionPanel
+                files={selectedFiles}
+                onRemoveFile={handleRemoveFile}
+                onClearAll={handleClearAll}
+              />
+            </div>
           )}
 
           <FeaturesSection />
