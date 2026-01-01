@@ -9,6 +9,7 @@ import FAQSection from "@/components/FAQSection";
 import FileCompressor from "@/components/FileCompressor";
 import CookieConsent from "@/components/CookieConsent";
 import AdPlaceholder from "@/components/AdPlaceholder";
+import AIToolsSection from "@/components/AIToolsSection";
 import { useLanguage } from "@/i18n/LanguageContext";
 
 const Index = () => {
@@ -95,6 +96,8 @@ const Index = () => {
           )}
 
           <FeaturesSection />
+          
+          <AIToolsSection />
           
           <FileCompressor />
           
