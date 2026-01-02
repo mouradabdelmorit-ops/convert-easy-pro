@@ -65,8 +65,19 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
       }
 
       try {
-        const response = await fetch('https://ipapi.co/json/');
-        if (!response.ok) return;
+        // Use AbortController for timeout
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 3000);
+        
+        const response = await fetch('https://ipapi.co/json/', {
+          signal: controller.signal
+        });
+        clearTimeout(timeoutId);
+        
+        if (!response.ok) {
+          setHasAutoDetected(true);
+          return;
+        }
         
         const data = await response.json();
         const countryCode = data.country_code;
@@ -80,7 +91,7 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
         
         setHasAutoDetected(true);
       } catch (error) {
-        console.log('Could not auto-detect language');
+        // Silently fail - just use default English
         setHasAutoDetected(true);
       }
     };
