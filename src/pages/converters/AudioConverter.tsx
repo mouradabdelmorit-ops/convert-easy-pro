@@ -117,9 +117,29 @@ const AudioConverter = () => {
   return (
     <>
       <Helmet>
-        <title>Free Audio Converter Online | Convert MP3, WAV, FLAC - TransformFiles</title>
-        <meta name="description" content="Convert audio files online for free. Support for MP3, WAV, FLAC, AAC, OGG and more. Fast, secure, no registration required." />
-        <link rel="canonical" href="https://transformfiles.app/audio-converter" />
+        <title>Free Audio Converter Online - Convert MP3 to WAV, WAV to MP3, FLAC to MP3 | TransformFiles</title>
+        <meta name="description" content="Convert audio files online free. MP3 to WAV, WAV to MP3, FLAC to MP3, M4A to MP3, OGG to MP3. Best free audio converter - fast, secure, high quality, no registration." />
+        <meta name="keywords" content="audio converter, mp3 to wav, wav to mp3, flac to mp3, m4a to mp3, convert audio online, free audio converter, ogg to mp3, aac to mp3, audio format converter, online audio converter free, convert music files" />
+        <link rel="canonical" href="https://transformfiles.com/audio-converter" />
+        <meta property="og:title" content="Free Audio Converter Online - Convert MP3, WAV, FLAC | TransformFiles" />
+        <meta property="og:description" content="Convert audio files online free. MP3 to WAV, WAV to MP3, FLAC to MP3. High quality audio conversion." />
+        <meta property="og:url" content="https://transformfiles.com/audio-converter" />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Free Audio Converter Online - MP3, WAV, FLAC | TransformFiles" />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            "name": "Audio Converter - TransformFiles",
+            "description": "Free online audio converter. Convert MP3, WAV, FLAC, AAC, OGG and 30+ audio formats.",
+            "url": "https://transformfiles.com/audio-converter",
+            "applicationCategory": "MultimediaApplication",
+            "operatingSystem": "Web Browser",
+            "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+            "featureList": ["MP3 to WAV conversion", "WAV to MP3 conversion", "FLAC to MP3 conversion", "High quality audio", "Batch conversion", "No registration required"]
+          })}
+        </script>
       </Helmet>
 
       <div className="min-h-screen bg-background">

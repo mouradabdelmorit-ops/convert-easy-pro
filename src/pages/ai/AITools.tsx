@@ -98,8 +98,38 @@ const AITools = () => {
   return (
     <>
       <Helmet>
-        <title>AI Tools - Free Online AI-Powered Tools | TransformFiles</title>
-        <meta name="description" content="Free AI-powered tools: Image to Code, Background Remover, Text Summarizer, Grammar Fixer, Email Generator, Translator, and more." />
+        <title>Free AI Tools Online - AI Image to Code, Background Remover, Translator | TransformFiles</title>
+        <meta name="description" content="Free AI-powered tools: Image to Code converter, Background Remover, Text Summarizer, Grammar Fixer, Email Generator, AI Translator, Paraphraser. Fast, accurate, no registration." />
+        <meta name="keywords" content="ai tools, free ai tools, image to code, background remover, text summarizer, grammar checker, email generator, ai translator, paraphraser, code explainer, ai image tools, free online ai" />
+        <link rel="canonical" href="https://transformfiles.com/ai-tools" />
+        <meta property="og:title" content="Free AI Tools Online - TransformFiles" />
+        <meta property="og:description" content="Free AI-powered tools: Image to Code, Background Remover, Summarizer, Grammar Fixer, Translator and more." />
+        <meta property="og:url" content="https://transformfiles.com/ai-tools" />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Free AI Tools Online | TransformFiles" />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "CollectionPage",
+            "name": "Free AI Tools - TransformFiles",
+            "description": "Collection of free AI-powered tools for image processing, text manipulation, and content creation.",
+            "url": "https://transformfiles.com/ai-tools",
+            "mainEntity": {
+              "@type": "ItemList",
+              "itemListElement": [
+                { "@type": "SoftwareApplication", "name": "Image to Code", "applicationCategory": "DeveloperApplication" },
+                { "@type": "SoftwareApplication", "name": "Background Remover", "applicationCategory": "MultimediaApplication" },
+                { "@type": "SoftwareApplication", "name": "Text Summarizer", "applicationCategory": "UtilityApplication" },
+                { "@type": "SoftwareApplication", "name": "Grammar Fixer", "applicationCategory": "UtilityApplication" },
+                { "@type": "SoftwareApplication", "name": "Email Generator", "applicationCategory": "BusinessApplication" },
+                { "@type": "SoftwareApplication", "name": "AI Translator", "applicationCategory": "UtilityApplication" },
+                { "@type": "SoftwareApplication", "name": "Paraphraser", "applicationCategory": "UtilityApplication" },
+                { "@type": "SoftwareApplication", "name": "Code Explainer", "applicationCategory": "DeveloperApplication" }
+              ]
+            }
+          })}
+        </script>
         <html lang={language} />
       </Helmet>
 

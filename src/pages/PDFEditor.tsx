@@ -365,12 +365,32 @@ const PDFEditor = () => {
   return (
     <>
       <Helmet>
-        <title>Free PDF Editor Online | Edit, Merge, Compress PDF - TransformFiles</title>
-        <meta name="description" content="Edit PDF files online for free. Add text, draw, annotate, merge, split, compress PDFs. No registration required." />
+        <title>Free PDF Editor Online - Edit, Merge, Split, Compress PDF | TransformFiles</title>
+        <meta name="description" content="Edit PDF files online free. Add text, annotate, merge PDFs, split PDF pages, compress PDF, add watermark. Best free PDF editor - no registration, no download required." />
+        <meta name="keywords" content="pdf editor, edit pdf online, merge pdf, split pdf, compress pdf, free pdf editor, pdf to word, add text to pdf, annotate pdf, watermark pdf, combine pdf, online pdf editor free" />
         <link rel="canonical" href={canonicalUrl} />
         {Object.keys(languages).map((lang) => (
           <link key={lang} rel="alternate" hrefLang={lang} href={lang === 'en' ? 'https://transformfiles.com/pdf-editor' : `https://transformfiles.com/${lang}/pdf-editor`} />
         ))}
+        <meta property="og:title" content="Free PDF Editor Online - Edit, Merge, Compress PDF | TransformFiles" />
+        <meta property="og:description" content="Edit PDF files online free. Add text, merge, split, compress PDFs. No registration required." />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Free PDF Editor Online | TransformFiles" />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            "name": "PDF Editor - TransformFiles",
+            "description": "Free online PDF editor. Edit, merge, split, compress, and annotate PDF files.",
+            "url": canonicalUrl,
+            "applicationCategory": "BusinessApplication",
+            "operatingSystem": "Web Browser",
+            "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+            "featureList": ["Edit PDF text", "Merge multiple PDFs", "Split PDF pages", "Compress PDF", "Add watermark", "Rotate pages", "No registration required"]
+          })}
+        </script>
         <html lang={language} />
       </Helmet>
 

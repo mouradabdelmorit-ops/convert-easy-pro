@@ -127,9 +127,29 @@ const DocumentConverter = () => {
   return (
     <>
       <Helmet>
-        <title>Free Document Converter Online | Convert PDF, DOCX, TXT - TransformFiles</title>
-        <meta name="description" content="Convert documents online for free. Support for PDF, DOCX, DOC, TXT, RTF and more. Fast, secure, no registration required." />
-        <link rel="canonical" href="https://transformfiles.app/document-converter" />
+        <title>Free Document Converter Online - Convert PDF to Word, Word to PDF, DOCX to PDF | TransformFiles</title>
+        <meta name="description" content="Convert documents online free. PDF to Word, Word to PDF, DOCX to PDF, PDF to TXT. Best free document converter - fast, secure, maintains formatting, no registration." />
+        <meta name="keywords" content="document converter, pdf to word, word to pdf, docx to pdf, pdf to txt, convert document online, free document converter, pdf converter, doc to pdf, rtf to pdf, online document converter free" />
+        <link rel="canonical" href="https://transformfiles.com/document-converter" />
+        <meta property="og:title" content="Free Document Converter Online - PDF, Word, DOCX | TransformFiles" />
+        <meta property="og:description" content="Convert documents online free. PDF to Word, Word to PDF. Maintains formatting, fast and secure." />
+        <meta property="og:url" content="https://transformfiles.com/document-converter" />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Free Document Converter Online - PDF, Word | TransformFiles" />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            "name": "Document Converter - TransformFiles",
+            "description": "Free online document converter. Convert PDF, Word, DOCX, TXT, RTF and more.",
+            "url": "https://transformfiles.com/document-converter",
+            "applicationCategory": "BusinessApplication",
+            "operatingSystem": "Web Browser",
+            "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+            "featureList": ["PDF to Word conversion", "Word to PDF conversion", "Maintains formatting", "Batch conversion", "No registration required"]
+          })}
+        </script>
       </Helmet>
 
       <div className="min-h-screen bg-background">

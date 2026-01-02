@@ -121,9 +121,29 @@ const ImageConverter = () => {
   return (
     <>
       <Helmet>
-        <title>Free Image Converter Online | Convert JPG, PNG, WEBP - TransformFiles</title>
-        <meta name="description" content="Convert images online for free. Support for JPG, PNG, WEBP, GIF, BMP and more. Fast, secure, no registration required." />
-        <link rel="canonical" href="https://transformfiles.app/image-converter" />
+        <title>Free Image Converter Online - Convert JPG to PNG, PNG to JPG, HEIC to JPG, WebP | TransformFiles</title>
+        <meta name="description" content="Convert images online free. JPG to PNG, PNG to JPG, HEIC to JPG, WebP to PNG, GIF to JPG. Best free image converter - fast, high quality, no registration, no watermark." />
+        <meta name="keywords" content="image converter, jpg to png, png to jpg, heic to jpg, webp to png, convert image online, free image converter, gif to jpg, bmp to jpg, svg to png, online image converter free, convert photo format" />
+        <link rel="canonical" href="https://transformfiles.com/image-converter" />
+        <meta property="og:title" content="Free Image Converter Online - Convert JPG, PNG, WebP, HEIC | TransformFiles" />
+        <meta property="og:description" content="Convert images online free. JPG to PNG, PNG to JPG, HEIC to JPG, WebP. High quality, no watermark." />
+        <meta property="og:url" content="https://transformfiles.com/image-converter" />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Free Image Converter Online - JPG, PNG, WebP | TransformFiles" />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            "name": "Image Converter - TransformFiles",
+            "description": "Free online image converter. Convert JPG, PNG, WebP, GIF, BMP, SVG and 40+ image formats.",
+            "url": "https://transformfiles.com/image-converter",
+            "applicationCategory": "MultimediaApplication",
+            "operatingSystem": "Web Browser",
+            "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+            "featureList": ["JPG to PNG conversion", "PNG to JPG conversion", "HEIC to JPG conversion", "WebP conversion", "High quality output", "No watermark", "No registration required"]
+          })}
+        </script>
       </Helmet>
 
       <div className="min-h-screen bg-background">

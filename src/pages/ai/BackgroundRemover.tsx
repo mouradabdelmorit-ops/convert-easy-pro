@@ -140,8 +140,27 @@ const BackgroundRemover = () => {
   return (
     <>
       <Helmet>
-        <title>AI Background Remover - Remove Image Backgrounds | TransformFiles</title>
-        <meta name="description" content="Remove backgrounds from images instantly using AI. Free online background remover tool." />
+        <title>Free Background Remover Online - Remove Image Background AI | TransformFiles</title>
+        <meta name="description" content="Remove background from image free online. AI-powered background remover for product photos, portraits, logos. Instant results, transparent PNG, no registration." />
+        <meta name="keywords" content="background remover, remove background, remove image background, transparent background, ai background remover, free background remover, remove bg, photo background remover, product photo background" />
+        <link rel="canonical" href="https://transformfiles.com/background-remover" />
+        <meta property="og:title" content="Free Background Remover Online - AI Powered | TransformFiles" />
+        <meta property="og:description" content="Remove background from images instantly with AI. Free, fast, transparent PNG output." />
+        <meta property="og:url" content="https://transformfiles.com/background-remover" />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            "name": "Background Remover - TransformFiles",
+            "description": "Free AI-powered background remover. Remove backgrounds from images instantly.",
+            "url": "https://transformfiles.com/background-remover",
+            "applicationCategory": "MultimediaApplication",
+            "operatingSystem": "Web Browser",
+            "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+          })}
+        </script>
         <html lang={language} />
       </Helmet>
 
