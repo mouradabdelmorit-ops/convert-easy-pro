@@ -61,8 +61,13 @@ const HeroSection = ({ onFilesSelected }: HeroSectionProps) => {
           </h1>
 
           {/* Subheadline */}
-          <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-8 animate-fade-in leading-relaxed" style={{ animationDelay: "0.2s" }}>
+          <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-4 animate-fade-in leading-relaxed" style={{ animationDelay: "0.2s" }}>
             {t.hero.description}
+          </p>
+          
+          {/* AI Tools Highlight */}
+          <p className="text-base md:text-lg text-primary font-medium max-w-2xl mx-auto mb-8 animate-fade-in" style={{ animationDelay: "0.22s" }}>
+            ✨ Plus free AI tools: Translator, Grammar Fixer, Summarizer, Paraphraser & more!
           </p>
 
           {/* Benefits Row */}
