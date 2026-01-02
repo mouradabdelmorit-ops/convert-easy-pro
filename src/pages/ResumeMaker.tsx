@@ -161,9 +161,29 @@ const ResumeMaker = () => {
   return (
     <>
       <Helmet>
-        <title>Free AI Resume Maker | Create Professional Resume - TransformFiles</title>
-        <meta name="description" content="Create a professional resume with AI assistance. Choose from multiple templates. Free online resume builder with instant download." />
-        <link rel="canonical" href="https://transformfiles.app/resume-maker" />
+        <title>Free Resume Builder Online - AI Resume Maker, CV Generator | TransformFiles</title>
+        <meta name="description" content="Create professional resume online free. AI-powered resume builder with modern templates. Build CV in minutes, instant download. Best free resume maker 2024." />
+        <meta name="keywords" content="resume builder, free resume maker, cv maker, resume generator, ai resume builder, create resume online, professional resume template, cv generator, resume maker free, online resume builder" />
+        <link rel="canonical" href="https://transformfiles.com/resume-maker" />
+        <meta property="og:title" content="Free Resume Builder Online - AI Resume Maker | TransformFiles" />
+        <meta property="og:description" content="Create professional resume online free. AI-powered with modern templates. Build in minutes." />
+        <meta property="og:url" content="https://transformfiles.com/resume-maker" />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Free Resume Builder Online | TransformFiles" />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            "name": "Resume Maker - TransformFiles",
+            "description": "Free AI-powered resume builder. Create professional resumes with modern templates.",
+            "url": "https://transformfiles.com/resume-maker",
+            "applicationCategory": "BusinessApplication",
+            "operatingSystem": "Web Browser",
+            "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+            "featureList": ["AI-enhanced content", "Multiple templates", "Instant download", "ATS-friendly", "No registration required"]
+          })}
+        </script>
       </Helmet>
 
       <div className="min-h-screen bg-background">

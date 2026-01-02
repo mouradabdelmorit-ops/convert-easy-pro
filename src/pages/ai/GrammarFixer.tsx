@@ -49,8 +49,25 @@ const GrammarFixer = () => {
   return (
     <>
       <Helmet>
-        <title>AI Grammar Fixer - Fix Grammar & Spelling | TransformFiles</title>
-        <meta name="description" content="Fix grammar, spelling, and punctuation errors instantly with AI. Free online grammar checker." />
+        <title>Free Grammar Checker Online - Fix Grammar, Spelling, Punctuation | TransformFiles</title>
+        <meta name="description" content="Fix grammar, spelling, and punctuation errors free online. AI-powered grammar checker and corrector. Improve your writing instantly, no registration required." />
+        <meta name="keywords" content="grammar checker, grammar fixer, spell checker, punctuation checker, free grammar checker, ai grammar checker, fix grammar online, grammar corrector, writing checker, proofread online" />
+        <link rel="canonical" href="https://transformfiles.com/grammar-fixer" />
+        <meta property="og:title" content="Free Grammar Checker Online | TransformFiles" />
+        <meta property="og:description" content="Fix grammar, spelling, and punctuation errors instantly with AI. Free online." />
+        <meta property="og:url" content="https://transformfiles.com/grammar-fixer" />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            "name": "Grammar Fixer - TransformFiles",
+            "description": "Free AI-powered grammar checker. Fix grammar, spelling, and punctuation errors.",
+            "url": "https://transformfiles.com/grammar-fixer",
+            "applicationCategory": "UtilityApplication",
+            "operatingSystem": "Web Browser",
+            "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+          })}
+        </script>
         <html lang={language} />
       </Helmet>
 

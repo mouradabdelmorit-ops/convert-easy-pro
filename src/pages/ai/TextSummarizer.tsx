@@ -49,8 +49,25 @@ const TextSummarizer = () => {
   return (
     <>
       <Helmet>
-        <title>AI Text Summarizer - Summarize Any Text | TransformFiles</title>
-        <meta name="description" content="Summarize long texts instantly with AI. Free online text summarizer tool." />
+        <title>Free Text Summarizer Online - Summarize Articles, Documents | TransformFiles</title>
+        <meta name="description" content="Summarize long texts, articles, documents instantly free online. AI text summarizer creates concise summaries. Fast, accurate, no registration required." />
+        <meta name="keywords" content="text summarizer, summarize text, article summarizer, document summarizer, ai summarizer, free text summarizer, summarize online, tldr generator, text summary tool, content summarizer" />
+        <link rel="canonical" href="https://transformfiles.com/text-summarizer" />
+        <meta property="og:title" content="Free Text Summarizer Online | TransformFiles" />
+        <meta property="og:description" content="Summarize long texts and articles instantly with AI. Free, fast, accurate." />
+        <meta property="og:url" content="https://transformfiles.com/text-summarizer" />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            "name": "Text Summarizer - TransformFiles",
+            "description": "Free AI-powered text summarizer. Summarize articles and documents instantly.",
+            "url": "https://transformfiles.com/text-summarizer",
+            "applicationCategory": "UtilityApplication",
+            "operatingSystem": "Web Browser",
+            "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+          })}
+        </script>
         <html lang={language} />
       </Helmet>
 

@@ -117,9 +117,30 @@ const VideoConverter = () => {
   return (
     <>
       <Helmet>
-        <title>Free Video Converter Online | Convert MP4, AVI, MKV - TransformFiles</title>
-        <meta name="description" content="Convert videos online for free. Support for MP4, AVI, MKV, MOV, WMV and more. Fast, secure, no registration required." />
-        <link rel="canonical" href="https://transformfiles.app/video-converter" />
+        <title>Free Video Converter Online - Convert MP4 to AVI, MKV to MP4, MOV to MP4 | TransformFiles</title>
+        <meta name="description" content="Convert video files online free. MP4 to AVI, MKV to MP4, MOV to MP4, AVI to MP4, WebM to MP4. Best free video converter - fast, secure, no registration, no watermark." />
+        <meta name="keywords" content="video converter, mp4 to avi, mkv to mp4, mov to mp4, avi to mp4, convert video online, free video converter, webm to mp4, flv to mp4, wmv to mp4, video format converter, online video converter free, convert video without watermark" />
+        <link rel="canonical" href="https://transformfiles.com/video-converter" />
+        <meta property="og:title" content="Free Video Converter Online - Convert MP4, AVI, MKV, MOV | TransformFiles" />
+        <meta property="og:description" content="Convert video files online free. MP4 to AVI, MKV to MP4, MOV to MP4. Best free video converter - fast, secure, no watermark." />
+        <meta property="og:url" content="https://transformfiles.com/video-converter" />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Free Video Converter Online - MP4, AVI, MKV, MOV | TransformFiles" />
+        <meta name="twitter:description" content="Convert video files online free. MP4 to AVI, MKV to MP4, MOV to MP4. Fast, secure, no watermark." />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            "name": "Video Converter - TransformFiles",
+            "description": "Free online video converter. Convert MP4, AVI, MKV, MOV, WebM and 50+ video formats.",
+            "url": "https://transformfiles.com/video-converter",
+            "applicationCategory": "MultimediaApplication",
+            "operatingSystem": "Web Browser",
+            "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+            "featureList": ["MP4 to AVI conversion", "MKV to MP4 conversion", "MOV to MP4 conversion", "WebM to MP4 conversion", "Batch video conversion", "No watermark", "No registration required"]
+          })}
+        </script>
       </Helmet>
 
       <div className="min-h-screen bg-background">

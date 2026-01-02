@@ -71,8 +71,25 @@ const Translator = () => {
   return (
     <>
       <Helmet>
-        <title>AI Translator - Translate Any Language | TransformFiles</title>
-        <meta name="description" content="Translate text between languages instantly with AI. Free online translator tool." />
+        <title>Free AI Translator Online - Translate Any Language Instantly | TransformFiles</title>
+        <meta name="description" content="Translate text between any languages free online. AI-powered translator for English, Spanish, French, German, Chinese, Japanese. Fast, accurate, no registration." />
+        <meta name="keywords" content="ai translator, online translator, translate text, free translator, language translator, english to spanish, english to french, google translate alternative, text translator, translate online free" />
+        <link rel="canonical" href="https://transformfiles.com/translator" />
+        <meta property="og:title" content="Free AI Translator Online | TransformFiles" />
+        <meta property="og:description" content="Translate text between any languages instantly with AI. Free, fast, accurate." />
+        <meta property="og:url" content="https://transformfiles.com/translator" />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            "name": "AI Translator - TransformFiles",
+            "description": "Free AI-powered translator. Translate between any languages instantly.",
+            "url": "https://transformfiles.com/translator",
+            "applicationCategory": "UtilityApplication",
+            "operatingSystem": "Web Browser",
+            "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+          })}
+        </script>
         <html lang={currentLang} />
       </Helmet>
 
