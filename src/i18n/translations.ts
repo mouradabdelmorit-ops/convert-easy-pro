@@ -48,6 +48,18 @@ export const translations: Record<Language, {
     quality: { title: string; desc: string };
     mobile: { title: string; desc: string };
   };
+  aiTools: {
+    badge: string;
+    title: string;
+    subtitle: string;
+    viewAll: string;
+    imageToCode: { title: string; desc: string };
+    backgroundRemover: { title: string; desc: string };
+    textSummarizer: { title: string; desc: string };
+    grammarFixer: { title: string; desc: string };
+    emailGenerator: { title: string; desc: string };
+    translator: { title: string; desc: string };
+  };
   footer: {
     description: string;
     tools: string;
@@ -142,6 +154,18 @@ export const translations: Record<Language, {
       free: { title: 'Always Free', desc: 'No hidden fees, no subscriptions, completely free' },
       quality: { title: 'High Quality', desc: 'Maintain original quality during conversion' },
       mobile: { title: 'Mobile Friendly', desc: 'Works perfectly on any device' },
+    },
+    aiTools: {
+      badge: 'Powered by AI',
+      title: 'Free AI-Powered Tools',
+      subtitle: 'Transform your content with our intelligent AI tools. Fast, accurate, and completely free.',
+      viewAll: 'View All AI Tools',
+      imageToCode: { title: 'Image to Code', desc: 'Convert designs to HTML/CSS' },
+      backgroundRemover: { title: 'Background Remover', desc: 'Remove backgrounds instantly' },
+      textSummarizer: { title: 'Text Summarizer', desc: 'Summarize long documents' },
+      grammarFixer: { title: 'Grammar Fixer', desc: 'Fix grammar & spelling' },
+      emailGenerator: { title: 'Email Generator', desc: 'Generate professional emails' },
+      translator: { title: 'AI Translator', desc: 'Translate any language' },
     },
     footer: {
       description: 'The fastest and most reliable online file converter. Transform any file format with ease.',
@@ -242,6 +266,18 @@ export const translations: Record<Language, {
       quality: { title: 'Hohe Qualität', desc: 'Originalqualität während der Konvertierung beibehalten' },
       mobile: { title: 'Mobilfreundlich', desc: 'Funktioniert perfekt auf jedem Gerät' },
     },
+    aiTools: {
+      badge: 'KI-gestützt',
+      title: 'Kostenlose KI-Tools',
+      subtitle: 'Transformieren Sie Ihre Inhalte mit unseren intelligenten KI-Tools. Schnell, präzise und völlig kostenlos.',
+      viewAll: 'Alle KI-Tools anzeigen',
+      imageToCode: { title: 'Bild zu Code', desc: 'Designs in HTML/CSS umwandeln' },
+      backgroundRemover: { title: 'Hintergrund entfernen', desc: 'Hintergründe sofort entfernen' },
+      textSummarizer: { title: 'Text-Zusammenfasser', desc: 'Lange Dokumente zusammenfassen' },
+      grammarFixer: { title: 'Grammatik-Korrektur', desc: 'Grammatik & Rechtschreibung korrigieren' },
+      emailGenerator: { title: 'E-Mail-Generator', desc: 'Professionelle E-Mails erstellen' },
+      translator: { title: 'KI-Übersetzer', desc: 'Jede Sprache übersetzen' },
+    },
     footer: {
       description: 'Der schnellste und zuverlässigste Online-Dateikonverter.',
       tools: 'Werkzeuge',
@@ -340,6 +376,18 @@ export const translations: Record<Language, {
       free: { title: 'Siempre gratis', desc: 'Sin costos ocultos, completamente gratis' },
       quality: { title: 'Alta calidad', desc: 'Mantiene la calidad original' },
       mobile: { title: 'Móvil friendly', desc: 'Funciona perfectamente en cualquier dispositivo' },
+    },
+    aiTools: {
+      badge: 'Impulsado por IA',
+      title: 'Herramientas de IA Gratuitas',
+      subtitle: 'Transforma tu contenido con nuestras herramientas de IA inteligentes. Rápido, preciso y completamente gratis.',
+      viewAll: 'Ver todas las herramientas de IA',
+      imageToCode: { title: 'Imagen a código', desc: 'Convertir diseños a HTML/CSS' },
+      backgroundRemover: { title: 'Eliminar fondo', desc: 'Elimina fondos al instante' },
+      textSummarizer: { title: 'Resumidor de texto', desc: 'Resume documentos largos' },
+      grammarFixer: { title: 'Corrector gramatical', desc: 'Corrige gramática y ortografía' },
+      emailGenerator: { title: 'Generador de emails', desc: 'Genera emails profesionales' },
+      translator: { title: 'Traductor IA', desc: 'Traduce cualquier idioma' },
     },
     footer: {
       description: 'El convertidor de archivos en línea más rápido y confiable.',
@@ -440,6 +488,18 @@ export const translations: Record<Language, {
       quality: { title: 'Haute qualité', desc: 'Maintient la qualité originale' },
       mobile: { title: 'Mobile friendly', desc: 'Fonctionne parfaitement sur tout appareil' },
     },
+    aiTools: {
+      badge: 'Propulsé par IA',
+      title: 'Outils IA Gratuits',
+      subtitle: 'Transformez votre contenu avec nos outils IA intelligents. Rapide, précis et entièrement gratuit.',
+      viewAll: 'Voir tous les outils IA',
+      imageToCode: { title: 'Image vers code', desc: 'Convertir des designs en HTML/CSS' },
+      backgroundRemover: { title: 'Suppression fond', desc: 'Supprimez les fonds instantanément' },
+      textSummarizer: { title: 'Résumeur de texte', desc: 'Résumez les longs documents' },
+      grammarFixer: { title: 'Correcteur grammaire', desc: 'Corrigez grammaire et orthographe' },
+      emailGenerator: { title: 'Générateur email', desc: 'Générez des emails professionnels' },
+      translator: { title: 'Traducteur IA', desc: 'Traduisez toutes les langues' },
+    },
     footer: {
       description: 'Le convertisseur de fichiers en ligne le plus rapide et fiable.',
       tools: 'Outils',
@@ -538,6 +598,18 @@ export const translations: Record<Language, {
       free: { title: 'Sempre gratuito', desc: 'Nessun costo nascosto, completamente gratuito' },
       quality: { title: 'Alta qualità', desc: 'Mantiene la qualità originale' },
       mobile: { title: 'Mobile friendly', desc: 'Funziona perfettamente su qualsiasi dispositivo' },
+    },
+    aiTools: {
+      badge: 'Powered by AI',
+      title: 'Strumenti IA Gratuiti',
+      subtitle: 'Trasforma i tuoi contenuti con i nostri strumenti IA intelligenti. Veloce, preciso e completamente gratuito.',
+      viewAll: 'Vedi tutti gli strumenti IA',
+      imageToCode: { title: 'Immagine a codice', desc: 'Converti design in HTML/CSS' },
+      backgroundRemover: { title: 'Rimuovi sfondo', desc: 'Rimuovi sfondi istantaneamente' },
+      textSummarizer: { title: 'Riassuntore testo', desc: 'Riassumi documenti lunghi' },
+      grammarFixer: { title: 'Correttore grammatica', desc: 'Correggi grammatica e ortografia' },
+      emailGenerator: { title: 'Generatore email', desc: 'Genera email professionali' },
+      translator: { title: 'Traduttore IA', desc: 'Traduci qualsiasi lingua' },
     },
     footer: {
       description: 'Il convertitore di file online più veloce e affidabile.',
@@ -638,6 +710,18 @@ export const translations: Record<Language, {
       quality: { title: 'Alta qualidade', desc: 'Mantém a qualidade original' },
       mobile: { title: 'Mobile friendly', desc: 'Funciona perfeitamente em qualquer dispositivo' },
     },
+    aiTools: {
+      badge: 'Powered by AI',
+      title: 'Ferramentas de IA Gratuitas',
+      subtitle: 'Transforme seu conteúdo com nossas ferramentas de IA inteligentes. Rápido, preciso e completamente grátis.',
+      viewAll: 'Ver todas as ferramentas de IA',
+      imageToCode: { title: 'Imagem para código', desc: 'Converter designs em HTML/CSS' },
+      backgroundRemover: { title: 'Remover fundo', desc: 'Remova fundos instantaneamente' },
+      textSummarizer: { title: 'Resumidor de texto', desc: 'Resuma documentos longos' },
+      grammarFixer: { title: 'Corretor gramatical', desc: 'Corrija gramática e ortografia' },
+      emailGenerator: { title: 'Gerador de email', desc: 'Gere emails profissionais' },
+      translator: { title: 'Tradutor IA', desc: 'Traduza qualquer idioma' },
+    },
     footer: {
       description: 'O conversor de arquivos online mais rápido e confiável.',
       tools: 'Ferramentas',
@@ -711,6 +795,7 @@ export const translations: Record<Language, {
     nav: { home: 'Home', pdfEditor: 'PDF Editor', resumeMaker: 'CV Maker', about: 'Over ons', blog: 'Blog', startConverting: 'Start converteren' },
     hero: { badge: 'Vertrouwd door 2M+ gebruikers', title: 'Transformeer elk bestand', titleHighlight: 'In seconden', description: 'De snelste online bestandsconverter. Converteer video\'s, afbeeldingen, audio, documenten en meer. Gratis, veilig, geen registratie vereist.', dropzone: 'Sleep bestanden hier of klik om te bladeren', dragActive: 'Laat bestanden hier los...', orBrowse: 'of blader door bestanden', supportedFormats: '1500+ formaten ondersteund', trusted: 'Miljoenen vertrouwen ons' },
     features: { title: 'Waarom TransformFiles?', subtitle: 'De krachtigste bestandsconverter op het web', lightning: { title: 'Bliksemnel', desc: 'Converteer bestanden in seconden' }, secure: { title: '100% Veilig', desc: 'Bestanden versleuteld en automatisch verwijderd' }, formats: { title: '1500+ Formaten', desc: 'Ondersteuning voor vrijwel elk bestandsformaat' }, free: { title: 'Altijd gratis', desc: 'Geen verborgen kosten, volledig gratis' }, quality: { title: 'Hoge kwaliteit', desc: 'Behoudt originele kwaliteit' }, mobile: { title: 'Mobiel vriendelijk', desc: 'Werkt perfect op elk apparaat' } },
+    aiTools: { badge: 'AI-aangedreven', title: 'Gratis AI-tools', subtitle: 'Transformeer je content met onze intelligente AI-tools. Snel, nauwkeurig en volledig gratis.', viewAll: 'Bekijk alle AI-tools', imageToCode: { title: 'Afbeelding naar code', desc: 'Ontwerpen naar HTML/CSS' }, backgroundRemover: { title: 'Achtergrond verwijderen', desc: 'Verwijder achtergronden direct' }, textSummarizer: { title: 'Tekst samenvatten', desc: 'Lange documenten samenvatten' }, grammarFixer: { title: 'Grammatica corrector', desc: 'Grammatica en spelling corrigeren' }, emailGenerator: { title: 'E-mail generator', desc: 'Professionele e-mails genereren' }, translator: { title: 'AI Vertaler', desc: 'Elke taal vertalen' } },
     footer: { description: 'De snelste en meest betrouwbare online bestandsconverter.', tools: 'Tools', converters: 'Converters', company: 'Bedrijf', legal: 'Juridisch', copyright: '© 2024 TransformFiles.com. Alle rechten voorbehouden.' },
     about: { title: 'Bestandsconversie', subtitle: 'Toegankelijk voor iedereen', ourStory: 'Ons verhaal', storyContent: ['TransformFiles is ontstaan uit een simpele frustratie.', 'We hebben de snelste converter gebouwd.', 'Vandaag bedient TransformFiles miljoenen gebruikers.'], values: 'Onze waarden', valuesSubtitle: 'De principes die ons leiden', team: 'Ons team', teamSubtitle: 'De gepassioneerde mensen achter TransformFiles', contact: 'Contact', contactSubtitle: 'Heeft u vragen of feedback?' },
     privacy: { title: 'Privacybeleid', subtitle: 'Uw privacy is belangrijk', intro: 'Bij TransformFiles nemen we uw privacy serieus.' },
@@ -724,6 +809,7 @@ export const translations: Record<Language, {
     nav: { home: 'Strona główna', pdfEditor: 'Edytor PDF', resumeMaker: 'Kreator CV', about: 'O nas', blog: 'Blog', startConverting: 'Zacznij konwertować' },
     hero: { badge: 'Zaufało nam 2M+ użytkowników', title: 'Przekształć dowolny plik', titleHighlight: 'W sekundy', description: 'Najszybszy konwerter plików online. Konwertuj wideo, obrazy, audio, dokumenty i więcej. Bezpłatnie, bezpiecznie, bez rejestracji.', dropzone: 'Przeciągnij i upuść pliki tutaj lub kliknij, aby przeglądać', dragActive: 'Upuść pliki tutaj...', orBrowse: 'lub przeglądaj pliki', supportedFormats: '1500+ obsługiwanych formatów', trusted: 'Miliony nam zaufało' },
     features: { title: 'Dlaczego TransformFiles?', subtitle: 'Najpotężniejszy konwerter plików w sieci', lightning: { title: 'Błyskawiczny', desc: 'Konwertuj pliki w sekundy' }, secure: { title: '100% Bezpieczny', desc: 'Pliki szyfrowane i automatycznie usuwane' }, formats: { title: '1500+ Formatów', desc: 'Wsparcie dla praktycznie każdego formatu' }, free: { title: 'Zawsze bezpłatny', desc: 'Bez ukrytych opłat, całkowicie bezpłatny' }, quality: { title: 'Wysoka jakość', desc: 'Zachowuje oryginalną jakość' }, mobile: { title: 'Przyjazny dla urządzeń mobilnych', desc: 'Działa idealnie na każdym urządzeniu' } },
+    aiTools: { badge: 'Napędzane przez AI', title: 'Darmowe narzędzia AI', subtitle: 'Przekształć swoje treści za pomocą naszych inteligentnych narzędzi AI. Szybko, dokładnie i całkowicie za darmo.', viewAll: 'Zobacz wszystkie narzędzia AI', imageToCode: { title: 'Obraz do kodu', desc: 'Konwertuj projekty na HTML/CSS' }, backgroundRemover: { title: 'Usuń tło', desc: 'Usuń tła natychmiastowo' }, textSummarizer: { title: 'Podsumowywacz tekstu', desc: 'Podsumuj długie dokumenty' }, grammarFixer: { title: 'Korektor gramatyki', desc: 'Popraw gramatykę i pisownię' }, emailGenerator: { title: 'Generator e-mail', desc: 'Generuj profesjonalne e-maile' }, translator: { title: 'Tłumacz AI', desc: 'Tłumacz dowolny język' } },
     footer: { description: 'Najszybszy i najbardziej niezawodny konwerter plików online.', tools: 'Narzędzia', converters: 'Konwertery', company: 'Firma', legal: 'Prawne', copyright: '© 2024 TransformFiles.com. Wszelkie prawa zastrzeżone.' },
     about: { title: 'Czynimy konwersję plików', subtitle: 'Dostępną dla wszystkich', ourStory: 'Nasza historia', storyContent: ['TransformFiles narodził się z prostej frustracji.', 'Zbudowaliśmy najszybszy konwerter.', 'Dziś TransformFiles obsługuje miliony użytkowników.'], values: 'Nasze wartości', valuesSubtitle: 'Zasady, które nas prowadzą', team: 'Nasz zespół', teamSubtitle: 'Pasjonaci stojący za TransformFiles', contact: 'Kontakt', contactSubtitle: 'Masz pytania lub uwagi?' },
     privacy: { title: 'Polityka prywatności', subtitle: 'Twoja prywatność jest ważna', intro: 'W TransformFiles poważnie traktujemy Twoją prywatność.' },
@@ -737,6 +823,7 @@ export const translations: Record<Language, {
     nav: { home: 'Главная', pdfEditor: 'PDF Редактор', resumeMaker: 'Создать резюме', about: 'О нас', blog: 'Блог', startConverting: 'Начать конвертацию' },
     hero: { badge: 'Доверяют 2M+ пользователей', title: 'Преобразуйте любой файл', titleHighlight: 'За секунды', description: 'Самый быстрый онлайн-конвертер файлов. Конвертируйте видео, изображения, аудио, документы и многое другое. Бесплатно, безопасно, без регистрации.', dropzone: 'Перетащите файлы сюда или нажмите для просмотра', dragActive: 'Отпустите файлы здесь...', orBrowse: 'или выберите файлы', supportedFormats: '1500+ поддерживаемых форматов', trusted: 'Миллионы нам доверяют' },
     features: { title: 'Почему TransformFiles?', subtitle: 'Самый мощный конвертер файлов в интернете', lightning: { title: 'Молниеносно', desc: 'Конвертируйте файлы за секунды' }, secure: { title: '100% Безопасно', desc: 'Файлы зашифрованы и автоматически удаляются' }, formats: { title: '1500+ Форматов', desc: 'Поддержка практически любого формата' }, free: { title: 'Всегда бесплатно', desc: 'Никаких скрытых платежей, полностью бесплатно' }, quality: { title: 'Высокое качество', desc: 'Сохраняет оригинальное качество' }, mobile: { title: 'Мобильная версия', desc: 'Работает идеально на любом устройстве' } },
+    aiTools: { badge: 'На базе ИИ', title: 'Бесплатные ИИ-инструменты', subtitle: 'Преобразуйте свой контент с помощью наших интеллектуальных ИИ-инструментов. Быстро, точно и совершенно бесплатно.', viewAll: 'Все ИИ-инструменты', imageToCode: { title: 'Изображение в код', desc: 'Конвертируйте дизайны в HTML/CSS' }, backgroundRemover: { title: 'Удаление фона', desc: 'Мгновенное удаление фонов' }, textSummarizer: { title: 'Суммаризатор текста', desc: 'Резюмируйте длинные документы' }, grammarFixer: { title: 'Исправление грамматики', desc: 'Исправляйте грамматику и орфографию' }, emailGenerator: { title: 'Генератор писем', desc: 'Создавайте профессиональные письма' }, translator: { title: 'ИИ Переводчик', desc: 'Переводите на любой язык' } },
     footer: { description: 'Самый быстрый и надежный онлайн-конвертер файлов.', tools: 'Инструменты', converters: 'Конвертеры', company: 'Компания', legal: 'Правовая информация', copyright: '© 2024 TransformFiles.com. Все права защищены.' },
     about: { title: 'Делаем конвертацию файлов', subtitle: 'Доступной для всех', ourStory: 'Наша история', storyContent: ['TransformFiles родился из простого разочарования.', 'Мы создали самый быстрый конвертер.', 'Сегодня TransformFiles обслуживает миллионы пользователей.'], values: 'Наши ценности', valuesSubtitle: 'Принципы, которые нас направляют', team: 'Наша команда', teamSubtitle: 'Увлеченные люди за TransformFiles', contact: 'Контакты', contactSubtitle: 'Есть вопросы или отзывы?' },
     privacy: { title: 'Политика конфиденциальности', subtitle: 'Ваша конфиденциальность важна', intro: 'В TransformFiles мы серьезно относимся к вашей конфиденциальности.' },
@@ -750,6 +837,7 @@ export const translations: Record<Language, {
     nav: { home: 'ホーム', pdfEditor: 'PDF編集', resumeMaker: '履歴書作成', about: '会社概要', blog: 'ブログ', startConverting: '変換開始' },
     hero: { badge: '200万人以上のユーザーに信頼されています', title: 'あらゆるファイルを変換', titleHighlight: '数秒で', description: '最速のオンラインファイルコンバーター。動画、画像、音声、ドキュメントなどを変換。無料、安全、登録不要。', dropzone: 'ファイルをドラッグ＆ドロップするか、クリックして選択', dragActive: 'ここにファイルをドロップ...', orBrowse: 'またはファイルを選択', supportedFormats: '1500以上の形式に対応', trusted: '数百万人が信頼' },
     features: { title: 'なぜTransformFiles？', subtitle: 'ウェブで最も強力なファイルコンバーター', lightning: { title: '超高速', desc: '数秒でファイルを変換' }, secure: { title: '100%安全', desc: 'ファイルは暗号化され自動削除' }, formats: { title: '1500+形式', desc: 'ほぼすべての形式をサポート' }, free: { title: '常に無料', desc: '隠れた費用なし、完全無料' }, quality: { title: '高品質', desc: 'オリジナル品質を維持' }, mobile: { title: 'モバイル対応', desc: 'あらゆるデバイスで完璧に動作' } },
+    aiTools: { badge: 'AIパワード', title: '無料AIツール', subtitle: 'インテリジェントなAIツールでコンテンツを変換。高速、正確、完全無料。', viewAll: 'すべてのAIツールを見る', imageToCode: { title: '画像からコード', desc: 'デザインをHTML/CSSに変換' }, backgroundRemover: { title: '背景除去', desc: '背景を瞬時に削除' }, textSummarizer: { title: 'テキスト要約', desc: '長文ドキュメントを要約' }, grammarFixer: { title: '文法修正', desc: '文法とスペルを修正' }, emailGenerator: { title: 'メール生成', desc: 'プロのメールを生成' }, translator: { title: 'AI翻訳', desc: 'あらゆる言語を翻訳' } },
     footer: { description: '最速で最も信頼性の高いオンラインファイルコンバーター。', tools: 'ツール', converters: 'コンバーター', company: '会社', legal: '法的情報', copyright: '© 2024 TransformFiles.com. 全著作権所有。' },
     about: { title: 'ファイル変換を', subtitle: 'すべての人に', ourStory: '私たちの物語', storyContent: ['TransformFilesはシンプルな不満から生まれました。', '最速のコンバーターを作りました。', '今日、TransformFilesは世界中の何百万人ものユーザーにサービスを提供しています。'], values: '私たちの価値観', valuesSubtitle: '私たちを導く原則', team: 'チーム紹介', teamSubtitle: 'TransformFilesの情熱的なメンバー', contact: 'お問い合わせ', contactSubtitle: 'ご質問やフィードバックはありますか？' },
     privacy: { title: 'プライバシーポリシー', subtitle: 'あなたのプライバシーは重要です', intro: 'TransformFilesでは、お客様のプライバシーを真剣に考えています。' },
@@ -763,6 +851,7 @@ export const translations: Record<Language, {
     nav: { home: '首页', pdfEditor: 'PDF编辑器', resumeMaker: '简历制作', about: '关于我们', blog: '博客', startConverting: '开始转换' },
     hero: { badge: '全球200万+用户信赖', title: '转换任何文件', titleHighlight: '几秒钟内', description: '最快的在线文件转换器。转换视频、图像、音频、文档等。免费、安全、无需注册。', dropzone: '拖放文件到这里或点击浏览', dragActive: '将文件放到这里...', orBrowse: '或浏览文件', supportedFormats: '支持1500+格式', trusted: '数百万用户信赖' },
     features: { title: '为什么选择TransformFiles？', subtitle: '网络上最强大的文件转换器', lightning: { title: '极速', desc: '几秒内转换文件' }, secure: { title: '100%安全', desc: '文件加密并自动删除' }, formats: { title: '1500+格式', desc: '支持几乎所有文件格式' }, free: { title: '永久免费', desc: '无隐藏费用，完全免费' }, quality: { title: '高质量', desc: '保持原始质量' }, mobile: { title: '移动友好', desc: '在任何设备上完美运行' } },
+    aiTools: { badge: 'AI驱动', title: '免费AI工具', subtitle: '使用我们智能的AI工具转换您的内容。快速、准确且完全免费。', viewAll: '查看所有AI工具', imageToCode: { title: '图片转代码', desc: '将设计转换为HTML/CSS' }, backgroundRemover: { title: '背景移除', desc: '即时移除背景' }, textSummarizer: { title: '文本摘要', desc: '总结长文档' }, grammarFixer: { title: '语法修正', desc: '修正语法和拼写' }, emailGenerator: { title: '邮件生成器', desc: '生成专业邮件' }, translator: { title: 'AI翻译', desc: '翻译任何语言' } },
     footer: { description: '最快、最可靠的在线文件转换器。', tools: '工具', converters: '转换器', company: '公司', legal: '法律', copyright: '© 2024 TransformFiles.com. 保留所有权利。' },
     about: { title: '让文件转换', subtitle: '人人可用', ourStory: '我们的故事', storyContent: ['TransformFiles源于一个简单的困扰。', '我们建立了最快的转换器。', '今天，TransformFiles为全球数百万用户提供服务。'], values: '我们的价值观', valuesSubtitle: '指导我们的原则', team: '我们的团队', teamSubtitle: 'TransformFiles背后的热情团队', contact: '联系我们', contactSubtitle: '有问题或反馈？' },
     privacy: { title: '隐私政策', subtitle: '您的隐私很重要', intro: '在TransformFiles，我们非常重视您的隐私。' },
@@ -776,6 +865,7 @@ export const translations: Record<Language, {
     nav: { home: '홈', pdfEditor: 'PDF 편집기', resumeMaker: '이력서 만들기', about: '소개', blog: '블로그', startConverting: '변환 시작' },
     hero: { badge: '전 세계 200만+ 사용자가 신뢰', title: '모든 파일을 변환하세요', titleHighlight: '몇 초 만에', description: '가장 빠른 온라인 파일 변환기. 비디오, 이미지, 오디오, 문서 등을 변환하세요. 무료, 안전, 등록 불필요.', dropzone: '파일을 드래그 앤 드롭하거나 클릭하여 찾아보기', dragActive: '여기에 파일을 놓으세요...', orBrowse: '또는 파일 찾아보기', supportedFormats: '1500+ 형식 지원', trusted: '수백만 명이 신뢰' },
     features: { title: '왜 TransformFiles인가요?', subtitle: '웹에서 가장 강력한 파일 변환기', lightning: { title: '초고속', desc: '몇 초 만에 파일 변환' }, secure: { title: '100% 안전', desc: '파일 암호화 및 자동 삭제' }, formats: { title: '1500+ 형식', desc: '거의 모든 파일 형식 지원' }, free: { title: '항상 무료', desc: '숨겨진 비용 없음, 완전 무료' }, quality: { title: '고품질', desc: '원본 품질 유지' }, mobile: { title: '모바일 친화적', desc: '모든 기기에서 완벽하게 작동' } },
+    aiTools: { badge: 'AI 기반', title: '무료 AI 도구', subtitle: '지능형 AI 도구로 콘텐츠를 변환하세요. 빠르고, 정확하며, 완전 무료.', viewAll: '모든 AI 도구 보기', imageToCode: { title: '이미지를 코드로', desc: '디자인을 HTML/CSS로 변환' }, backgroundRemover: { title: '배경 제거', desc: '즉시 배경 제거' }, textSummarizer: { title: '텍스트 요약', desc: '긴 문서 요약' }, grammarFixer: { title: '문법 수정', desc: '문법 및 맞춤법 수정' }, emailGenerator: { title: '이메일 생성기', desc: '전문적인 이메일 생성' }, translator: { title: 'AI 번역', desc: '모든 언어 번역' } },
     footer: { description: '가장 빠르고 안정적인 온라인 파일 변환기.', tools: '도구', converters: '변환기', company: '회사', legal: '법률', copyright: '© 2024 TransformFiles.com. 모든 권리 보유.' },
     about: { title: '파일 변환을', subtitle: '모두에게 접근 가능하게', ourStory: '우리의 이야기', storyContent: ['TransformFiles는 간단한 좌절에서 탄생했습니다.', '가장 빠른 변환기를 만들었습니다.', '오늘날 TransformFiles는 전 세계 수백만 사용자에게 서비스를 제공합니다.'], values: '우리의 가치', valuesSubtitle: '우리를 이끄는 원칙', team: '우리 팀', teamSubtitle: 'TransformFiles 뒤의 열정적인 사람들', contact: '문의하기', contactSubtitle: '질문이나 피드백이 있으신가요?' },
     privacy: { title: '개인정보 보호정책', subtitle: '귀하의 프라이버시가 중요합니다', intro: 'TransformFiles에서는 귀하의 프라이버시를 진지하게 생각합니다.' },
@@ -789,6 +879,7 @@ export const translations: Record<Language, {
     nav: { home: 'الرئيسية', pdfEditor: 'محرر PDF', resumeMaker: 'إنشاء السيرة الذاتية', about: 'من نحن', blog: 'المدونة', startConverting: 'ابدأ التحويل' },
     hero: { badge: 'موثوق به من قبل 2 مليون+ مستخدم', title: 'حوّل أي ملف', titleHighlight: 'في ثوانٍ', description: 'أسرع محول ملفات عبر الإنترنت. حوّل الفيديو والصور والصوت والمستندات والمزيد. مجاني وآمن ولا يتطلب تسجيل.', dropzone: 'اسحب الملفات وأفلتها هنا أو انقر للاستعراض', dragActive: 'أفلت الملفات هنا...', orBrowse: 'أو تصفح الملفات', supportedFormats: '1500+ تنسيق مدعوم', trusted: 'يثق بنا الملايين' },
     features: { title: 'لماذا TransformFiles؟', subtitle: 'أقوى محول ملفات على الويب', lightning: { title: 'سريع للغاية', desc: 'حوّل الملفات في ثوانٍ' }, secure: { title: 'آمن 100%', desc: 'الملفات مشفرة وتُحذف تلقائياً' }, formats: { title: '1500+ تنسيق', desc: 'دعم لأي تنسيق ملف تقريباً' }, free: { title: 'مجاني دائماً', desc: 'بدون رسوم خفية، مجاني تماماً' }, quality: { title: 'جودة عالية', desc: 'الحفاظ على الجودة الأصلية' }, mobile: { title: 'متوافق مع الجوال', desc: 'يعمل بشكل مثالي على أي جهاز' } },
+    aiTools: { badge: 'مدعوم بالذكاء الاصطناعي', title: 'أدوات ذكاء اصطناعي مجانية', subtitle: 'حوّل المحتوى الخاص بك باستخدام أدواتنا الذكية. سريع ودقيق ومجاني تماماً.', viewAll: 'عرض جميع أدوات الذكاء الاصطناعي', imageToCode: { title: 'صورة إلى كود', desc: 'تحويل التصاميم إلى HTML/CSS' }, backgroundRemover: { title: 'إزالة الخلفية', desc: 'إزالة الخلفيات فوراً' }, textSummarizer: { title: 'ملخص النص', desc: 'تلخيص المستندات الطويلة' }, grammarFixer: { title: 'مصحح القواعد', desc: 'تصحيح القواعد والإملاء' }, emailGenerator: { title: 'منشئ البريد', desc: 'إنشاء رسائل بريد احترافية' }, translator: { title: 'مترجم ذكي', desc: 'ترجمة أي لغة' } },
     footer: { description: 'أسرع وأكثر محول ملفات موثوق عبر الإنترنت.', tools: 'الأدوات', converters: 'المحولات', company: 'الشركة', legal: 'قانوني', copyright: '© 2024 TransformFiles.com. جميع الحقوق محفوظة.' },
     about: { title: 'نجعل تحويل الملفات', subtitle: 'متاحاً للجميع', ourStory: 'قصتنا', storyContent: ['ولد TransformFiles من إحباط بسيط.', 'بنينا أسرع محول.', 'اليوم، يخدم TransformFiles ملايين المستخدمين حول العالم.'], values: 'قيمنا', valuesSubtitle: 'المبادئ التي ترشدنا', team: 'فريقنا', teamSubtitle: 'الأشخاص المتحمسون وراء TransformFiles', contact: 'اتصل بنا', contactSubtitle: 'هل لديك أسئلة أو تعليقات؟' },
     privacy: { title: 'سياسة الخصوصية', subtitle: 'خصوصيتك مهمة', intro: 'في TransformFiles، نأخذ خصوصيتك على محمل الجد.' },
@@ -802,6 +893,7 @@ export const translations: Record<Language, {
     nav: { home: 'Ana Sayfa', pdfEditor: 'PDF Düzenleyici', resumeMaker: 'Özgeçmiş Oluşturucu', about: 'Hakkımızda', blog: 'Blog', startConverting: 'Dönüştürmeye Başla' },
     hero: { badge: '2M+ kullanıcı tarafından güveniliyor', title: 'Herhangi bir dosyayı dönüştürün', titleHighlight: 'Saniyeler içinde', description: 'En hızlı çevrimiçi dosya dönüştürücü. Video, resim, ses, belge ve daha fazlasını dönüştürün. Ücretsiz, güvenli, kayıt gerekmez.', dropzone: 'Dosyaları buraya sürükleyip bırakın veya göz atmak için tıklayın', dragActive: 'Dosyaları buraya bırakın...', orBrowse: 'veya dosyalara göz atın', supportedFormats: '1500+ format destekleniyor', trusted: 'Milyonlar güveniyor' },
     features: { title: 'Neden TransformFiles?', subtitle: 'Webdeki en güçlü dosya dönüştürücü', lightning: { title: 'Çok Hızlı', desc: 'Dosyaları saniyeler içinde dönüştürün' }, secure: { title: '%100 Güvenli', desc: 'Dosyalar şifrelenir ve otomatik silinir' }, formats: { title: '1500+ Format', desc: 'Neredeyse her dosya formatını destekler' }, free: { title: 'Her Zaman Ücretsiz', desc: 'Gizli ücret yok, tamamen ücretsiz' }, quality: { title: 'Yüksek Kalite', desc: 'Orijinal kaliteyi korur' }, mobile: { title: 'Mobil Uyumlu', desc: 'Her cihazda mükemmel çalışır' } },
+    aiTools: { badge: 'Yapay Zeka Destekli', title: 'Ücretsiz AI Araçları', subtitle: 'İçeriğinizi akıllı AI araçlarımızla dönüştürün. Hızlı, doğru ve tamamen ücretsiz.', viewAll: 'Tüm AI Araçlarını Görüntüle', imageToCode: { title: 'Görüntüden Koda', desc: 'Tasarımları HTML/CSS\'e dönüştürün' }, backgroundRemover: { title: 'Arka Plan Kaldırma', desc: 'Arka planları anında kaldırın' }, textSummarizer: { title: 'Metin Özetleyici', desc: 'Uzun belgeleri özetleyin' }, grammarFixer: { title: 'Dilbilgisi Düzeltici', desc: 'Dilbilgisi ve yazım hatalarını düzeltin' }, emailGenerator: { title: 'E-posta Oluşturucu', desc: 'Profesyonel e-postalar oluşturun' }, translator: { title: 'AI Çevirmen', desc: 'Herhangi bir dili çevirin' } },
     footer: { description: 'En hızlı ve güvenilir çevrimiçi dosya dönüştürücü.', tools: 'Araçlar', converters: 'Dönüştürücüler', company: 'Şirket', legal: 'Yasal', copyright: '© 2024 TransformFiles.com. Tüm hakları saklıdır.' },
     about: { title: 'Dosya dönüşümünü', subtitle: 'Herkes için erişilebilir yapıyoruz', ourStory: 'Hikayemiz', storyContent: ['TransformFiles basit bir hayal kırıklığından doğdu.', 'En hızlı dönüştürücüyü yaptık.', 'Bugün TransformFiles dünya çapında milyonlarca kullanıcıya hizmet veriyor.'], values: 'Değerlerimiz', valuesSubtitle: 'Bizi yönlendiren ilkeler', team: 'Ekibimiz', teamSubtitle: 'TransformFiles arkasındaki tutkulu insanlar', contact: 'İletişim', contactSubtitle: 'Sorularınız veya geri bildiriminiz mi var?' },
     privacy: { title: 'Gizlilik Politikası', subtitle: 'Gizliliğiniz önemlidir', intro: 'TransformFiles olarak gizliliğinizi ciddiye alıyoruz.' },
@@ -815,6 +907,7 @@ export const translations: Record<Language, {
     nav: { home: 'होम', pdfEditor: 'PDF संपादक', resumeMaker: 'रिज्यूमे बनाएं', about: 'हमारे बारे में', blog: 'ब्लॉग', startConverting: 'कन्वर्ट करना शुरू करें' },
     hero: { badge: '2M+ उपयोगकर्ताओं द्वारा विश्वसनीय', title: 'किसी भी फ़ाइल को बदलें', titleHighlight: 'सेकंडों में', description: 'सबसे तेज़ ऑनलाइन फ़ाइल कन्वर्टर। वीडियो, इमेज, ऑडियो, दस्तावेज़ और बहुत कुछ कन्वर्ट करें। मुफ़्त, सुरक्षित, पंजीकरण की आवश्यकता नहीं।', dropzone: 'फ़ाइलें यहाँ खींचें और छोड़ें या ब्राउज़ करने के लिए क्लिक करें', dragActive: 'फ़ाइलें यहाँ छोड़ें...', orBrowse: 'या फ़ाइलें ब्राउज़ करें', supportedFormats: '1500+ फॉर्मेट समर्थित', trusted: 'लाखों हम पर भरोसा करते हैं' },
     features: { title: 'TransformFiles क्यों?', subtitle: 'वेब पर सबसे शक्तिशाली फ़ाइल कन्वर्टर', lightning: { title: 'बिजली की तरह तेज़', desc: 'सेकंडों में फ़ाइलें कन्वर्ट करें' }, secure: { title: '100% सुरक्षित', desc: 'फ़ाइलें एन्क्रिप्टेड और स्वचालित रूप से हटाई जाती हैं' }, formats: { title: '1500+ फॉर्मेट', desc: 'लगभग किसी भी फ़ाइल फॉर्मेट का समर्थन' }, free: { title: 'हमेशा मुफ़्त', desc: 'कोई छिपी फीस नहीं, पूरी तरह मुफ़्त' }, quality: { title: 'उच्च गुणवत्ता', desc: 'मूल गुणवत्ता बनाए रखें' }, mobile: { title: 'मोबाइल फ्रेंडली', desc: 'किसी भी डिवाइस पर पूरी तरह काम करता है' } },
+    aiTools: { badge: 'AI संचालित', title: 'मुफ़्त AI उपकरण', subtitle: 'हमारे बुद्धिमान AI उपकरणों से अपनी सामग्री को बदलें। तेज़, सटीक और पूरी तरह मुफ़्त।', viewAll: 'सभी AI उपकरण देखें', imageToCode: { title: 'इमेज से कोड', desc: 'डिज़ाइन को HTML/CSS में बदलें' }, backgroundRemover: { title: 'बैकग्राउंड हटाएं', desc: 'तुरंत बैकग्राउंड हटाएं' }, textSummarizer: { title: 'टेक्स्ट सारांश', desc: 'लंबे दस्तावेज़ों का सारांश' }, grammarFixer: { title: 'व्याकरण सुधारक', desc: 'व्याकरण और वर्तनी सुधारें' }, emailGenerator: { title: 'ईमेल जनरेटर', desc: 'पेशेवर ईमेल बनाएं' }, translator: { title: 'AI अनुवादक', desc: 'किसी भी भाषा का अनुवाद' } },
     footer: { description: 'सबसे तेज़ और सबसे विश्वसनीय ऑनलाइन फ़ाइल कन्वर्टर।', tools: 'उपकरण', converters: 'कन्वर्टर', company: 'कंपनी', legal: 'कानूनी', copyright: '© 2024 TransformFiles.com. सर्वाधिकार सुरक्षित।' },
     about: { title: 'फ़ाइल रूपांतरण को', subtitle: 'सभी के लिए सुलभ बनाना', ourStory: 'हमारी कहानी', storyContent: ['TransformFiles एक साधारण निराशा से पैदा हुआ।', 'हमने सबसे तेज़ कन्वर्टर बनाया।', 'आज TransformFiles दुनिया भर में लाखों उपयोगकर्ताओं की सेवा करता है।'], values: 'हमारे मूल्य', valuesSubtitle: 'वे सिद्धांत जो हमें मार्गदर्शन करते हैं', team: 'हमारी टीम', teamSubtitle: 'TransformFiles के पीछे के जुनूनी लोग', contact: 'संपर्क करें', contactSubtitle: 'प्रश्न या प्रतिक्रिया है?' },
     privacy: { title: 'गोपनीयता नीति', subtitle: 'आपकी गोपनीयता महत्वपूर्ण है', intro: 'TransformFiles में, हम आपकी गोपनीयता को गंभीरता से लेते हैं।' },

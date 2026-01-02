@@ -7,48 +7,48 @@ import { useLanguage } from "@/i18n/LanguageContext";
 import { Button } from "@/components/ui/button";
 
 const AIToolsSection = () => {
-  const { getLocalizedPath } = useLanguage();
+  const { getLocalizedPath, t } = useLanguage();
 
   const tools = [
     {
       icon: Code,
-      title: "Image to Code",
-      description: "Convert designs to HTML/CSS",
+      title: t.aiTools.imageToCode.title,
+      description: t.aiTools.imageToCode.desc,
       path: "/image-to-code",
       gradient: "from-blue-500 to-cyan-500",
     },
     {
       icon: ImageIcon,
-      title: "Background Remover",
-      description: "Remove backgrounds instantly",
+      title: t.aiTools.backgroundRemover.title,
+      description: t.aiTools.backgroundRemover.desc,
       path: "/background-remover",
       gradient: "from-purple-500 to-pink-500",
     },
     {
       icon: FileText,
-      title: "Text Summarizer",
-      description: "Summarize long documents",
+      title: t.aiTools.textSummarizer.title,
+      description: t.aiTools.textSummarizer.desc,
       path: "/text-summarizer",
       gradient: "from-green-500 to-emerald-500",
     },
     {
       icon: CheckCircle,
-      title: "Grammar Fixer",
-      description: "Fix grammar & spelling",
+      title: t.aiTools.grammarFixer.title,
+      description: t.aiTools.grammarFixer.desc,
       path: "/grammar-fixer",
       gradient: "from-yellow-500 to-amber-500",
     },
     {
       icon: Mail,
-      title: "Email Generator",
-      description: "Generate professional emails",
+      title: t.aiTools.emailGenerator.title,
+      description: t.aiTools.emailGenerator.desc,
       path: "/email-generator",
       gradient: "from-indigo-500 to-violet-500",
     },
     {
       icon: Languages,
-      title: "AI Translator",
-      description: "Translate any language",
+      title: t.aiTools.translator.title,
+      description: t.aiTools.translator.desc,
       path: "/translator",
       gradient: "from-teal-500 to-cyan-500",
     },
@@ -60,13 +60,13 @@ const AIToolsSection = () => {
         <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary mb-6">
             <Sparkles className="w-4 h-4" />
-            <span className="text-sm font-medium">Powered by AI</span>
+            <span className="text-sm font-medium">{t.aiTools.badge}</span>
           </div>
           <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Free AI-Powered Tools
+            {t.aiTools.title}
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Transform your content with our intelligent AI tools. Fast, accurate, and completely free.
+            {t.aiTools.subtitle}
           </p>
         </div>
 
@@ -93,7 +93,7 @@ const AIToolsSection = () => {
         <div className="text-center">
           <Button asChild variant="outline" size="lg" className="group">
             <Link to={getLocalizedPath("/ai-tools")}>
-              View All AI Tools
+              {t.aiTools.viewAll}
               <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
             </Link>
           </Button>
