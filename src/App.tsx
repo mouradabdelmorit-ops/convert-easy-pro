@@ -11,6 +11,9 @@ import Index from "./pages/Index";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
 import About from "./pages/About";
+import Contact from "./pages/Contact";
+import FileDeletion from "./pages/FileDeletion";
+import GDPR from "./pages/GDPR";
 import PDFEditor from "./pages/PDFEditor";
 import ResumeMaker from "./pages/ResumeMaker";
 import CookiePolicy from "./pages/CookiePolicy";
@@ -35,23 +38,13 @@ import Admin from "./pages/Admin";
 import AdminLogin from "./pages/AdminLogin";
 import NotFound from "./pages/NotFound";
 
-const queryClient = new QueryClient();
+// Programmatic SEO Tool Pages
+import VideoToolPage from "./pages/tools/VideoToolPage";
+import ImageToolPage from "./pages/tools/ImageToolPage";
+import AudioToolPage from "./pages/tools/AudioToolPage";
+import PDFToolPage from "./pages/tools/PDFToolPage";
 
-// AI Tools routes component
-const AIToolsRoutes = () => (
-  <>
-    <Route path="ai-tools" element={<AITools />} />
-    <Route path="image-to-code" element={<ImageToCode />} />
-    <Route path="background-remover" element={<BackgroundRemover />} />
-    <Route path="image-enhancer" element={<ImageEnhancer />} />
-    <Route path="text-summarizer" element={<TextSummarizer />} />
-    <Route path="grammar-fixer" element={<GrammarFixer />} />
-    <Route path="email-generator" element={<EmailGenerator />} />
-    <Route path="translator" element={<Translator />} />
-    <Route path="paraphraser" element={<Paraphraser />} />
-    <Route path="code-explainer" element={<CodeExplainer />} />
-  </>
-);
+const queryClient = new QueryClient();
 
 const App = () => (
   <HelmetProvider>
@@ -68,6 +61,9 @@ const App = () => (
               <Route path="/privacy" element={<Privacy />} />
               <Route path="/terms" element={<Terms />} />
               <Route path="/about" element={<About />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/file-deletion" element={<FileDeletion />} />
+              <Route path="/gdpr" element={<GDPR />} />
               <Route path="/pdf-editor" element={<PDFEditor />} />
               <Route path="/resume-maker" element={<ResumeMaker />} />
               <Route path="/cookies" element={<CookiePolicy />} />
@@ -79,8 +75,33 @@ const App = () => (
               <Route path="/audio-converter" element={<AudioConverter />} />
               <Route path="/document-converter" element={<DocumentConverter />} />
               
+              {/* Programmatic SEO - Individual Tool Pages */}
+              {/* Video Tools */}
+              <Route path="/video/:slug" element={<VideoToolPage />} />
+              
+              {/* Image Tools */}
+              <Route path="/image/:slug" element={<ImageToolPage />} />
+              
+              {/* Audio Tools */}
+              <Route path="/audio/:slug" element={<AudioToolPage />} />
+              
+              {/* PDF Tools */}
+              <Route path="/pdf/:slug" element={<PDFToolPage />} />
+              
               {/* AI Tools routes */}
               <Route path="/ai-tools" element={<AITools />} />
+              <Route path="/ai/text-summarizer" element={<TextSummarizer />} />
+              <Route path="/ai/paraphraser" element={<Paraphraser />} />
+              <Route path="/ai/grammar-fixer" element={<GrammarFixer />} />
+              <Route path="/ai/translator" element={<Translator />} />
+              <Route path="/ai/email-generator" element={<EmailGenerator />} />
+              <Route path="/ai/image-to-code" element={<ImageToCode />} />
+              <Route path="/ai/code-explainer" element={<CodeExplainer />} />
+              <Route path="/ai/background-remover" element={<BackgroundRemover />} />
+              <Route path="/ai/image-enhancer" element={<ImageEnhancer />} />
+              <Route path="/ai/resume-maker" element={<ResumeMaker />} />
+              
+              {/* Legacy AI routes (redirects) */}
               <Route path="/image-to-code" element={<ImageToCode />} />
               <Route path="/background-remover" element={<BackgroundRemover />} />
               <Route path="/image-enhancer" element={<ImageEnhancer />} />
@@ -102,6 +123,9 @@ const App = () => (
                   <Route path="privacy" element={<Privacy />} />
                   <Route path="terms" element={<Terms />} />
                   <Route path="about" element={<About />} />
+                  <Route path="contact" element={<Contact />} />
+                  <Route path="file-deletion" element={<FileDeletion />} />
+                  <Route path="gdpr" element={<GDPR />} />
                   <Route path="pdf-editor" element={<PDFEditor />} />
                   <Route path="resume-maker" element={<ResumeMaker />} />
                   <Route path="cookies" element={<CookiePolicy />} />
@@ -112,17 +136,22 @@ const App = () => (
                   <Route path="image-converter" element={<ImageConverter />} />
                   <Route path="audio-converter" element={<AudioConverter />} />
                   <Route path="document-converter" element={<DocumentConverter />} />
+                  {/* Tool pages */}
+                  <Route path="video/:slug" element={<VideoToolPage />} />
+                  <Route path="image/:slug" element={<ImageToolPage />} />
+                  <Route path="audio/:slug" element={<AudioToolPage />} />
+                  <Route path="pdf/:slug" element={<PDFToolPage />} />
                   {/* AI Tools */}
                   <Route path="ai-tools" element={<AITools />} />
-                  <Route path="image-to-code" element={<ImageToCode />} />
-                  <Route path="background-remover" element={<BackgroundRemover />} />
-                  <Route path="image-enhancer" element={<ImageEnhancer />} />
-                  <Route path="text-summarizer" element={<TextSummarizer />} />
-                  <Route path="grammar-fixer" element={<GrammarFixer />} />
-                  <Route path="email-generator" element={<EmailGenerator />} />
-                  <Route path="translator" element={<Translator />} />
-                  <Route path="paraphraser" element={<Paraphraser />} />
-                  <Route path="code-explainer" element={<CodeExplainer />} />
+                  <Route path="ai/text-summarizer" element={<TextSummarizer />} />
+                  <Route path="ai/paraphraser" element={<Paraphraser />} />
+                  <Route path="ai/grammar-fixer" element={<GrammarFixer />} />
+                  <Route path="ai/translator" element={<Translator />} />
+                  <Route path="ai/email-generator" element={<EmailGenerator />} />
+                  <Route path="ai/image-to-code" element={<ImageToCode />} />
+                  <Route path="ai/code-explainer" element={<CodeExplainer />} />
+                  <Route path="ai/background-remover" element={<BackgroundRemover />} />
+                  <Route path="ai/image-enhancer" element={<ImageEnhancer />} />
                 </Route>
               ))}
               
