@@ -5,10 +5,17 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/hooks/use-toast";
+import { Link } from "react-router-dom";
 import { 
   Image, Upload, ArrowRight, Download, Loader2, X, 
-  ImageIcon, CheckCircle
+  ImageIcon, CheckCircle, Zap, Shield, Globe, HelpCircle
 } from "lucide-react";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 const imageFormats = ["JPG", "PNG", "WEBP", "GIF", "BMP", "TIFF", "SVG", "ICO", "AVIF", "HEIC"];
 
@@ -118,6 +125,40 @@ const ImageConverter = () => {
     }
   };
 
+  const faqs = [
+    {
+      question: "What image formats can I convert?",
+      answer: "We support all major image formats including JPG, PNG, WebP, GIF, BMP, TIFF, SVG, ICO, AVIF, and HEIC. Convert between any of these formats instantly."
+    },
+    {
+      question: "Will image quality be preserved?",
+      answer: "Yes! We use high-quality conversion algorithms that maintain the original image quality. For lossy formats like JPG, we use optimal compression settings."
+    },
+    {
+      question: "Can I convert HEIC photos from iPhone?",
+      answer: "Absolutely! Our converter fully supports HEIC format from iPhone and can convert it to JPG, PNG, or any other format for universal compatibility."
+    },
+    {
+      question: "Is batch image conversion supported?",
+      answer: "Yes, you can upload and convert multiple images at once. Each file will be processed and available for individual download."
+    },
+    {
+      question: "Is the image converter free?",
+      answer: "Yes! Our image converter is completely free with no registration, no watermarks, and unlimited conversions."
+    }
+  ];
+
+  const features = [
+    "Convert JPG to PNG, PNG to JPG, HEIC to JPG",
+    "Support for 10+ image formats",
+    "Batch conversion support",
+    "High-quality output",
+    "Fast processing",
+    "Preserve image quality",
+    "No watermarks added",
+    "Works on all devices"
+  ];
+
   return (
     <>
       <Helmet>
@@ -130,7 +171,6 @@ const ImageConverter = () => {
         <meta property="og:url" content="https://transformfiles.com/image-converter" />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Free Image Converter Online - JPG, PNG, WebP | TransformFiles" />
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
@@ -141,7 +181,7 @@ const ImageConverter = () => {
             "applicationCategory": "MultimediaApplication",
             "operatingSystem": "Web Browser",
             "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-            "featureList": ["JPG to PNG conversion", "PNG to JPG conversion", "HEIC to JPG conversion", "WebP conversion", "High quality output", "No watermark", "No registration required"]
+            "featureList": features
           })}
         </script>
       </Helmet>
@@ -160,10 +200,10 @@ const ImageConverter = () => {
                   <span className="text-sm font-medium text-foreground">Image Converter</span>
                 </div>
                 <h1 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
-                  Convert <span className="text-green-400">Image Files</span> Online
+                  Convert <span className="text-green-400">Image Files</span> Online Free
                 </h1>
                 <p className="text-base md:text-lg text-muted-foreground mb-8">
-                  Convert between JPG, PNG, WEBP, GIF, and more. Fast and free.
+                  Convert between JPG, PNG, WEBP, GIF, HEIC and more. Fast, free, high quality.
                 </p>
               </div>
             </div>
@@ -256,7 +296,6 @@ const ImageConverter = () => {
                     </div>
                   ))}
 
-                  {/* Convert Button */}
                   <Button
                     size="lg"
                     className="w-full bg-green-500 hover:bg-green-600 text-white mt-4"
@@ -271,6 +310,112 @@ const ImageConverter = () => {
                   </Button>
                 </div>
               )}
+            </div>
+          </section>
+
+          {/* Features Section */}
+          <section className="py-12 md:py-16 bg-background">
+            <div className="container mx-auto px-4">
+              <div className="max-w-4xl mx-auto">
+                <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-8 text-center">
+                  Why Use Our Image Converter?
+                </h2>
+                
+                <div className="grid md:grid-cols-3 gap-6 mb-12">
+                  <div className="bg-secondary/30 rounded-xl p-6 border border-border">
+                    <div className="w-12 h-12 bg-green-500/10 rounded-lg flex items-center justify-center mb-4">
+                      <Zap className="w-6 h-6 text-green-500" />
+                    </div>
+                    <h3 className="font-semibold text-foreground mb-2">Instant Conversion</h3>
+                    <p className="text-sm text-muted-foreground">
+                      Convert images in seconds with our optimized processing engine.
+                    </p>
+                  </div>
+                  <div className="bg-secondary/30 rounded-xl p-6 border border-border">
+                    <div className="w-12 h-12 bg-green-500/10 rounded-lg flex items-center justify-center mb-4">
+                      <Shield className="w-6 h-6 text-green-500" />
+                    </div>
+                    <h3 className="font-semibold text-foreground mb-2">High Quality</h3>
+                    <p className="text-sm text-muted-foreground">
+                      Preserve image quality with optimized compression algorithms.
+                    </p>
+                  </div>
+                  <div className="bg-secondary/30 rounded-xl p-6 border border-border">
+                    <div className="w-12 h-12 bg-blue-500/10 rounded-lg flex items-center justify-center mb-4">
+                      <Globe className="w-6 h-6 text-blue-500" />
+                    </div>
+                    <h3 className="font-semibold text-foreground mb-2">Works Everywhere</h3>
+                    <p className="text-sm text-muted-foreground">
+                      Browser-based - works on any device with no installation.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="grid md:grid-cols-2 gap-4 mb-12">
+                  {features.map((feature, index) => (
+                    <div key={index} className="flex items-center gap-3 p-4 bg-secondary/20 rounded-lg">
+                      <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
+                      <span className="text-foreground">{feature}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* FAQ Section */}
+          <section className="py-12 md:py-16 bg-navy-dark">
+            <div className="container mx-auto px-4">
+              <div className="max-w-3xl mx-auto">
+                <div className="flex items-center gap-3 mb-8">
+                  <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
+                    <HelpCircle className="w-5 h-5 text-primary" />
+                  </div>
+                  <h2 className="text-2xl md:text-3xl font-bold text-foreground">
+                    Frequently Asked Questions
+                  </h2>
+                </div>
+                
+                <Accordion type="single" collapsible className="space-y-3">
+                  {faqs.map((faq, index) => (
+                    <AccordionItem 
+                      key={index} 
+                      value={`faq-${index}`}
+                      className="bg-secondary/30 border border-border rounded-xl px-6 data-[state=open]:bg-secondary/50 transition-colors"
+                    >
+                      <AccordionTrigger className="text-left text-foreground hover:text-primary py-5 text-base font-medium hover:no-underline">
+                        {faq.question}
+                      </AccordionTrigger>
+                      <AccordionContent className="text-muted-foreground pb-5 text-base leading-relaxed">
+                        {faq.answer}
+                      </AccordionContent>
+                    </AccordionItem>
+                  ))}
+                </Accordion>
+              </div>
+            </div>
+          </section>
+
+          {/* Related Tools */}
+          <section className="py-12 md:py-16 bg-background">
+            <div className="container mx-auto px-4">
+              <div className="max-w-4xl mx-auto">
+                <h2 className="text-2xl font-bold text-foreground mb-6">Popular Image Conversions</h2>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                  <Link to="/image/jpg-to-png" className="p-4 bg-secondary/30 rounded-xl border border-border hover:border-green-500 transition-colors text-center">
+                    <span className="text-foreground font-medium">JPG to PNG</span>
+                  </Link>
+                  <Link to="/image/png-to-jpg" className="p-4 bg-secondary/30 rounded-xl border border-border hover:border-green-500 transition-colors text-center">
+                    <span className="text-foreground font-medium">PNG to JPG</span>
+                  </Link>
+                  <Link to="/image/heic-to-jpg" className="p-4 bg-secondary/30 rounded-xl border border-border hover:border-green-500 transition-colors text-center">
+                    <span className="text-foreground font-medium">HEIC to JPG</span>
+                  </Link>
+                  <Link to="/image/webp-to-jpg" className="p-4 bg-secondary/30 rounded-xl border border-border hover:border-green-500 transition-colors text-center">
+                    <span className="text-foreground font-medium">WebP to JPG</span>
+                  </Link>
+                </div>
+              </div>
             </div>
           </section>
         </main>

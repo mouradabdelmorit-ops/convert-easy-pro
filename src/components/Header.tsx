@@ -321,16 +321,24 @@ const Header = () => {
                   <div className="ml-4 mt-2 space-y-4">
                     {converterCategories.map((category) => (
                       <div key={category.name}>
-                        <div className={`flex items-center gap-2 font-semibold text-sm mb-2 ${category.color}`}>
+                        <button
+                          className={`flex items-center gap-2 font-semibold text-sm mb-2 ${category.color} w-full text-left`}
+                          onClick={() => { 
+                            setIsMenuOpen(false); 
+                            setActiveDropdown(null);
+                            navigate(getLocalizedPath(category.path));
+                          }}
+                        >
                           <category.icon className="w-4 h-4" />
                           {category.name}
-                        </div>
+                        </button>
                         <ul className="space-y-1 ml-6">
                           {category.tools.slice(0, 5).map((tool) => (
                             <li key={tool.path}>
                               <button
                                 className="text-sm text-muted-foreground hover:text-primary block py-1 w-full text-left"
-                                onClick={() => { 
+                                onClick={(e) => { 
+                                  e.stopPropagation();
                                   setIsMenuOpen(false); 
                                   setActiveDropdown(null);
                                   navigate(getLocalizedPath(tool.path));
@@ -343,6 +351,16 @@ const Header = () => {
                         </ul>
                       </div>
                     ))}
+                    <button
+                      className="text-sm text-primary font-medium py-2"
+                      onClick={() => { 
+                        setIsMenuOpen(false); 
+                        setActiveDropdown(null);
+                        navigate(getLocalizedPath('/all-tools'));
+                      }}
+                    >
+                      View all tools →
+                    </button>
                   </div>
                 )}
               </div>
@@ -364,8 +382,9 @@ const Header = () => {
                     {aiTools.map((tool) => (
                       <li key={tool.path}>
                         <button
-                          className="text-sm text-muted-foreground hover:text-primary block py-2 px-3 w-full text-left"
-                          onClick={() => { 
+                          className="text-sm text-muted-foreground hover:text-primary block py-2 px-3 w-full text-left rounded-lg hover:bg-muted/50 transition-colors"
+                          onClick={(e) => { 
+                            e.stopPropagation();
                             setIsMenuOpen(false); 
                             setActiveDropdown(null);
                             navigate(getLocalizedPath(tool.path));
@@ -375,6 +394,18 @@ const Header = () => {
                         </button>
                       </li>
                     ))}
+                    <li>
+                      <button
+                        className="text-sm text-primary font-medium py-2 px-3"
+                        onClick={() => { 
+                          setIsMenuOpen(false); 
+                          setActiveDropdown(null);
+                          navigate(getLocalizedPath('/ai-tools'));
+                        }}
+                      >
+                        View all AI tools →
+                      </button>
+                    </li>
                   </ul>
                 )}
               </div>

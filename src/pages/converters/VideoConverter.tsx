@@ -5,10 +5,17 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/hooks/use-toast";
+import { Link } from "react-router-dom";
 import { 
   Video, Upload, ArrowRight, Download, Loader2, X, 
-  Play, CheckCircle, Film
+  Play, CheckCircle, Film, Zap, Shield, Globe, HelpCircle
 } from "lucide-react";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 const videoFormats = ["MP4", "AVI", "MKV", "MOV", "WMV", "FLV", "WEBM", "M4V", "3GP", "MPEG"];
 
@@ -114,6 +121,40 @@ const VideoConverter = () => {
     }
   };
 
+  const faqs = [
+    {
+      question: "What video formats can I convert?",
+      answer: "Our converter supports all major video formats including MP4, AVI, MKV, MOV, WMV, FLV, WebM, M4V, 3GP, and MPEG. You can convert between any of these formats."
+    },
+    {
+      question: "Is there a file size limit?",
+      answer: "We support video files up to 500MB for free conversions. For larger files, consider compressing them first or splitting into smaller segments."
+    },
+    {
+      question: "Will the video quality be affected?",
+      answer: "Our converter maintains the highest possible quality during conversion. We use optimized settings to preserve video quality while ensuring compatibility."
+    },
+    {
+      question: "Is the video converter free?",
+      answer: "Yes! Our video converter is completely free to use. No registration required, no watermarks, and unlimited conversions."
+    },
+    {
+      question: "Can I convert multiple videos at once?",
+      answer: "Yes, you can upload and convert multiple videos in a single batch. Each file will be processed and made available for individual download."
+    }
+  ];
+
+  const features = [
+    "Convert MP4 to AVI, MKV to MP4, MOV to MP4",
+    "Support for 10+ video formats",
+    "Batch conversion support",
+    "No file size limits for most files",
+    "Fast cloud-based processing",
+    "Maintains video quality",
+    "No watermarks added",
+    "Works on all devices"
+  ];
+
   return (
     <>
       <Helmet>
@@ -126,8 +167,6 @@ const VideoConverter = () => {
         <meta property="og:url" content="https://transformfiles.com/video-converter" />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Free Video Converter Online - MP4, AVI, MKV, MOV | TransformFiles" />
-        <meta name="twitter:description" content="Convert video files online free. MP4 to AVI, MKV to MP4, MOV to MP4. Fast, secure, no watermark." />
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
@@ -138,7 +177,7 @@ const VideoConverter = () => {
             "applicationCategory": "MultimediaApplication",
             "operatingSystem": "Web Browser",
             "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-            "featureList": ["MP4 to AVI conversion", "MKV to MP4 conversion", "MOV to MP4 conversion", "WebM to MP4 conversion", "Batch video conversion", "No watermark", "No registration required"]
+            "featureList": features
           })}
         </script>
       </Helmet>
@@ -157,10 +196,10 @@ const VideoConverter = () => {
                   <span className="text-sm font-medium text-foreground">Video Converter</span>
                 </div>
                 <h1 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
-                  Convert <span className="text-red-400">Video Files</span> Online
+                  Convert <span className="text-red-400">Video Files</span> Online Free
                 </h1>
                 <p className="text-base md:text-lg text-muted-foreground mb-8">
-                  Convert between MP4, AVI, MKV, MOV, and more. Fast and free.
+                  Convert between MP4, AVI, MKV, MOV, and 10+ formats. Fast, free, and no watermarks.
                 </p>
               </div>
             </div>
@@ -249,7 +288,6 @@ const VideoConverter = () => {
                     </div>
                   ))}
 
-                  {/* Convert Button */}
                   <Button
                     size="lg"
                     className="w-full bg-red-500 hover:bg-red-600 text-white mt-4"
@@ -264,6 +302,112 @@ const VideoConverter = () => {
                   </Button>
                 </div>
               )}
+            </div>
+          </section>
+
+          {/* Features Section */}
+          <section className="py-12 md:py-16 bg-background">
+            <div className="container mx-auto px-4">
+              <div className="max-w-4xl mx-auto">
+                <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-8 text-center">
+                  Why Use Our Video Converter?
+                </h2>
+                
+                <div className="grid md:grid-cols-3 gap-6 mb-12">
+                  <div className="bg-secondary/30 rounded-xl p-6 border border-border">
+                    <div className="w-12 h-12 bg-red-500/10 rounded-lg flex items-center justify-center mb-4">
+                      <Zap className="w-6 h-6 text-red-500" />
+                    </div>
+                    <h3 className="font-semibold text-foreground mb-2">Lightning Fast</h3>
+                    <p className="text-sm text-muted-foreground">
+                      Cloud-based processing converts your videos in seconds, not minutes.
+                    </p>
+                  </div>
+                  <div className="bg-secondary/30 rounded-xl p-6 border border-border">
+                    <div className="w-12 h-12 bg-green-500/10 rounded-lg flex items-center justify-center mb-4">
+                      <Shield className="w-6 h-6 text-green-500" />
+                    </div>
+                    <h3 className="font-semibold text-foreground mb-2">Secure & Private</h3>
+                    <p className="text-sm text-muted-foreground">
+                      Files are encrypted and automatically deleted within 2 hours.
+                    </p>
+                  </div>
+                  <div className="bg-secondary/30 rounded-xl p-6 border border-border">
+                    <div className="w-12 h-12 bg-blue-500/10 rounded-lg flex items-center justify-center mb-4">
+                      <Globe className="w-6 h-6 text-blue-500" />
+                    </div>
+                    <h3 className="font-semibold text-foreground mb-2">Works Everywhere</h3>
+                    <p className="text-sm text-muted-foreground">
+                      Browser-based - works on Windows, Mac, Linux, iOS, Android.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="grid md:grid-cols-2 gap-4 mb-12">
+                  {features.map((feature, index) => (
+                    <div key={index} className="flex items-center gap-3 p-4 bg-secondary/20 rounded-lg">
+                      <CheckCircle className="w-5 h-5 text-red-500 flex-shrink-0" />
+                      <span className="text-foreground">{feature}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* FAQ Section */}
+          <section className="py-12 md:py-16 bg-navy-dark">
+            <div className="container mx-auto px-4">
+              <div className="max-w-3xl mx-auto">
+                <div className="flex items-center gap-3 mb-8">
+                  <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
+                    <HelpCircle className="w-5 h-5 text-primary" />
+                  </div>
+                  <h2 className="text-2xl md:text-3xl font-bold text-foreground">
+                    Frequently Asked Questions
+                  </h2>
+                </div>
+                
+                <Accordion type="single" collapsible className="space-y-3">
+                  {faqs.map((faq, index) => (
+                    <AccordionItem 
+                      key={index} 
+                      value={`faq-${index}`}
+                      className="bg-secondary/30 border border-border rounded-xl px-6 data-[state=open]:bg-secondary/50 transition-colors"
+                    >
+                      <AccordionTrigger className="text-left text-foreground hover:text-primary py-5 text-base font-medium hover:no-underline">
+                        {faq.question}
+                      </AccordionTrigger>
+                      <AccordionContent className="text-muted-foreground pb-5 text-base leading-relaxed">
+                        {faq.answer}
+                      </AccordionContent>
+                    </AccordionItem>
+                  ))}
+                </Accordion>
+              </div>
+            </div>
+          </section>
+
+          {/* Related Tools */}
+          <section className="py-12 md:py-16 bg-background">
+            <div className="container mx-auto px-4">
+              <div className="max-w-4xl mx-auto">
+                <h2 className="text-2xl font-bold text-foreground mb-6">Popular Video Conversions</h2>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                  <Link to="/video/mp4-to-mp3" className="p-4 bg-secondary/30 rounded-xl border border-border hover:border-red-500 transition-colors text-center">
+                    <span className="text-foreground font-medium">MP4 to MP3</span>
+                  </Link>
+                  <Link to="/video/mkv-to-mp4" className="p-4 bg-secondary/30 rounded-xl border border-border hover:border-red-500 transition-colors text-center">
+                    <span className="text-foreground font-medium">MKV to MP4</span>
+                  </Link>
+                  <Link to="/video/mov-to-mp4" className="p-4 bg-secondary/30 rounded-xl border border-border hover:border-red-500 transition-colors text-center">
+                    <span className="text-foreground font-medium">MOV to MP4</span>
+                  </Link>
+                  <Link to="/video/avi-to-mp4" className="p-4 bg-secondary/30 rounded-xl border border-border hover:border-red-500 transition-colors text-center">
+                    <span className="text-foreground font-medium">AVI to MP4</span>
+                  </Link>
+                </div>
+              </div>
             </div>
           </section>
         </main>
