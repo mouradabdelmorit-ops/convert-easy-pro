@@ -44,6 +44,7 @@ import VideoToolPage from "./pages/tools/VideoToolPage";
 import ImageToolPage from "./pages/tools/ImageToolPage";
 import AudioToolPage from "./pages/tools/AudioToolPage";
 import PDFToolPage from "./pages/tools/PDFToolPage";
+import AIToolPage from "./pages/tools/AIToolPage";
 
 const queryClient = new QueryClient();
 
@@ -89,18 +90,14 @@ const App = () => (
               {/* PDF Tools */}
               <Route path="/pdf/:slug" element={<PDFToolPage />} />
               
-              {/* AI Tools routes */}
+              {/* AI Tools routes - Using unified AIToolPage */}
               <Route path="/ai-tools" element={<AITools />} />
-              <Route path="/ai/text-summarizer" element={<TextSummarizer />} />
-              <Route path="/ai/paraphraser" element={<Paraphraser />} />
-              <Route path="/ai/grammar-fixer" element={<GrammarFixer />} />
-              <Route path="/ai/translator" element={<Translator />} />
-              <Route path="/ai/email-generator" element={<EmailGenerator />} />
+              <Route path="/ai/:slug" element={<AIToolPage />} />
+              
+              {/* Special AI tools with custom interfaces */}
               <Route path="/ai/image-to-code" element={<ImageToCode />} />
-              <Route path="/ai/code-explainer" element={<CodeExplainer />} />
               <Route path="/ai/background-remover" element={<BackgroundRemover />} />
               <Route path="/ai/image-enhancer" element={<ImageEnhancer />} />
-              <Route path="/ai/resume-maker" element={<ResumeMaker />} />
               
               {/* Legacy AI routes (redirects) */}
               <Route path="/image-to-code" element={<ImageToCode />} />
@@ -145,13 +142,8 @@ const App = () => (
                   <Route path="pdf/:slug" element={<PDFToolPage />} />
                   {/* AI Tools */}
                   <Route path="ai-tools" element={<AITools />} />
-                  <Route path="ai/text-summarizer" element={<TextSummarizer />} />
-                  <Route path="ai/paraphraser" element={<Paraphraser />} />
-                  <Route path="ai/grammar-fixer" element={<GrammarFixer />} />
-                  <Route path="ai/translator" element={<Translator />} />
-                  <Route path="ai/email-generator" element={<EmailGenerator />} />
+                  <Route path="ai/:slug" element={<AIToolPage />} />
                   <Route path="ai/image-to-code" element={<ImageToCode />} />
-                  <Route path="ai/code-explainer" element={<CodeExplainer />} />
                   <Route path="ai/background-remover" element={<BackgroundRemover />} />
                   <Route path="ai/image-enhancer" element={<ImageEnhancer />} />
                 </Route>
