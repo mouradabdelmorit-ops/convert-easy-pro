@@ -1,14 +1,44 @@
-# TransformFiles - Online File Converter
+# TransformFiles - Free Online File Converter & AI Tools
 # https://transformfiles.com
+# Last updated: 2025-01-03
 
+# Google (highest priority)
 User-agent: Googlebot
 Allow: /
-Crawl-delay: 1
+Crawl-delay: 0
 
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Googlebot-Video
+Allow: /
+
+# Bing
 User-agent: Bingbot
 Allow: /
 Crawl-delay: 1
 
+# Yahoo
+User-agent: Slurp
+Allow: /
+Crawl-delay: 1
+
+# DuckDuckGo
+User-agent: DuckDuckBot
+Allow: /
+Crawl-delay: 1
+
+# Yandex
+User-agent: YandexBot
+Allow: /
+Crawl-delay: 2
+
+# Baidu
+User-agent: Baiduspider
+Allow: /
+Crawl-delay: 2
+
+# Social Media Bots (for sharing)
 User-agent: Twitterbot
 Allow: /
 
@@ -18,22 +48,16 @@ Allow: /
 User-agent: LinkedInBot
 Allow: /
 
-User-agent: Slurp
+User-agent: Pinterest
 Allow: /
-Crawl-delay: 1
 
-User-agent: DuckDuckBot
+User-agent: WhatsApp
 Allow: /
-Crawl-delay: 1
 
-User-agent: Baiduspider
+User-agent: TelegramBot
 Allow: /
-Crawl-delay: 2
 
-User-agent: YandexBot
-Allow: /
-Crawl-delay: 2
-
+# All other bots
 User-agent: *
 Allow: /
 Crawl-delay: 2
@@ -41,12 +65,43 @@ Crawl-delay: 2
 # Sitemaps
 Sitemap: https://transformfiles.com/sitemap.xml
 
-# Important pages
+# Priority Pages for Indexing
 # Homepage: https://transformfiles.com/
-# Video Converter: https://transformfiles.com/video-converter
-# Image Converter: https://transformfiles.com/image-converter
-# Audio Converter: https://transformfiles.com/audio-converter
-# Document Converter: https://transformfiles.com/document-converter
+# All Tools: https://transformfiles.com/all-tools
+# 
+# Video Converters:
+# - MP4 to MP3: https://transformfiles.com/video/mp4-to-mp3
+# - MKV to MP4: https://transformfiles.com/video/mkv-to-mp4
+# - MOV to MP4: https://transformfiles.com/video/mov-to-mp4
+# - AVI to MP4: https://transformfiles.com/video/avi-to-mp4
+# - Video Compressor: https://transformfiles.com/video/video-compressor
+#
+# Image Converters:
+# - JPG to PNG: https://transformfiles.com/image/jpg-to-png
+# - PNG to JPG: https://transformfiles.com/image/png-to-jpg
+# - HEIC to JPG: https://transformfiles.com/image/heic-to-jpg
+# - WebP to JPG: https://transformfiles.com/image/webp-to-jpg
+# - Image Compressor: https://transformfiles.com/image/image-compressor
+#
+# Audio Converters:
+# - WAV to MP3: https://transformfiles.com/audio/wav-to-mp3
+# - M4A to MP3: https://transformfiles.com/audio/m4a-to-mp3
+# - FLAC to MP3: https://transformfiles.com/audio/flac-to-mp3
+#
+# PDF Tools:
+# - PDF to Word: https://transformfiles.com/pdf/pdf-to-word
+# - Word to PDF: https://transformfiles.com/pdf/word-to-pdf
+# - Merge PDF: https://transformfiles.com/pdf/merge-pdf
+# - Compress PDF: https://transformfiles.com/pdf/compress-pdf
+#
+# AI Tools:
+# - Text Summarizer: https://transformfiles.com/ai/text-summarizer
+# - Paraphraser: https://transformfiles.com/ai/paraphraser
+# - Grammar Checker: https://transformfiles.com/ai/grammar-fixer
+# - Translator: https://transformfiles.com/ai/translator
+# - Email Generator: https://transformfiles.com/ai/email-generator
+# - Image to Code: https://transformfiles.com/ai/image-to-code
+#
 # PDF Editor: https://transformfiles.com/pdf-editor
-# AI Tools: https://transformfiles.com/ai-tools
+# Resume Maker: https://transformfiles.com/resume-maker
 # Blog: https://transformfiles.com/blog

@@ -1,212 +1,171 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  <!-- Main Pages -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <!-- ==================== MAIN PAGES ==================== -->
   <url>
     <loc>https://transformfiles.com/</loc>
-    <lastmod>2026-01-03</lastmod>
+    <lastmod>2025-01-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://transformfiles.com/about</loc>
-    <lastmod>2026-01-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://transformfiles.com/contact</loc>
-    <lastmod>2026-01-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://transformfiles.com/blog</loc>
-    <lastmod>2026-01-03</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <!-- Main Tool Hubs -->
-  <url>
-    <loc>https://transformfiles.com/video-converter</loc>
-    <lastmod>2026-01-03</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.95</priority>
-  </url>
-  <url>
-    <loc>https://transformfiles.com/image-converter</loc>
-    <lastmod>2026-01-03</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.95</priority>
-  </url>
-  <url>
-    <loc>https://transformfiles.com/audio-converter</loc>
-    <lastmod>2026-01-03</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.95</priority>
-  </url>
-  <url>
-    <loc>https://transformfiles.com/pdf-editor</loc>
-    <lastmod>2026-01-03</lastmod>
+    <loc>https://transformfiles.com/all-tools</loc>
+    <lastmod>2025-01-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
     <loc>https://transformfiles.com/ai-tools</loc>
-    <lastmod>2026-01-03</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.95</priority>
-  </url>
-  <url>
-    <loc>https://transformfiles.com/resume-maker</loc>
-    <lastmod>2026-01-03</lastmod>
+    <lastmod>2025-01-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://transformfiles.com/compress</loc>
-    <lastmod>2026-01-03</lastmod>
+    <loc>https://transformfiles.com/pdf-editor</loc>
+    <lastmod>2025-01-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://transformfiles.com/resume-maker</loc>
+    <lastmod>2025-01-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
 
-  <!-- VIDEO CONVERSIONS - HIGH VOLUME KEYWORDS -->
-  <url><loc>https://transformfiles.com/video/mp4-to-mp3</loc><lastmod>2026-01-03</lastmod><changefreq>weekly</changefreq><priority>0.95</priority></url>
-  <url><loc>https://transformfiles.com/video/mkv-to-mp4</loc><lastmod>2026-01-03</lastmod><changefreq>weekly</changefreq><priority>0.95</priority></url>
-  <url><loc>https://transformfiles.com/video/mov-to-mp4</loc><lastmod>2026-01-03</lastmod><changefreq>weekly</changefreq><priority>0.95</priority></url>
-  <url><loc>https://transformfiles.com/video/avi-to-mp4</loc><lastmod>2026-01-03</lastmod><changefreq>weekly</changefreq><priority>0.95</priority></url>
-  <url><loc>https://transformfiles.com/video/wmv-to-mp4</loc><lastmod>2026-01-03</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://transformfiles.com/video/flv-to-mp4</loc><lastmod>2026-01-03</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://transformfiles.com/video/webm-to-mp4</loc><lastmod>2026-01-03</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://transformfiles.com/video/mp4-to-webm</loc><lastmod>2026-01-03</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://transformfiles.com/video/mp4-to-gif</loc><lastmod>2026-01-03</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://transformfiles.com/video/gif-to-mp4</loc><lastmod>2026-01-03</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://transformfiles.com/video/mov-to-mp3</loc><lastmod>2026-01-03</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://transformfiles.com/video/mp4-to-wav</loc><lastmod>2026-01-03</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://transformfiles.com/video/mp4-to-avi</loc><lastmod>2026-01-03</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://transformfiles.com/video/m4v-to-mp4</loc><lastmod>2026-01-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://transformfiles.com/video/3gp-to-mp4</loc><lastmod>2026-01-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://transformfiles.com/video/video-compressor</loc><lastmod>2026-01-03</lastmod><changefreq>weekly</changefreq><priority>0.95</priority></url>
+  <!-- ==================== CONVERTER HUB PAGES ==================== -->
+  <url>
+    <loc>https://transformfiles.com/video-converter</loc>
+    <lastmod>2025-01-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://transformfiles.com/image-converter</loc>
+    <lastmod>2025-01-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://transformfiles.com/audio-converter</loc>
+    <lastmod>2025-01-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://transformfiles.com/document-converter</loc>
+    <lastmod>2025-01-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
 
-  <!-- IMAGE CONVERSIONS - HIGH VOLUME KEYWORDS -->
-  <url><loc>https://transformfiles.com/image/jpg-to-png</loc><lastmod>2026-01-03</lastmod><changefreq>weekly</changefreq><priority>0.95</priority></url>
-  <url><loc>https://transformfiles.com/image/png-to-jpg</loc><lastmod>2026-01-03</lastmod><changefreq>weekly</changefreq><priority>0.95</priority></url>
-  <url><loc>https://transformfiles.com/image/heic-to-jpg</loc><lastmod>2026-01-03</lastmod><changefreq>weekly</changefreq><priority>0.95</priority></url>
-  <url><loc>https://transformfiles.com/image/webp-to-jpg</loc><lastmod>2026-01-03</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://transformfiles.com/image/webp-to-png</loc><lastmod>2026-01-03</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://transformfiles.com/image/png-to-webp</loc><lastmod>2026-01-03</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://transformfiles.com/image/jpg-to-webp</loc><lastmod>2026-01-03</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://transformfiles.com/image/svg-to-png</loc><lastmod>2026-01-03</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://transformfiles.com/image/png-to-svg</loc><lastmod>2026-01-03</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://transformfiles.com/image/png-to-ico</loc><lastmod>2026-01-03</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://transformfiles.com/image/jpg-to-pdf</loc><lastmod>2026-01-03</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://transformfiles.com/image/png-to-pdf</loc><lastmod>2026-01-03</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://transformfiles.com/image/gif-to-png</loc><lastmod>2026-01-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://transformfiles.com/image/bmp-to-jpg</loc><lastmod>2026-01-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://transformfiles.com/image/tiff-to-jpg</loc><lastmod>2026-01-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://transformfiles.com/image/image-compressor</loc><lastmod>2026-01-03</lastmod><changefreq>weekly</changefreq><priority>0.95</priority></url>
-  <url><loc>https://transformfiles.com/image/image-resizer</loc><lastmod>2026-01-03</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://transformfiles.com/image/crop-image</loc><lastmod>2026-01-03</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <!-- ==================== VIDEO TOOLS (HIGH TRAFFIC) ==================== -->
+  <url><loc>https://transformfiles.com/video/mp4-to-mp3</loc><lastmod>2025-01-03</lastmod><changefreq>weekly</changefreq><priority>0.95</priority></url>
+  <url><loc>https://transformfiles.com/video/mkv-to-mp4</loc><lastmod>2025-01-03</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://transformfiles.com/video/mov-to-mp4</loc><lastmod>2025-01-03</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://transformfiles.com/video/avi-to-mp4</loc><lastmod>2025-01-03</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://transformfiles.com/video/wmv-to-mp4</loc><lastmod>2025-01-03</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://transformfiles.com/video/flv-to-mp4</loc><lastmod>2025-01-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://transformfiles.com/video/webm-to-mp4</loc><lastmod>2025-01-03</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://transformfiles.com/video/mp4-to-gif</loc><lastmod>2025-01-03</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://transformfiles.com/video/mp4-to-webm</loc><lastmod>2025-01-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://transformfiles.com/video/mp4-to-avi</loc><lastmod>2025-01-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://transformfiles.com/video/mp4-to-mov</loc><lastmod>2025-01-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://transformfiles.com/video/gif-to-mp4</loc><lastmod>2025-01-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://transformfiles.com/video/3gp-to-mp4</loc><lastmod>2025-01-03</lastmod><changefreq>weekly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://transformfiles.com/video/video-compressor</loc><lastmod>2025-01-03</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://transformfiles.com/video/mov-to-mp3</loc><lastmod>2025-01-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
 
-  <!-- PDF TOOLS - HIGH CPC KEYWORDS -->
-  <url><loc>https://transformfiles.com/pdf/pdf-to-word</loc><lastmod>2026-01-03</lastmod><changefreq>weekly</changefreq><priority>0.98</priority></url>
-  <url><loc>https://transformfiles.com/pdf/word-to-pdf</loc><lastmod>2026-01-03</lastmod><changefreq>weekly</changefreq><priority>0.98</priority></url>
-  <url><loc>https://transformfiles.com/pdf/pdf-to-jpg</loc><lastmod>2026-01-03</lastmod><changefreq>weekly</changefreq><priority>0.95</priority></url>
-  <url><loc>https://transformfiles.com/pdf/jpg-to-pdf</loc><lastmod>2026-01-03</lastmod><changefreq>weekly</changefreq><priority>0.95</priority></url>
-  <url><loc>https://transformfiles.com/pdf/pdf-to-png</loc><lastmod>2026-01-03</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://transformfiles.com/pdf/merge-pdf</loc><lastmod>2026-01-03</lastmod><changefreq>weekly</changefreq><priority>0.98</priority></url>
-  <url><loc>https://transformfiles.com/pdf/split-pdf</loc><lastmod>2026-01-03</lastmod><changefreq>weekly</changefreq><priority>0.95</priority></url>
-  <url><loc>https://transformfiles.com/pdf/compress-pdf</loc><lastmod>2026-01-03</lastmod><changefreq>weekly</changefreq><priority>0.98</priority></url>
-  <url><loc>https://transformfiles.com/pdf/pdf-to-excel</loc><lastmod>2026-01-03</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://transformfiles.com/pdf/excel-to-pdf</loc><lastmod>2026-01-03</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://transformfiles.com/pdf/pdf-to-ppt</loc><lastmod>2026-01-03</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://transformfiles.com/pdf/ppt-to-pdf</loc><lastmod>2026-01-03</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://transformfiles.com/pdf/pdf-to-text</loc><lastmod>2026-01-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://transformfiles.com/pdf/html-to-pdf</loc><lastmod>2026-01-03</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://transformfiles.com/pdf/rotate-pdf</loc><lastmod>2026-01-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <!-- ==================== IMAGE TOOLS (HIGH TRAFFIC) ==================== -->
+  <url><loc>https://transformfiles.com/image/jpg-to-png</loc><lastmod>2025-01-03</lastmod><changefreq>weekly</changefreq><priority>0.95</priority></url>
+  <url><loc>https://transformfiles.com/image/png-to-jpg</loc><lastmod>2025-01-03</lastmod><changefreq>weekly</changefreq><priority>0.95</priority></url>
+  <url><loc>https://transformfiles.com/image/heic-to-jpg</loc><lastmod>2025-01-03</lastmod><changefreq>weekly</changefreq><priority>0.95</priority></url>
+  <url><loc>https://transformfiles.com/image/webp-to-jpg</loc><lastmod>2025-01-03</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://transformfiles.com/image/webp-to-png</loc><lastmod>2025-01-03</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://transformfiles.com/image/heic-to-png</loc><lastmod>2025-01-03</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://transformfiles.com/image/png-to-webp</loc><lastmod>2025-01-03</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://transformfiles.com/image/jpg-to-webp</loc><lastmod>2025-01-03</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://transformfiles.com/image/svg-to-png</loc><lastmod>2025-01-03</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://transformfiles.com/image/png-to-svg</loc><lastmod>2025-01-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://transformfiles.com/image/bmp-to-jpg</loc><lastmod>2025-01-03</lastmod><changefreq>weekly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://transformfiles.com/image/bmp-to-png</loc><lastmod>2025-01-03</lastmod><changefreq>weekly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://transformfiles.com/image/tiff-to-jpg</loc><lastmod>2025-01-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://transformfiles.com/image/gif-to-jpg</loc><lastmod>2025-01-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://transformfiles.com/image/gif-to-png</loc><lastmod>2025-01-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://transformfiles.com/image/ico-to-png</loc><lastmod>2025-01-03</lastmod><changefreq>weekly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://transformfiles.com/image/png-to-ico</loc><lastmod>2025-01-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://transformfiles.com/image/image-compressor</loc><lastmod>2025-01-03</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://transformfiles.com/image/image-resizer</loc><lastmod>2025-01-03</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
 
-  <!-- AUDIO CONVERSIONS - HIGH VOLUME KEYWORDS -->
-  <url><loc>https://transformfiles.com/audio/wav-to-mp3</loc><lastmod>2026-01-03</lastmod><changefreq>weekly</changefreq><priority>0.95</priority></url>
-  <url><loc>https://transformfiles.com/audio/mp3-to-wav</loc><lastmod>2026-01-03</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://transformfiles.com/audio/m4a-to-mp3</loc><lastmod>2026-01-03</lastmod><changefreq>weekly</changefreq><priority>0.95</priority></url>
-  <url><loc>https://transformfiles.com/audio/flac-to-mp3</loc><lastmod>2026-01-03</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://transformfiles.com/audio/ogg-to-mp3</loc><lastmod>2026-01-03</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://transformfiles.com/audio/aac-to-mp3</loc><lastmod>2026-01-03</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://transformfiles.com/audio/wma-to-mp3</loc><lastmod>2026-01-03</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://transformfiles.com/audio/mp3-to-m4a</loc><lastmod>2026-01-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://transformfiles.com/audio/mp3-to-flac</loc><lastmod>2026-01-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://transformfiles.com/audio/audio-compressor</loc><lastmod>2026-01-03</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://transformfiles.com/audio/mp3-cutter</loc><lastmod>2026-01-03</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <!-- ==================== AUDIO TOOLS ==================== -->
+  <url><loc>https://transformfiles.com/audio/wav-to-mp3</loc><lastmod>2025-01-03</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://transformfiles.com/audio/m4a-to-mp3</loc><lastmod>2025-01-03</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://transformfiles.com/audio/flac-to-mp3</loc><lastmod>2025-01-03</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://transformfiles.com/audio/ogg-to-mp3</loc><lastmod>2025-01-03</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://transformfiles.com/audio/mp3-to-wav</loc><lastmod>2025-01-03</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://transformfiles.com/audio/aac-to-mp3</loc><lastmod>2025-01-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://transformfiles.com/audio/wma-to-mp3</loc><lastmod>2025-01-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://transformfiles.com/audio/mp3-to-m4a</loc><lastmod>2025-01-03</lastmod><changefreq>weekly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://transformfiles.com/audio/audio-compressor</loc><lastmod>2025-01-03</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
 
-  <!-- AI TOOLS -->
-  <url><loc>https://transformfiles.com/ai/text-summarizer</loc><lastmod>2026-01-03</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://transformfiles.com/ai/paraphraser</loc><lastmod>2026-01-03</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://transformfiles.com/ai/grammar-fixer</loc><lastmod>2026-01-03</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://transformfiles.com/ai/translator</loc><lastmod>2026-01-03</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://transformfiles.com/ai/email-generator</loc><lastmod>2026-01-03</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://transformfiles.com/ai/image-to-code</loc><lastmod>2026-01-03</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://transformfiles.com/ai/code-explainer</loc><lastmod>2026-01-03</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
-  <url><loc>https://transformfiles.com/ai/background-remover</loc><lastmod>2026-01-03</lastmod><changefreq>weekly</changefreq><priority>0.95</priority></url>
-  <url><loc>https://transformfiles.com/ai/image-enhancer</loc><lastmod>2026-01-03</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <!-- ==================== PDF TOOLS (HIGH TRAFFIC) ==================== -->
+  <url><loc>https://transformfiles.com/pdf/pdf-to-word</loc><lastmod>2025-01-03</lastmod><changefreq>weekly</changefreq><priority>0.95</priority></url>
+  <url><loc>https://transformfiles.com/pdf/word-to-pdf</loc><lastmod>2025-01-03</lastmod><changefreq>weekly</changefreq><priority>0.95</priority></url>
+  <url><loc>https://transformfiles.com/pdf/pdf-to-jpg</loc><lastmod>2025-01-03</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://transformfiles.com/pdf/jpg-to-pdf</loc><lastmod>2025-01-03</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://transformfiles.com/pdf/merge-pdf</loc><lastmod>2025-01-03</lastmod><changefreq>weekly</changefreq><priority>0.95</priority></url>
+  <url><loc>https://transformfiles.com/pdf/split-pdf</loc><lastmod>2025-01-03</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://transformfiles.com/pdf/compress-pdf</loc><lastmod>2025-01-03</lastmod><changefreq>weekly</changefreq><priority>0.95</priority></url>
+  <url><loc>https://transformfiles.com/pdf/pdf-to-png</loc><lastmod>2025-01-03</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://transformfiles.com/pdf/png-to-pdf</loc><lastmod>2025-01-03</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://transformfiles.com/pdf/pdf-to-excel</loc><lastmod>2025-01-03</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://transformfiles.com/pdf/excel-to-pdf</loc><lastmod>2025-01-03</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://transformfiles.com/pdf/pdf-to-ppt</loc><lastmod>2025-01-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://transformfiles.com/pdf/ppt-to-pdf</loc><lastmod>2025-01-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
 
-  <!-- Trust & Legal Pages -->
-  <url><loc>https://transformfiles.com/privacy</loc><lastmod>2026-01-03</lastmod><changefreq>monthly</changefreq><priority>0.4</priority></url>
-  <url><loc>https://transformfiles.com/terms</loc><lastmod>2026-01-03</lastmod><changefreq>monthly</changefreq><priority>0.4</priority></url>
-  <url><loc>https://transformfiles.com/cookies</loc><lastmod>2026-01-03</lastmod><changefreq>monthly</changefreq><priority>0.4</priority></url>
-  <url><loc>https://transformfiles.com/file-deletion</loc><lastmod>2026-01-03</lastmod><changefreq>monthly</changefreq><priority>0.4</priority></url>
-  <url><loc>https://transformfiles.com/gdpr</loc><lastmod>2026-01-03</lastmod><changefreq>monthly</changefreq><priority>0.4</priority></url>
+  <!-- ==================== AI TOOLS (HIGH TRAFFIC) ==================== -->
+  <url><loc>https://transformfiles.com/ai/text-summarizer</loc><lastmod>2025-01-03</lastmod><changefreq>weekly</changefreq><priority>0.95</priority></url>
+  <url><loc>https://transformfiles.com/ai/paraphraser</loc><lastmod>2025-01-03</lastmod><changefreq>weekly</changefreq><priority>0.95</priority></url>
+  <url><loc>https://transformfiles.com/ai/grammar-fixer</loc><lastmod>2025-01-03</lastmod><changefreq>weekly</changefreq><priority>0.95</priority></url>
+  <url><loc>https://transformfiles.com/ai/translator</loc><lastmod>2025-01-03</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://transformfiles.com/ai/email-generator</loc><lastmod>2025-01-03</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://transformfiles.com/ai/image-to-code</loc><lastmod>2025-01-03</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://transformfiles.com/ai/code-explainer</loc><lastmod>2025-01-03</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://transformfiles.com/ai/background-remover</loc><lastmod>2025-01-03</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://transformfiles.com/ai/image-enhancer</loc><lastmod>2025-01-03</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://transformfiles.com/ai/resume-maker</loc><lastmod>2025-01-03</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://transformfiles.com/ai/ai-writer</loc><lastmod>2025-01-03</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://transformfiles.com/ai/hashtag-generator</loc><lastmod>2025-01-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
 
-  <!-- Multilingual - German -->
-  <url><loc>https://transformfiles.com/de</loc><lastmod>2026-01-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://transformfiles.com/de/video/mp4-to-mp3</loc><lastmod>2026-01-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://transformfiles.com/de/image/jpg-to-png</loc><lastmod>2026-01-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://transformfiles.com/de/pdf/pdf-to-word</loc><lastmod>2026-01-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  
-  <!-- Multilingual - Spanish -->
-  <url><loc>https://transformfiles.com/es</loc><lastmod>2026-01-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://transformfiles.com/es/video/mp4-to-mp3</loc><lastmod>2026-01-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://transformfiles.com/es/image/jpg-to-png</loc><lastmod>2026-01-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://transformfiles.com/es/pdf/pdf-to-word</loc><lastmod>2026-01-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  
-  <!-- Multilingual - French -->
-  <url><loc>https://transformfiles.com/fr</loc><lastmod>2026-01-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://transformfiles.com/fr/video/mp4-to-mp3</loc><lastmod>2026-01-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://transformfiles.com/fr/image/jpg-to-png</loc><lastmod>2026-01-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://transformfiles.com/fr/pdf/pdf-to-word</loc><lastmod>2026-01-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  
-  <!-- Multilingual - Portuguese -->
-  <url><loc>https://transformfiles.com/pt</loc><lastmod>2026-01-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://transformfiles.com/pt/video/mp4-to-mp3</loc><lastmod>2026-01-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://transformfiles.com/pt/image/jpg-to-png</loc><lastmod>2026-01-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://transformfiles.com/pt/pdf/pdf-to-word</loc><lastmod>2026-01-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  
-  <!-- Multilingual - Italian -->
-  <url><loc>https://transformfiles.com/it</loc><lastmod>2026-01-03</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  
-  <!-- Multilingual - Dutch -->
-  <url><loc>https://transformfiles.com/nl</loc><lastmod>2026-01-03</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  
-  <!-- Multilingual - Polish -->
-  <url><loc>https://transformfiles.com/pl</loc><lastmod>2026-01-03</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  
-  <!-- Multilingual - Russian -->
-  <url><loc>https://transformfiles.com/ru</loc><lastmod>2026-01-03</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  
-  <!-- Multilingual - Japanese -->
-  <url><loc>https://transformfiles.com/ja</loc><lastmod>2026-01-03</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  
-  <!-- Multilingual - Chinese -->
-  <url><loc>https://transformfiles.com/zh</loc><lastmod>2026-01-03</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  
-  <!-- Multilingual - Korean -->
-  <url><loc>https://transformfiles.com/ko</loc><lastmod>2026-01-03</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  
-  <!-- Multilingual - Arabic -->
-  <url><loc>https://transformfiles.com/ar</loc><lastmod>2026-01-03</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  
-  <!-- Multilingual - Turkish -->
-  <url><loc>https://transformfiles.com/tr</loc><lastmod>2026-01-03</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  
-  <!-- Multilingual - Hindi -->
-  <url><loc>https://transformfiles.com/hi</loc><lastmod>2026-01-03</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <!-- ==================== CONTENT PAGES ==================== -->
+  <url><loc>https://transformfiles.com/blog</loc><lastmod>2025-01-03</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
+  <url><loc>https://transformfiles.com/about</loc><lastmod>2025-01-03</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://transformfiles.com/contact</loc><lastmod>2025-01-03</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://transformfiles.com/compress</loc><lastmod>2025-01-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+
+  <!-- ==================== LEGAL PAGES ==================== -->
+  <url><loc>https://transformfiles.com/privacy</loc><lastmod>2025-01-03</lastmod><changefreq>monthly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://transformfiles.com/terms</loc><lastmod>2025-01-03</lastmod><changefreq>monthly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://transformfiles.com/cookies</loc><lastmod>2025-01-03</lastmod><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://transformfiles.com/gdpr</loc><lastmod>2025-01-03</lastmod><changefreq>monthly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://transformfiles.com/file-deletion</loc><lastmod>2025-01-03</lastmod><changefreq>monthly</changefreq><priority>0.4</priority></url>
+
+  <!-- ==================== MULTILINGUAL HOMEPAGES ==================== -->
+  <url><loc>https://transformfiles.com/de</loc><lastmod>2025-01-03</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://transformfiles.com/es</loc><lastmod>2025-01-03</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://transformfiles.com/fr</loc><lastmod>2025-01-03</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://transformfiles.com/pt</loc><lastmod>2025-01-03</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://transformfiles.com/ja</loc><lastmod>2025-01-03</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://transformfiles.com/zh</loc><lastmod>2025-01-03</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://transformfiles.com/ko</loc><lastmod>2025-01-03</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://transformfiles.com/ar</loc><lastmod>2025-01-03</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://transformfiles.com/hi</loc><lastmod>2025-01-03</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://transformfiles.com/ru</loc><lastmod>2025-01-03</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://transformfiles.com/tr</loc><lastmod>2025-01-03</lastmod><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://transformfiles.com/it</loc><lastmod>2025-01-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://transformfiles.com/nl</loc><lastmod>2025-01-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://transformfiles.com/pl</loc><lastmod>2025-01-03</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+
 </urlset>
