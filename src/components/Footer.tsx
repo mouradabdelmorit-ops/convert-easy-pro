@@ -12,6 +12,7 @@ const Footer = () => {
       { name: t.nav.pdfEditor, path: "/pdf-editor" },
       { name: t.nav.resumeMaker, path: "/resume-maker" },
       { name: "File Compressor", path: "/compress" },
+      { name: "AI Tools", path: "/ai-tools" },
     ],
     converters: [
       { name: "Video Converter", path: "/video-converter" },
@@ -19,21 +20,31 @@ const Footer = () => {
       { name: "Audio Converter", path: "/audio-converter" },
       { name: "Document Converter", path: "/document-converter" },
     ],
+    popular: [
+      { name: "MP4 to MP3", path: "/video/mp4-to-mp3" },
+      { name: "JPG to PNG", path: "/image/jpg-to-png" },
+      { name: "PDF to Word", path: "/pdf/pdf-to-word" },
+      { name: "HEIC to JPG", path: "/image/heic-to-jpg" },
+      { name: "Compress PDF", path: "/pdf/compress-pdf" },
+    ],
     legal: [
       { name: t.privacy.title, path: "/privacy" },
       { name: t.terms.title, path: "/terms" },
       { name: t.cookies.title, path: "/cookies" },
+      { name: "File Deletion", path: "/file-deletion" },
+      { name: "GDPR", path: "/gdpr" },
     ],
     company: [
       { name: t.nav.about, path: "/about" },
-      { name: "Contact", path: "/about#contact" },
+      { name: "Contact", path: "/contact" },
+      { name: "Blog", path: "/blog" },
     ],
   };
 
   return (
     <footer className="bg-navy-dark border-t border-border">
       <div className="container mx-auto px-4 py-12 md:py-16">
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 lg:gap-12">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 lg:gap-12">
           {/* Brand */}
           <div className="col-span-2 md:col-span-3 lg:col-span-1">
             <Link to={getLocalizedPath("/")} className="flex items-center gap-2 mb-4">
@@ -85,6 +96,23 @@ const Footer = () => {
             <h4 className="font-display font-semibold text-foreground mb-4">{t.footer.converters}</h4>
             <ul className="space-y-3">
               {footerLinks.converters.map((link) => (
+                <li key={link.name}>
+                  <Link
+                    to={getLocalizedPath(link.path)}
+                    className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                  >
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Popular Tools */}
+          <div>
+            <h4 className="font-display font-semibold text-foreground mb-4">Popular</h4>
+            <ul className="space-y-3">
+              {footerLinks.popular.map((link) => (
                 <li key={link.name}>
                   <Link
                     to={getLocalizedPath(link.path)}
