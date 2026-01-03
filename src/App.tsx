@@ -37,6 +37,7 @@ import CodeExplainer from "./pages/ai/CodeExplainer";
 import Admin from "./pages/Admin";
 import AdminLogin from "./pages/AdminLogin";
 import NotFound from "./pages/NotFound";
+import AllTools from "./pages/AllTools";
 
 // Programmatic SEO Tool Pages
 import VideoToolPage from "./pages/tools/VideoToolPage";
@@ -74,7 +75,7 @@ const App = () => (
               <Route path="/image-converter" element={<ImageConverter />} />
               <Route path="/audio-converter" element={<AudioConverter />} />
               <Route path="/document-converter" element={<DocumentConverter />} />
-              
+              <Route path="/all-tools" element={<AllTools />} />
               {/* Programmatic SEO - Individual Tool Pages */}
               {/* Video Tools */}
               <Route path="/video/:slug" element={<VideoToolPage />} />
@@ -136,6 +137,7 @@ const App = () => (
                   <Route path="image-converter" element={<ImageConverter />} />
                   <Route path="audio-converter" element={<AudioConverter />} />
                   <Route path="document-converter" element={<DocumentConverter />} />
+                  <Route path="all-tools" element={<AllTools />} />
                   {/* Tool pages */}
                   <Route path="video/:slug" element={<VideoToolPage />} />
                   <Route path="image/:slug" element={<ImageToolPage />} />

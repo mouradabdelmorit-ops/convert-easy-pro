@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X, RefreshCw, ChevronDown, Video, Image, Music, FileText, Sparkles, FileEdit, User } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
@@ -9,6 +9,7 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const location = useLocation();
+  const navigate = useNavigate();
   const { t, getLocalizedPath } = useLanguage();
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -181,7 +182,7 @@ const Header = () => {
                   </div>
                   <div className="mt-6 pt-4 border-t border-border">
                     <Link
-                      to={getLocalizedPath("/")}
+                      to={getLocalizedPath("/all-tools")}
                       className="text-sm text-primary hover:underline"
                       onClick={() => setActiveDropdown(null)}
                     >
@@ -327,13 +328,16 @@ const Header = () => {
                         <ul className="space-y-1 ml-6">
                           {category.tools.slice(0, 5).map((tool) => (
                             <li key={tool.path}>
-                              <Link
-                                to={getLocalizedPath(tool.path)}
-                                className="text-sm text-muted-foreground hover:text-primary block py-1"
-                                onClick={() => { setIsMenuOpen(false); setActiveDropdown(null); }}
+                              <button
+                                className="text-sm text-muted-foreground hover:text-primary block py-1 w-full text-left"
+                                onClick={() => { 
+                                  setIsMenuOpen(false); 
+                                  setActiveDropdown(null);
+                                  navigate(getLocalizedPath(tool.path));
+                                }}
                               >
                                 {tool.name}
-                              </Link>
+                              </button>
                             </li>
                           ))}
                         </ul>
@@ -359,13 +363,16 @@ const Header = () => {
                   <ul className="ml-4 mt-2 space-y-1">
                     {aiTools.map((tool) => (
                       <li key={tool.path}>
-                        <Link
-                          to={getLocalizedPath(tool.path)}
-                          className="text-sm text-muted-foreground hover:text-primary block py-2 px-3"
-                          onClick={() => { setIsMenuOpen(false); setActiveDropdown(null); }}
+                        <button
+                          className="text-sm text-muted-foreground hover:text-primary block py-2 px-3 w-full text-left"
+                          onClick={() => { 
+                            setIsMenuOpen(false); 
+                            setActiveDropdown(null);
+                            navigate(getLocalizedPath(tool.path));
+                          }}
                         >
                           {tool.name}
-                        </Link>
+                        </button>
                       </li>
                     ))}
                   </ul>
